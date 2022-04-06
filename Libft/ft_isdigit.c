@@ -18,6 +18,7 @@
 /*  c: character to be checked                                                */
 /*  return: Non-zero value if the c is a digit, zero otherwise.               */
 /* ************************************************************************** */
+
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
