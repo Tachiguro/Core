@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 /* ************************************************************************** */
-/*	Function: ft_isalpha													  */
-/*	--------------------													  */
-/*	The isalpha() function checks whether a character is an alphabet or not.  */
-/*																			  */
-/*  c: character to be checked												  */
-/*	return: Non-zero value if the character is an alphabetic character,		  */
-/*		zero otherwise.														  */
+/*  Function: ft_isalpha                                                      */
+/*  --------------------                                                      */
+/*  The isalpha() function checks whether a character is an alphabet or not.  */
+/*                                                                            */
+/*  c: character to be checked                                                */
+/*  return: Non-zero value if the character is an alphabetic character,       */
+/*    zero otherwise.                                                         */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
