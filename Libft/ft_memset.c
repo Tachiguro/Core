@@ -23,7 +23,6 @@
 /*  len: number of bytes to fill.                                             */
 /*  return: b.                                                                */
 /* ************************************************************************** */
-
 void	*ft_memset(void *b, int c, size_t len)
 {
 	int		i;
