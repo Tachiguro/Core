@@ -10,6 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** */
+/*  Function: ft_isascii                                                      */
+/*  --------------------                                                      */
+/*  The ft_isascii() function checks whether a character is an ascii          */
+/*  character or not.                                                         */
+/*                                                                            */
+/*  c: Character to be checked.                                               */
+/*  return: Non-zero value if the c is an ascii character, zero otherwise.    */
+/* ************************************************************************** */
 int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)

@@ -10,6 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** */
+/*  Function: ft_isprint                                                      */
+/*  --------------------                                                      */
+/*  The ft_isprint() function Checks whether c is a printable character.      */
+/*                                                                            */
+/*  c: Character to be checked.                                               */
+/*  return: Non-zero value if the c is an ascii character, zero otherwise.    */
+/* ************************************************************************** */
 int	ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)

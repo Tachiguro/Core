@@ -14,12 +14,11 @@
 /*  Function: ft_isalnum                                                      */
 /*  --------------------                                                      */
 /*  The isalnum() function Checks if the given character is an alphanumeric   */
-/*  character                                                                 */
+/*  character.                                                                */
 /*                                                                            */
-/*  c: character to be checked                                                */
-/*  return: Non-zero value if the c is a alphanumeric, zero otherwi           */
+/*  c: character to be checked.                                               */
+/*  return: Non-zero value if the c is a alphanumeric, zero otherwise.        */
 /* ************************************************************************** */
-
 int	ft_isalnum(int c)
 {
 	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122))
