@@ -12,6 +12,18 @@
 
 #include "libft.h"
 
+/* ************************************************************************** */
+/*  Function: ft_strlcpy                                                      */
+/*  --------------------                                                      */
+/*  The ft_strlcpy() function copy src to string dst of size dstsize.         */
+/*  At most siz-1 characters will be copied.                                  */
+/*  Always NUL terminates (unless siz == 0).                                  */
+/*                                                                            */
+/*  dst: A pointer to the destination string.                                 */
+/*  src: A pointer to the source string.                                      */
+/*  dstsize: The size of the destination buffer.                              */
+/*  return: The total length of the string (src).                             */
+/* ************************************************************************** */
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t		n;
