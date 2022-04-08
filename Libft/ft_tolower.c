@@ -10,6 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** */
+/*  Function: ft_tolower                                                      */
+/*  --------------------                                                      */
+/*  The ft_tolower() function Converts the given character to lovercase.      */
+/*                                                                            */
+/*  c: Character to be converted.                                             */
+/*  return: Converted character or ch if no lovercase version.                */
+/* ************************************************************************** */
 int	ft_tolower(int c)
 {
 	if (c > 64 && c < 91)

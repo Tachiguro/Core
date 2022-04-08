@@ -10,6 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** */
+/*  Function: ft_toupper                                                      */
+/*  --------------------                                                      */
+/*  The ft_toupper() function Converts the given character to uppercase.      */
+/*                                                                            */
+/*  c: Character to be converted.                                             */
+/*  return: Converted character or ch if no uppercase version.                */
+/* ************************************************************************** */
 int	ft_toupper(int c)
 {
 	if (c >= 97 && c <= 122)
