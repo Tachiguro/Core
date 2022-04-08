@@ -12,6 +12,21 @@
 
 #include "libft.h"
 
+/* ************************************************************************** */
+/*  Function: ft_memmove                                                      */
+/*  --------------------                                                      */
+/*  The ft_memmove() function copies n bytes from memory area src to          */
+/*    memory area dest.  The memory areas may overlap: copying takes          */
+/*    place as though the bytes in src are first copied into a                */
+/*    temporary array that does not overlap src or dest, and the bytes        */
+/*    are then copied from the temporary array to dest.                       */
+/*                                                                            */
+/*  dst: This is a pointer to the destination array where the content is to   */
+/*    be copied, type-casted to a pointer of type void*.                      */
+/*  src: This is a pointer to the source of data to be copied, type-casted    */
+/*    to a pointer of type void*.                                             */
+/*  n: Number of bytes to be copied.                                          */
+/* ************************************************************************** */
 void	*ft_memmove(void *dst, void *src, size_t len)
 {
 	size_t		i;
