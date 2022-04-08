@@ -12,6 +12,19 @@
 
 #include "libft.h"
 
+/* ************************************************************************** */
+/*  Function: ft_memcmp                                                       */
+/*  --------------------                                                      */
+/*  The ft_memcmp() function compares the first n bytes of memory area s1     */
+/*  and memory area s2.                                                       */
+/*                                                                            */
+/*  s1: This is the pointer to a block of memory.                             */
+/*  s2: This is the pointer to a block of memory.                             */
+/*  n: This is the number of bytes to be compared.                            */
+/*  return: If Return value < 0 then it indicates s1 is less than s2.         */
+/*    If Return value > 0 then it indicates s2 is less than s1.               */
+/*    If Return value = 0 then it indicates s1 is equal to s2.                */
+/* ************************************************************************** */
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned char	*str1;
