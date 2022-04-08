@@ -16,7 +16,7 @@
 /*  The isalnum() function Checks if the given character is an alphanumeric   */
 /*  character.                                                                */
 /*                                                                            */
-/*  c: character to be checked.                                               */
+/*  c: Character to be checked.                                               */
 /*  return: Non-zero value if the c is a alphanumeric, zero otherwise.        */
 /* ************************************************************************** */
 int	ft_isalnum(int c)

@@ -24,7 +24,7 @@
 /*                                                                            */
 /*  c: String.                                                                */
 /*  return: The length of string (without including the terminating null      */
-/*  character itself).                                                        */
+/*    character itself).                                                      */
 /* ************************************************************************** */
 size_t	ft_strlen(const char *s)
 {

@@ -19,8 +19,8 @@
 /*  starting at the location pointed to by s, by writing zeros (bytes         */
 /*  containing '\0') to that area.                                            */
 /*                                                                            */
-/*  s: pointer to the object to fill.                                         */
-/*  n: number of bytes to fill.                                               */
+/*  s: Pointer to the object to fill.                                         */
+/*  n: Number of bytes to fill.                                               */
 /* ************************************************************************** */
 void	ft_bzero(void *s, size_t n)
 {
