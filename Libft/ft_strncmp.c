@@ -12,6 +12,19 @@
 
 #include "libft.h"
 
+/* ************************************************************************** */
+/*  Function: ft_strncmp                                                      */
+/*  --------------------                                                      */
+/*  The ft_strncmp() function compares the string pointed to, by s1 to the    */
+/*  string pointed to by s2.                                                  */
+/*                                                                            */
+/*  s1: Pointer to the first string to be compared.                           */
+/*  s2: Pointer to the second string to be compared.                          */
+/*  n: The maximum number of characters to be compared.                       */
+/*  return: if Return value < 0 then it indicates str1 is less than s2.       */
+/*    if Return value > 0 then it indicates s2 is less than s1.               */
+/*    if Return value = 0 then it indicates str1 is equal to s2.              */
+/* ************************************************************************** */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
