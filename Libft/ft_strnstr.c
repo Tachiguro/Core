@@ -12,6 +12,21 @@
 
 #include "libft.h"
 
+/* ************************************************************************** */
+/*  Function: ft_strnstr                                                      */
+/*  --------------------                                                      */
+/*  The ft_strnstr() locates the first occurrence of the null-termi-nated     */
+/*  string needle in the string haystack, where not more than len characters  */
+/*  are searched. Characters that appear after a `\0' character are not       */
+/*  searched.                                                                 */
+/*                                                                            */
+/*  haystack: This is the main C string to be scanned.                        */
+/*  needle: Character to search for.                                          */
+/*  len: The maximum number of characters to be scanned.                      */
+/*  return: Pointer to the first occurrence in haystack of any of the entire  */
+/*    sequence of characters specified in needle, or a null pointer if the    */
+/*    sequence is not present in haystack.                                    */
+/* ************************************************************************** */
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	counter;

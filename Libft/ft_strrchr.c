@@ -21,7 +21,7 @@
 /*  s: Pointer to the null-terminated byte string to be analyzed.             */
 /*  c: Character to search for.                                               */
 /*  return: Pointer to the found character in str, or null pointer if no such */
-/*    character is found..                                                    */
+/*    character is found.                                                     */
 /* ************************************************************************** */
 char	*ft_strrchr(const char *s, int c)
 {
