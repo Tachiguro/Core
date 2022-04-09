@@ -15,12 +15,12 @@
 /*  -----------------                                                         */
 /*  Converts a string to an integer.                                          */
 /*                                                                            */
-/*  The atoi function skips all white-space characters at the beginning of    */
-/*  the string, converts the subsequent characters as part of the number, and */
-/*  then stops when it encounters the first character that isn't a number.    */
+/*  The ft_atoi() function skips all white-space characters at the beginning  */
+/*  of the string, converts the subsequent characters as part of the number,  */
+/*  and then stops when it encounters the first character that isn't a number.*/
 /*                                                                            */
-/*  *str: pointer to a string to convert to an integer.                       */
-/*  return: the integer representation of a string.                           */
+/*  str: Pointer to a string to convert to an integer.                        */
+/*  return: Pointer to the allocated memory, or NULL if the request fails.    */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)

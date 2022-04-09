@@ -12,6 +12,18 @@
 
 #include "libft.h"
 
+/* ************************************************************************** */
+/*  Function: ft_strdup                                                       */
+/*  -------------------                                                       */
+/*                                                                            */
+/*  The ft_strdup() function returns a pointer to a null-terminated byte      */
+/*  string, which is a duplicate of the string pointed to by str1. The        */
+/*  returned pointer must be passed to free to avoid a memory leak.           */
+/*                                                                            */
+/*  s1: Pointer to the null-terminated byte string to duplicate.              */
+/*  return: Pointer to the newly allocated string, or a null pointer if an    */
+/*    error occurred.                                                         */
+/* ************************************************************************** */
 char	*ft_strdup(const char *s1)
 {
 	size_t	len;
