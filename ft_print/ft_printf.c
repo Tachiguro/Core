@@ -71,7 +71,6 @@ int	ft_print_hex(va_list args, int to_upper)
 
 int	ft_print_pointer(va_list args)
 {
-	
 	int					c_letters;
 	unsigned long long	pval;
 
@@ -81,11 +80,21 @@ int	ft_print_pointer(va_list args)
 	return (c_letters);
 }
 
-int	ft_check_format(const char *format, int i, va_list args)
+int	ft_print_u(va_list args)
 {
-	int					c_letters;
+	unsigned int 	n;
+	int 			num_len;
+	char			*int_as_string;
 
-	c_letters = 0;
+	n = va_arg(args, unsigned int);
+	int_as_string = ft_itoa(i);
+	num_len = ft_strlen(int_as_string);
+	write(1, int_as_string, num_len);
+	return (num_len);
+}
+
+int	ft_check_format(const char *format, int i, va_list args, int c_letters)
+{
 	if (format[i] == '%' && format[i + 1] == 'c')
 		c_letters += ft_prit_char(args);
 	else if (format[i] == '%' && format[i + 1] == 's')
@@ -101,6 +110,8 @@ int	ft_check_format(const char *format, int i, va_list args)
 		else
 			c_letters +=  ft_print_hex(args, 0);
 	}
+	else if (format[i] == '%' && format[i + 1] == 'u')
+		c_letters += ft_print_u(args);
 	else if (format[i] == '%' && format[i + 1] == 'p')
 		c_letters += ft_print_pointer(args);
 	else if (format[i] == '%' && format[i + 1] == '%')
@@ -128,7 +139,7 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 		}
-		c_letters += ft_check_format(format, i, args);
+		c_letters += ft_check_format(format, i, args, c_letters);
 		i++;
 	}
 	va_end(args);
