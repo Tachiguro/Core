@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 14:43:22 by jherzog           #+#    #+#             */
-/*   Updated: 2022/04/11 18:37:33 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:16:35 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,4 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-
-int		ft_printf(const char *, ...);
 #endif

@@ -6,21 +6,8 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:32:36 by jherzog           #+#    #+#             */
-/*   Updated: 2021/10/06 11:30:01 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:22:15 by jherzog          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*  Function: ft_atoi                                                         */
-/*  -----------------                                                         */
-/*  Converts a string to an integer.                                          */
-/*                                                                            */
-/*  The ft_atoi() function skips all white-space characters at the beginning  */
-/*  of the string, converts the subsequent characters as part of the number,  */
-/*  and then stops when it encounters the first character that isn't a number.*/
-/*                                                                            */
-/*  str: Pointer to a string to convert to an integer.                        */
-/*  return: Pointer to the allocated memory, or NULL if the request fails.    */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
