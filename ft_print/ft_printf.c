@@ -6,19 +6,21 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:51:20 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/09 13:30:14 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/09 14:00:42 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft\libft.h"
+#include "libft.h"
 
 int		ft_printf(const char *format, ...)
 {
-	int i = 0;
-
 	va_list args;
-	va_start(args, format);
+	int i;
+	int c_letters;
 
+	i = 0;
+	c_letters =0;
+	va_start(args, format);
 	while(format[i] != '\0')
 	{
 		if(format[i - 1] == '%' &&
