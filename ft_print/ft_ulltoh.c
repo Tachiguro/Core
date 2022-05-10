@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:20:43 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/09 15:15:49 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 13:58:27 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	int2hex(int i)
 	return ('a' + i - 10);
 }
 
-void	trim1(char *str, int len)
+static void	trim1(char *str, int len)
 {
 	char	*newstr;
 	int		newlen;
@@ -60,7 +60,7 @@ void	trim1(char *str, int len)
 	}
 }
 
-char	*func_ulltoh(unsigned long long number)
+char	*ft_ulltoh(unsigned long long number)
 {
 	int		len;
 	int		hex;

@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:16:26 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/09 14:54:18 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 14:58:05 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	trim(char *str, int len)
 	}
 }
 
-char	*func_itoh(int number)
+char	*ft_itoh(int number)
 {
 	int		len;
 	int		hex;
