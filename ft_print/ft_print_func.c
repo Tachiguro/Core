@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 11:26:12 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 15:53:16 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 16:14:08 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,14 @@ int	ft_print_pointer(va_list args)
 	c_letters = 0;
 	pval = va_arg(args, unsigned long);
 	c_letters += write(1, "0x", 2);
-	c_letters += write(1, ft_ultoh(pval), 16);
+	if (pval == 0)
+	{
+		c_letters += write(1, "0" ,1);
+	}
+	else
+		c_letters += write(1, ft_ultoh(pval), 12);
 	return (c_letters);
 }
-
 int	ft_print_u(va_list args)
 {
 	unsigned int	n;
