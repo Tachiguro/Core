@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:51:20 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 16:31:23 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 16:57:20 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_check_format(const char *format, int i, va_list args, int c_letters)
 {
