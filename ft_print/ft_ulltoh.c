@@ -6,13 +6,13 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:20:43 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 13:58:27 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 15:52:22 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int	nbr_length(long long int i)
+static int	nbr_length(unsigned long i)
 {
 	int	counter;
 
@@ -60,7 +60,7 @@ static void	trim1(char *str, int len)
 	}
 }
 
-char	*ft_ulltoh(unsigned long long number)
+char	*ft_ultoh(unsigned long number)
 {
 	int		len;
 	int		hex;

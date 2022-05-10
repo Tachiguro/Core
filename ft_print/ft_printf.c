@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:51:20 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 15:13:13 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 15:52:56 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,32 @@ int	ft_check_format(const char *format, int i, va_list args, int c_letters)
 	else if (format[i] == '%' && (format[i + 1] == 'd'
 			|| format[i + 1] == 'i'))
 		c_letters +=  ft_print_int(args);
-	else if (format[i] == '%' && (
-				format[i + 1] == 'x' || format[i + 1] == 'X'))
-	{
-		if (format[i + 1] == 'X')
-			c_letters +=  ft_print_hex(args, 1);
-		else
-			c_letters +=  ft_print_hex(args, 0);
-	}
+	else if(format[i] == '%' && format[i + 1] == 'x')
+		{
+			int i = va_arg(args, int);
+			char *inumb = ft_ultoh(i);
+			int numlen = ft_strlen(inumb);
+			write(1, inumb, numlen);
+		}
+		else if(format[i] == '%' && format[i + 1] == 'X')
+		{
+			int i;
+			int n;
+			int hex_len;
+			char *inumb;
+			char upperinumb;
+
+			n = va_arg(args, int);
+			inumb = ft_ultoh(n);
+			i = 0;
+			hex_len = 0;
+			while(inumb[i] != '\0')
+			{
+				upperinumb = ft_toupper(inumb[i]);
+				hex_len += write(1, &upperinumb, 1);
+				i++;
+			}
+		}
 	else if (format[i] == '%' && format[i + 1] == 'u')
 		c_letters += ft_print_u(args);
 	else if (format[i] == '%' && format[i + 1] == 'p')

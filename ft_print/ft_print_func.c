@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 11:26:12 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 15:13:10 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 15:53:16 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,35 @@ int	ft_print_int(va_list args)
 
 int	ft_print_hex(va_list args)
 {
-	int		n;
-	int		hex_len;
-	char	*int_as_hex;
-	int		j;
+	int i;
+	int n;
+	int hex_len;
+	char *inumb;
+	char upperinumb;
+
 
 	n = va_arg(args, int);
-	j = 0;
-	int_as_hex = ft_itoh(n);
-	hex_len = ft_strlen(int_as_hex);
-	while (int_as_hex[j] != '\0')
+	inumb = ft_ultoh(n);
+	i = 0;
+	hex_len = 0;
+	while(inumb[i] != '\0')
 	{
-		if (to_upper)
-			int_as_hex[j] = ft_toupper(int_as_hex[j]);
-		write(1, &int_as_hex, hex_len);
-		j++;
+		upperinumb = ft_toupper(inumb[i]);
+		hex_len += write(1, &upperinumb, 1);
+		i++;
 	}
 	return (hex_len);
 }
 
 int	ft_print_pointer(va_list args)
 {
-	int					c_letters;
-	unsigned long long	pval;
+	int				c_letters;
+	unsigned long	pval;
 
 	c_letters = 0;
-	pval = va_arg(args, unsigned long long);
+	pval = va_arg(args, unsigned long);
 	c_letters += write(1, "0x", 2);
-	c_letters += write(1, ft_ulltoh(pval), 18);
+	c_letters += write(1, ft_ultoh(pval), 16);
 	return (c_letters);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 13:34:13 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 14:58:07 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 15:43:20 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 int	main(void)
 {
-	int	a;
-	int	*p;
+	//int	a;
+	//int	*p;
 
-	a = 12;
-	p = &a;
-	ft_printf("x:%x, X:%X %%\n p:%p\n", 31, 63, p);
-	printf("x:%x, X:%X %%\n p:%p\n", 31, 63, p);
+	//a = 12;
+	//p = &a;
+	ft_printf("x:%x, X:%X\n", 31, 63);
+	printf("x:%x, X:%X\n", 31, 63);
 	return (0);
 }
