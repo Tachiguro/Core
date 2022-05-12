@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ulltoh.c                                        :+:      :+:    :+:   */
+/*   ft_ultoh.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:20:43 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 15:52:22 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 17:41:42 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static int	nbr_length(unsigned long i)
 {
@@ -34,7 +34,7 @@ static char	int2hex(int i)
 	return ('a' + i - 10);
 }
 
-static void	trim1(char *str, int len)
+static void	trim(char *str, int len)
 {
 	char	*newstr;
 	int		newlen;
@@ -83,6 +83,6 @@ char	*ft_ultoh(unsigned long number)
 		hexnumber[counter -1] = int2hex(hex);
 		counter--;
 	}
-	trim1(hexnumber, len);
+	trim(hexnumber, len);
 	return (hexnumber);
 }

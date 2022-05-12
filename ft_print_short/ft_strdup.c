@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:34:13 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/10 16:32:24 by jherzog          ###   ########.fr       */
+/*   Created: 2021/09/08 16:17:16 by jherzog           #+#    #+#             */
+/*   Updated: 2022/05/10 20:10:08 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "printf.h"
+#include "ft_printf.h"
 
-int	main(void)
+char	*ft_strdup(const char *s1)
 {
-	int	a;
-	int	*p;
+	size_t	len;
+	char	*new_str;
+	char	*temp_str;
 
-	a = 12;
-	p = NULL;
-	ft_printf("x:%x, X:%X\n", 31, 1231321);
-	printf("x:%x, X:%X\n", 31, 1231321);
-	return (0);
+	len = ft_strlen(s1) + 1;
+	temp_str = (char *)malloc(sizeof(char) * len);
+	if (temp_str == 0)
+		return (0);
+	new_str = ft_memcpy(temp_str, s1, len);
+	return (new_str);
 }

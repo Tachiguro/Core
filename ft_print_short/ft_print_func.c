@@ -6,12 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 11:26:12 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/12 23:12:28 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/10 16:57:15 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 int	ft_print_string(va_list args)
 {
