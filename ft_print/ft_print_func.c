@@ -17,10 +17,16 @@ int	ft_print_string(va_list args)
 {
 	char	*s;
 	int		str_len;
+	int		len;
 
+	len = 0;
+	str_len = 0;
 	s = va_arg(args, char *);
-	str_len = ft_strlen(s);
-	write(1, s, str_len);
+	len = ft_strlen(s);
+	if (!s)
+		str_len += write(1, "(null)", 6)
+	else
+		str_len += write(1, s, len);
 	return (str_len);
 }
 
@@ -75,9 +81,7 @@ int	ft_print_pointer(va_list args)
 	pval = va_arg(args, unsigned long);
 	c_letters += write(1, "0x", 2);
 	if (pval == 0)
-	{
 		c_letters += write(1, "0", 1);
-	}
 	else
 		c_letters += write(1, ft_ultoh(pval), 12);
 	return (c_letters);
