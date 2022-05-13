@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 11:26:12 by jherzog           #+#    #+#             */
-/*   Updated: 2022/05/12 23:12:28 by jherzog          ###   ########.fr       */
+/*   Updated: 2022/05/14 00:24:39 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_print_string(va_list args)
 	s = va_arg(args, char *);
 	len = ft_strlen(s);
 	if (!s)
-		str_len += write(1, "(null)", 6)
+		str_len += write(1, "(null)", 6);
 	else
 		str_len += write(1, s, len);
 	return (str_len);
