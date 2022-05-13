@@ -21,20 +21,20 @@ int	ft_check_format(const char *format, int i, va_list args, int c_letters)
 		c = va_arg(args, int);
 		c_letters += write(1, &c, 1);
 	}
-	else if (format[i] == '%' && format[i + 1] == 's')
+	else if (format[i] == 's')
 		c_letters += ft_print_string(args);
-	else if (format[i] == '%' && (format[i + 1] == 'd'
-			|| format[i + 1] == 'i'))
+	else if ((format[i] == 'd'
+			|| format[i] == 'i'))
 		c_letters += ft_print_int(args);
-	else if (format[i] == '%' && format[i + 1] == 'x')
+	else if (format[i] == 'x')
 		c_letters += ft_print_hex(args, 0);
-	else if (format[i] == '%' && format[i + 1] == 'X')
+	else if (format[i] == 'X')
 		c_letters += ft_print_hex(args, 1);
-	else if (format[i] == '%' && format[i + 1] == 'u')
+	else if (format[i] == 'u')
 		c_letters += ft_print_u(args);
-	else if (format[i] == '%' && format[i + 1] == 'p')
+	else if (format[i] == 'p')
 		c_letters += ft_print_pointer(args);
-	else if (format[i] == '%' && format[i + 1] == '%')
+	else if (format[i] == '%')
 		c_letters += write(1, "%", 1);
 	else
 		c_letters += write(1, &format[i], 1);
@@ -52,13 +52,8 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
-		if (format[i - 1] == '%'
-			&& (format[i] == 'c' || format[i] == 's' || format[i] == 'p'
-				|| format[i] == 'd' || format[i] == 'i' || format[i] == 'u'
-				|| format[i] == 'x' || format[i] == 'X' || format[i] == '%'))
-		{
+		if (format[i - 1] == '%')
 			i++;
-		}
 		c_letters += ft_check_format(format, i, args, c_letters);
 		i++;
 	}
