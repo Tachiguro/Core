@@ -65,11 +65,10 @@ char	*ft_ultoh(unsigned long number)
 	int		len;
 	int		hex;
 	int		counter;
-	char	*hexnumber;
+	char	hexnumber[18];
 
 	len = nbr_length(number);
 	counter = len;
-	hexnumber = malloc((len * sizeof(char)) + 1);
 	while (counter >= 0)
 	{
 		hexnumber[counter] = '\0';
@@ -86,3 +85,4 @@ char	*ft_ultoh(unsigned long number)
 	trim(hexnumber, len);
 	return (hexnumber);
 }
+//test
