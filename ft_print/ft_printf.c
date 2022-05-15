@@ -23,8 +23,7 @@ int	ft_check_format(const char *format, int i, va_list args, int c_letters)
 	}
 	else if (format[i] == 's')
 		c_letters += ft_print_string(args);
-	else if ((format[i] == 'd'
-			|| format[i] == 'i'))
+	else if ((format[i] == 'd' || format[i] == 'i'))
 		c_letters += ft_print_int(args);
 	else if (format[i] == 'x')
 		c_letters += ft_print_hex(args, 0);
@@ -49,6 +48,8 @@ int	ft_printf(const char *format, ...)
 
 	i = 0;
 	c_letters = 0;
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
