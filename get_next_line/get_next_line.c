@@ -6,109 +6,92 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 19:20:24 by marvin            #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:15 by marvin           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:40:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+static void cleanup(char **str, void *content)
 {
-    char *cat;
-    size_t len;
-    int i;
-    int j;
-
-    i = 0;
-    j = 0;
-    len = ft_strlen(s1) + ft_strlen(s2);
-    cat = (char *)malloc(sizeof(char) * (len + 1));
-    if (!cat)
-        return (NULL);
-    cat[len] = 0;
-    while (s1[i])
+    if (*str)
     {
-        cat[i] = s1[i];
-        i++;
+        free(*str);
+        *str = (char *)content;
     }
-    while (s2[j])
-    {
-        cat[i] = s2[j];
-        j++;
-        i++;
-    }
-    cat[i] = 0;
-    return (cat);
 }
 
-char *ft_strchr(const char *s, int c)
+static int fill_buffer(char **buff, int fd)
 {
-    size_t slen;
-    size_t i;
+    char *temp;
+    char *buffer;
+    int counter;
 
-    slen = ft_strlen(s);
-    i = 0;
-    while (i <= slen)
+    buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
+    counter = read(fd, buffer, BUFFER_SIZE);
+    if (counter < 1)
     {
-        if (s[i] == (char)c)
-            return ((char *)&s[i]);
-        i++;
+        cleanup(&buffer, NULL);
+        return (counter);
     }
-    return (NULL);
+    buffer[counter] = '\0';
+    temp = *buff;
+    *buff = ft_strjoin(temp, buffer);
+    if (ft_strlen(temp))
+        cleanup(&temp, NULL);
+    cleanup(&buffer, NULL);
+    return (counter);
 }
 
-size_t ft_strlen(const char *s)
+static void close_line_n(char **buff, char **line, int counter)
 {
+    char *temp;
     size_t i;
 
     i = 0;
-    while (s[i])
+    while ((*buff)[i] != '\n' && (*buff)[i])
         i++;
-    return (i);
+    *line = ft_substr(*buff, 0, i + 1);
+    temp = *buff;
+    if (counter > 0)
+        *buff = ft_substr(temp, i + 1, ft_strlen(temp));
+    cleanup(&temp, NULL);
 }
 
-char *ft_strdup(const char *s)
+static int close_gnl(char **buff, char **line, int counter)
 {
-    char *dups;
-    size_t i;
-
-    dups = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-    if (!dups)
-        return (NULL);
-    i = 0;
-    while (s[i])
+    if (ft_strchr(*buff, '\n'))
     {
-        dups[i] = s[i];
-        i++;
+        close_line_n(&*buff, &*line, counter);
+        if (ft_strlen(*buff) == 0)
+            cleanup(&*buff, "");
     }
-    dups[i] = '\0';
-    return (dups);
-}
-
-char *ft_substr(char const *s, unsigned int start, size_t len)
-{
-    char *sub;
-    unsigned int i;
-    unsigned int truelen;
-    unsigned int slen;
-
-    i = 0;
-    slen = ft_strlen(s);
-    if (start >= slen)
-        truelen = 1;
-    else if (len >= slen)
-        truelen = slen - start + 1;
     else
-        truelen = len + 1;
-    sub = (char *)malloc(truelen);
-    if (!sub)
-        return (NULL);
-    while ((start < slen) && (i < len))
     {
-        sub[i] = s[start];
-        i++;
-        start++;
+        if (!ft_strlen(*buff) && counter == 0)
+            return (0);
+        *line = ft_strdup(*buff);
+        cleanup(&*buff, NULL);
     }
-    sub[i] = 0;
-    return (sub);
+    return (1);
+}
+
+char *get_next_line(int fd)
+{
+    static char *buffer = "";
+    char *line;
+    int counter;
+
+    counter = BUFFER_SIZE;
+    if (buffer == NULL || fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
+    while (counter > 0 && !ft_strchr(buffer, '\n'))
+    {
+        counter = fill_buffer(&buffer, fd);
+        if (counter < 0)
+            return (NULL);
+    }
+    if (!close_gnl(&buffer, &line, counter))
+        return (NULL);
+    return (line);
 }
