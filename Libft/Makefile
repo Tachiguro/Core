@@ -51,7 +51,7 @@ OBJS = $(SOURCE:.c=.o)
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-CC 		=	gcc
+CC 		=	cc
 
 all: $(NAME)
 
