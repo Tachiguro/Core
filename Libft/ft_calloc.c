@@ -5,24 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/08 16:13:34 by jherzog           #+#    #+#             */
-/*   Updated: 2021/10/08 12:39:36 by jherzog          ###   ########.fr       */
+/*   Created: 2023/07/13 18:28:26 by jherzog           #+#    #+#             */
+/*   Updated: 2023/07/13 19:57:51 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	void	*output;
-	int		len;
+	size_t	len;
 
-	len = count * size;
+	len = nelem * elsize;
 	output = malloc(len);
 	if (!output)
-	{
 		return (NULL);
-	}
 	ft_bzero(output, len);
 	return (output);
 }

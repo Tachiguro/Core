@@ -5,57 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/08 16:52:40 by jherzog           #+#    #+#             */
-/*   Updated: 2021/10/07 12:18:28 by jherzog          ###   ########.fr       */
+/*   Created: 2023/07/13 18:28:39 by jherzog           #+#    #+#             */
+/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*strinigfy(long n, int l, char *number)
-{
-	char	neg;
-
-	if (n < 0)
-	{
-		neg = '-';
-		n = -n;
-	}
-	number[l] = '\0';
-	l = l - 1;
-	while (l > 0)
-	{
-		number[l] = (n % 10) + '0';
-		n = n / 10;
-		l--;
-	}
-	if (neg == '-')
-	{
-		number[0] = '-';
-	}
-	else
-	{
-		number[0] = (n % 10) + '0';
-	}
-	return (number);
-}
-
-static int	lengthnbr(long n)
+static int	nbrlength(long n)
 {
 	int	counter;
 
 	counter = 0;
 	if (n < 0)
 	{
+		n *= -1;
 		counter ++;
-		n = -n;
 	}
 	while (n > 0)
 	{
-		counter ++;
 		n = n / 10;
+		counter ++;
 	}
 	return (counter);
+}
+
+static char	*itostr(long n, int l, char *number)
+{
+	int	i;
+
+	i = 0;
+	number[l] = '\0';
+	if (n < 0)
+	{
+		number[0] = '-';
+		n *= -1;
+		i = 1;
+	}
+	while (--l >= i)
+	{
+		if (n > 9)
+		{
+			number[l] = (n % 10) + '0';
+			n = n / 10;
+		}
+		else
+			number[l] = n + '0';
+	}
+	return (number);
 }
 
 char	*ft_itoa(int n)
@@ -63,16 +60,12 @@ char	*ft_itoa(int n)
 	char	*number;
 	int		len;
 
-	if (n == 0)
-	{
+	if (n == 0 || n == -0)
 		return (ft_strdup("0"));
-	}
-	len = lengthnbr(n);
+	len = nbrlength(n);
 	number = (char *)malloc ((len + 1) * sizeof(char));
 	if (!number)
-	{
 		return (NULL);
-	}
-	number = strinigfy(n, len, number);
+	number = itostr(n, len, number);
 	return (number);
 }

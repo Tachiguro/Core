@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/08 16:29:33 by jherzog           #+#    #+#             */
-/*   Updated: 2021/10/07 11:59:27 by jherzog          ###   ########.fr       */
+/*   Created: 2023/07/13 18:29:12 by jherzog           #+#    #+#             */
+/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	ft_putchar_fd(char c, int fd)
 {
 	if (fd < 0)
-	{
 		return ;
-	}
 	write(fd, &c, 1);
 }

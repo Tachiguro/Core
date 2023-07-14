@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/08 16:32:54 by jherzog           #+#    #+#             */
-/*   Updated: 2021/10/07 12:10:48 by jherzog          ###   ########.fr       */
+/*   Created: 2023/07/13 18:29:16 by jherzog           #+#    #+#             */
+/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,22 @@
 void	ft_putnbr_fd(int n, int fd)
 {
 	if (fd < 0)
-	{
 		return ;
-	}
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-n, fd);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
 	else
-	{
-		if (n < 0)
-		{
-			ft_putchar_fd('-', fd);
-			ft_putnbr_fd(-n, fd);
-		}
-		else if (n > 9)
-		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
-		}
-		else
-		{
-			ft_putchar_fd(n + '0', fd);
-		}
-	}
+		ft_putchar_fd(n + '0', fd);
 }

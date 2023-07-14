@@ -5,25 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 20:39:46 by jherzog           #+#    #+#             */
-/*   Updated: 2021/10/05 18:37:46 by jherzog          ###   ########.fr       */
+/*   Created: 2023/07/13 18:29:31 by jherzog           #+#    #+#             */
+/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* ************************************************************************** */
-/*  Function: ft_strlcat                                                      */
-/*  --------------------                                                      */
-/*  The ft_strlcat() function cancatenate src to string dst of size len.      */
-/*                                                                            */
-/*  dst: A pointer to the destination string.                                 */
-/*  src: A pointer to the source string.                                      */
-/*  len: The size of the destination buffer.                                  */
-/*  return: The total length of the string initial length of dst plus         */
-/*    the length of src. While this may seem somewhat confusing, it was done  */
-/*    to make truncation detection simple.                                    */
-/* ************************************************************************** */
 size_t	ft_strlcat(char *dst, const char *src, size_t len)
 {
 	size_t	i;
@@ -37,7 +25,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t len)
 	if (destlen >= len)
 		return (len + srclen);
 	j = destlen;
-	while (j + 1 < len && src[i] != '\0')
+	while (j < len - 1 && src[i] != '\0')
 	{
 		dst[j] = src[i];
 		j++;

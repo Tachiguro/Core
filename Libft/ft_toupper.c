@@ -5,24 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 15:26:14 by jherzog           #+#    #+#             */
-/*   Updated: 2021/09/08 15:42:54 by jherzog          ###   ########.fr       */
+/*   Created: 2023/07/13 18:29:53 by jherzog           #+#    #+#             */
+/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*  Function: ft_toupper                                                      */
-/*  --------------------                                                      */
-/*  The ft_toupper() function Converts the given character to uppercase.      */
-/*                                                                            */
-/*  c: Character to be converted.                                             */
-/*  return: Converted character or ch if no uppercase version.                */
-/* ************************************************************************** */
 int	ft_toupper(int c)
 {
-	if (c >= 97 && c <= 122)
-	{
+	if (c >= 'a' && c <= 'z')
 		return (c - 32);
-	}
 	return (c);
 }

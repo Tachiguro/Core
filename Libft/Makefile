@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/09 15:04:15 by jherzog           #+#    #+#              #
-#    Updated: 2021/10/06 11:43:21 by jherzog          ###   ########.fr        #
+#    Created: 2023/07/13 18:29:58 by jherzog           #+#    #+#              #
+#    Updated: 2023/07/13 19:57:15 by jherzog          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,18 +45,16 @@ SOURCE	=	ft_atoi.c		\
 			ft_strtrim.c	\
 			ft_substr.c		\
 			ft_tolower.c	\
-			ft_toupper.c	\
+			ft_toupper.c
 
 OBJS = $(SOURCE:.c=.o)
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-CC 		=	cc
-
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -c $(SOURCE)
+	cc $(CFLAGS) -c $(SOURCE)
 	ar -r $(NAME) $(OBJS)
 
 clean:
