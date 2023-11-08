@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:21:22 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/08 16:25:32 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/08 16:27:23 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_alphabet(void)
 	c = 'a';
 	while (c <= 'z')
 	{
-		write(1, &c, 1);
+		ft_putchar(c);
 		c++;
 	}
 
