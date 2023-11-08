@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 16:21:22 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/08 16:30:31 by jherzog          ###   ########.fr       */
+/*   Created: 2023/11/08 16:28:49 by jherzog           #+#    #+#             */
+/*   Updated: 2023/11/08 16:32:26 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_print_alphabet(void)
+void	ft_print_numbers(void)
 {
 	char	c;
 
-	c = 'a';
-	while (c <= 'z')
+	c = '0';
+	while (c <= '9')
 	{
 		ft_putchar(c);
 		c++;
