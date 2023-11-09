@@ -6,9 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:33:51 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/08 16:35:14 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:10:07 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+void	ft_putchar(char c);
 
 void	ft_is_negative(int n)
 {

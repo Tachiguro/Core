@@ -6,9 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:28:49 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/08 16:32:26 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:11:02 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+void	ft_putchar(char c);
 
 void	ft_print_numbers(void)
 {
