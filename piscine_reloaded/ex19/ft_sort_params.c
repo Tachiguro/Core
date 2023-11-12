@@ -6,13 +6,13 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:26:43 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/12 17:54:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/12 20:24:02 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static void	ft_putchar(char c);
+void		ft_putchar(char c);
 static void	ft_putstr(char *str);
 static int	ft_strcmp(char *s1, char *s2);
 static void	ft_sort_str_arr(char **arr, int n);
@@ -75,7 +75,7 @@ static void	ft_sort_str_arr(char **arr, int n)
 	{
 		fin = 1;
 		i = 0;
-		while (++i < n -1)
+		while (++i < n)
 		{
 			if (ft_strcmp(arr[i - 1], arr[i]) > 0)
 			{

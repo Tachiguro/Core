@@ -6,13 +6,14 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:55:12 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/12 17:57:58 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/12 20:12:15 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+static size_t	ft_strlcpy(char *dst, char *src, size_t size);
+static int		ft_strlen(char *str);
 
 char	*ft_strdup(char *src)
 {
@@ -27,7 +28,7 @@ char	*ft_strdup(char *src)
 	return (new_str);
 }
 
-static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+static size_t	ft_strlcpy(char *dst, char *src, size_t size)
 {
 	size_t	n;
 
@@ -40,4 +41,14 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	if (size != 0)
 		dst[n] = '\0';
 	return (ft_strlen(src));
+}
+
+static int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:03:34 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/12 15:04:37 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/12 19:42:34 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int	ft_strlen(char *str)
 	int	i;
 
 	i = 0;
-	while (*str)
+	while (*str++)
 		i++;
 	return (i);
 }

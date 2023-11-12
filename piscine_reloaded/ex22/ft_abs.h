@@ -6,11 +6,13 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:02:51 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/12 18:03:39 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/12 19:52:11 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ABS_H
 # define FT_ABS_H
-# define ABS(Value) ((Value < 0) ? -(Value) : (Value))
+
+# define ABS(value) ((value < 0) ? (value * - 1) : value)
+
 #endif
