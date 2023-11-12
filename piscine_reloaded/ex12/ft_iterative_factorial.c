@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:46:32 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/09 17:44:52 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/12 14:43:23 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int	ft_iterative_factorial(int nb)
 {
 	int	sum;
 
-	sum = nb;
+	sum = 1;
 	if (nb == 0)
 		return (1);
 	if (nb > 12 || nb < 0)
@@ -31,13 +31,13 @@ int	ft_iterative_factorial(int nb)
 
 // int	main(void)
 // {
-// 	int	i;
+// 	int	i[] = {0,1,2,5,7,10,11,12,66};
+// 	int j = 0;
 
-// 	i = 20;
-// 	while (i >= 0)
+// 	while (j < 9)
 // 	{
-// 	printf("factorial: %d i: %d\n", ft_iterative_factorial(i), i);
-// 	i--;
+// 		printf("%d: f: %d i: %d\n", j, ft_iterative_factorial(i[j]), i[j]);
+// 		j++;
 // 	}
 
 // 	return (0);
