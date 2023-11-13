@@ -1,22 +1,22 @@
-NAME = test
-FTPRINTFDIR = ./ft_printf
-FTPRINTF = $(FTPRINTFDIR)/libftprintf.a
+NAME = test_ft_printf
+FTPRINTF_DIR = ./ft_printf
+FTPRINTF = $(FTPRINTF_DIR)/libftprintf.a
 
 all: $(NAME)
 
-$(NAME): $(FTPRINTF) test.c
+$(NAME): $(FTPRINTF) test_ft_printf.c
 	gcc -o $@ test.c $(FTPRINTF)
 
 $(FTPRINTF):
-	make -C $(FTPRINTFDIR)
+	make -C $(FTPRINTF_DIR)
 
 fclean: clean
-	make -C $(FTPRINTFDIR) fclean
+	make -C $(FTPRINTF_DIR) fclean
 	$(RM)
 	$(RM) ./test
 
 clean:
-	make -C $(FTPRINTFDIR) clean
+	make -C $(FTPRINTF_DIR) clean
 
 re: fclean all
 

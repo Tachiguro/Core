@@ -1,0 +1,100 @@
+[
+	[
+		{
+			"id": 159548,
+			"login": "42belo-horizonte_tech",
+			"usual_full_name": "Tech 42belo Horizonte",
+			"staff?": true,
+			"correction_point": 5,
+			"active?": true
+		},
+		{
+			"id": 146474,
+			"login": "ipommet",
+			"usual_full_name": "Ivan Pommet",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146473,
+			"login": "cetave",
+			"usual_full_name": "Clement Etave",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146472,
+			"login": "tribalta",
+			"usual_full_name": "Thomas Ribalta",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146471,
+			"login": "lsauzet",
+			"usual_full_name": "Livane Sauzet",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146470,
+			"login": "mrey",
+			"usual_full_name": "Maceo Rey",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146469,
+			"login": "oradet",
+			"usual_full_name": "Olivier Radet",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146468,
+			"login": "abahrouc",
+			"usual_full_name": "Abdesamad Ahrouch",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146467,
+			"login": "espereir",
+			"usual_full_name": "Esteban Pereira  Montero",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 146466,
+			"login": "ade-nuce",
+			"usual_full_name": "Augustin De Nuce",
+			"staff?": false,
+			"correction_point": 5,
+			"active?": false
+		},
+		{
+			"id": 132039,
+			"login": "stouf",
+			"usual_full_name": "Stéphane Raccah",
+			"staff?": true,
+			"correction_point": 6,
+			"active?": true
+		},
+		{
+			"id": 126912,
+			"login": "plato",
+			"usual_full_name": "Platão Lato",
+			"staff?": true,
+			"correction_point": 5,
+			"active?": false
+		}
+	]
+]
