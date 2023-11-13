@@ -2,25 +2,31 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 # Tests
-TEST_LIBFT =		test_libft
+TEST_LIBFT =		t_libft
 LIBFT_DIR =			./libft
 LIBFT =				$(LIBFT_DIR)/libft.a
-TEST_FT_PRINTF =	test_ft_printf
+
+TEST_FT_PRINTF =	t_ftprintf
 FTPRINTF_DIR =		./ft_printf
 FTPRINTF =			$(FTPRINTF_DIR)/libftprintf.a
 
 TESTS =				$(TEST_FT_PRINTF)\
 					$(TEST_LIBFT)
+
 TESTS_DIR =			$(LIBFT_DIR)\
 					$(FTPRINTF_DIR)
 
-all: $(TEST_FT_PRINTF)
+all: $(TESTS)
 
 $(TEST_FT_PRINTF): $(FTPRINTF) test_ft_printf.c
 	$(CC) $(CFLAGS) -o $@ test_ft_printf.c $(FTPRINTF)
-
 $(FTPRINTF):
 	make -C $(FTPRINTF_DIR)
+
+$(TEST_LIBFT): $(LIBFT) test_libft.c
+	$(CC) $(CFLAGS) -o $@ test_libft.c $(LIBFT)
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 fclean: clean
 	for dir in $(TESTS_DIR); do\

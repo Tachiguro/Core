@@ -65,7 +65,7 @@ $(NAME): $(OBJS) $(OBJS_BONUS)
 	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
 bonus: $(OBJS_BONUS)
-	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+	ar -rcs $(NAME) $(OBJS_BONUS)
 
 $(OBJ_DIR)/%.o: %.c libft.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I. -c $< -o $@

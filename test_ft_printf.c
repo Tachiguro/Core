@@ -3,10 +3,11 @@
 
 int	main(void)
 {
+	printf("Test: ft_printf\n");
 	// int or = 0;
 	// int my = 0;
 
-	printf("0--------------------\n");
+	// printf("0--------------------\n");
 	// my = ft_printf("%p\n", (void *)0);
 	// or = printf   ("%p\n", (void *)0);
 	// printf("Or:%d\n", or);
