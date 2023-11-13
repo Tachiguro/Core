@@ -1,23 +1,38 @@
-NAME = test_ft_printf
-FTPRINTF_DIR = ./ft_printf
-FTPRINTF = $(FTPRINTF_DIR)/libftprintf.a
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
-all: $(NAME)
+# Tests
+TEST_LIBFT =		test_libft
+LIBFT_DIR =			./libft
+LIBFT =				$(LIBFT_DIR)/libft.a
+TEST_FT_PRINTF =	test_ft_printf
+FTPRINTF_DIR =		./ft_printf
+FTPRINTF =			$(FTPRINTF_DIR)/libftprintf.a
 
-$(NAME): $(FTPRINTF) test_ft_printf.c
-	gcc -o $@ test.c $(FTPRINTF)
+TESTS =				$(TEST_FT_PRINTF)\
+					$(TEST_LIBFT)
+TESTS_DIR =			$(LIBFT_DIR)\
+					$(FTPRINTF_DIR)
+
+all: $(TEST_FT_PRINTF)
+
+$(TEST_FT_PRINTF): $(FTPRINTF) test_ft_printf.c
+	$(CC) $(CFLAGS) -o $@ test_ft_printf.c $(FTPRINTF)
 
 $(FTPRINTF):
 	make -C $(FTPRINTF_DIR)
 
 fclean: clean
-	make -C $(FTPRINTF_DIR) fclean
-	$(RM)
-	$(RM) ./test
+	for dir in $(TESTS_DIR); do\
+		make -C $$dir fclean; \
+	done
+	$(RM) $(TESTS)
 
 clean:
-	make -C $(FTPRINTF_DIR) clean
+	for dir in $(TESTS_DIR); do \
+		make -C $$dir clean; \
+	done
 
 re: fclean all
 
-.PHONY: all re
+.PHONY: all re fclean clean
