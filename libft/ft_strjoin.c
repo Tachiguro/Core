@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:29:29 by jherzog           #+#    #+#             */
-/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/14 17:04:48 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	char	*output;
+	int		total_len;
 
-	if (s1 == NULL || s2 == NULL)
+	total_len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (!s1 || !s2)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	output = str;
+	str = (char *)malloc(sizeof(char) * total_len);
 	if (str == NULL)
 		return (NULL);
-	while (*s1 != '\0')
-		*str++ = *s1++;
-	while (*s2 != '\0')
-		*str++ = *s2++;
-	*str = '\0';
+	output = str;
+	str[0] = '\0';
+	ft_strlcat(str, s1, total_len);
+	ft_strlcat(str, s2, total_len);
 	return (output);
 }

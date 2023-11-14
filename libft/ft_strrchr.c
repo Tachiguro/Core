@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:29:43 by jherzog           #+#    #+#             */
-/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/14 17:29:35 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
+	size_t	i;
 
 	i = ft_strlen(s) + 1;
 	while (--i >= 0)

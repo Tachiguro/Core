@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:29:47 by jherzog           #+#    #+#             */
-/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/14 17:47:43 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*string;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
 	if ((unsigned int)ft_strlen(s) < start)
 		return (ft_strdup(""));

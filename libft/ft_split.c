@@ -6,16 +6,16 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:29:20 by jherzog           #+#    #+#             */
-/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/14 17:35:58 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_substrs(const char *s, char c)
+static size_t	count_substrs(const char *s, char c)
 {
-	int	i;
-	int	cnt_substrs;
+	size_t	i;
+	size_t	cnt_substrs;
 
 	i = 0;
 	cnt_substrs = 0;
@@ -33,9 +33,9 @@ static int	count_substrs(const char *s, char c)
 	return (cnt_substrs);
 }
 
-static char	*create_substr(const char *s, char c, int *pos)
+static char	*create_substr(const char *s, char c, size_t *pos)
 {
-	int		i;
+	size_t		i;
 	char	*substr;
 
 	while (s[*pos] == c)
@@ -61,9 +61,9 @@ static void	free_arr(char **arr, int index)
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		cnt_substrs;
-	int		pos;
+	size_t		i;
+	size_t		cnt_substrs;
+	size_t		pos;
 	char	**strs_array;
 
 	if (!s)

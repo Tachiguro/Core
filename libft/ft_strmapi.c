@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:29:37 by jherzog           #+#    #+#             */
-/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/14 17:13:45 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	i = 0;
 	new_str = ft_strdup(s);
-	if (new_str == NULL || !s || !f)
+	if (!new_str || !s || !f)
 		return (NULL);
 	while (new_str[i] != '\0')
 	{

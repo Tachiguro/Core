@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:28:39 by jherzog           #+#    #+#             */
-/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/11/14 16:21:33 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int	nbrlength(long n)
 	if (n < 0)
 	{
 		n *= -1;
-		counter ++;
+		counter++;
 	}
 	while (n > 0)
 	{
 		n = n / 10;
-		counter ++;
+		counter++;
 	}
 	return (counter);
 }
@@ -66,6 +66,5 @@ char	*ft_itoa(int n)
 	number = (char *)malloc ((len + 1) * sizeof(char));
 	if (!number)
 		return (NULL);
-	number = itostr(n, len, number);
-	return (number);
+	return (itostr(n, len, number));
 }
