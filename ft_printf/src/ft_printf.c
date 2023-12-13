@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:59:55 by jherzog           #+#    #+#             */
-/*   Updated: 2023/09/22 17:00:43 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/13 18:40:40 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_printf(const char *f, ...)
 
 	i = 0;
 	counter = 0;
-	if (f == NULL)
+	if (!f)
 		return (0);
 	va_start(args, f);
 	while (f[i])
