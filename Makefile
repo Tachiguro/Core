@@ -10,7 +10,7 @@ TEST_FT_PRINTF =	t_ftprintf
 FTPRINTF_DIR =		./ft_printf
 FTPRINTF =			$(FTPRINTF_DIR)/libftprintf.a
 
-TESTS =				$(TEST_LIBFT)
+TESTS =				$(TEST_LIBFT)\
 #					 $(TEST_FT_PRINTF)
 
 TESTS_DIR =			$(LIBFT_DIR)\
