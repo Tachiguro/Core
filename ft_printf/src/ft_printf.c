@@ -6,37 +6,45 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:59:55 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/13 18:40:40 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/16 00:04:49 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_check_format(const char *f, int i, va_list args)
+static int	ft_handle_p( va_list args)
 {
 	int	counter;
+	int	second_counter;
 
-	counter = 0;
+	counter = ft_print_str("0x");
+	if (counter == -1)
+		return (-1);
+	second_counter = ft_print_ptr(va_arg(args, unsigned long));
+	if (second_counter == -1)
+		return (-1);
+	return (counter + second_counter);
+}
+
+static int	ft_check_format(const char *f, int i, va_list args)
+{
 	if (f[i] == '%')
-		counter += ft_print_char('%');
+		return (ft_print_char('%'));
 	else if (f[i] == 'c')
-		counter += ft_print_char(va_arg(args, int));
+		return (ft_print_char(va_arg(args, int)));
 	else if (f[i] == 's')
-		counter += ft_print_str(va_arg(args, char *));
+		return (ft_print_str(va_arg(args, char *)));
 	else if (f[i] == 'd' || f[i] == 'i')
-		counter += ft_print_int(va_arg(args, int));
+		return (ft_print_int(va_arg(args, int)));
 	else if (f[i] == 'u')
-		counter += ft_print_uint(va_arg(args, unsigned int));
+		return (ft_print_uint(va_arg(args, unsigned int)));
 	else if (f[i] == 'x')
-		counter += ft_print_hex(va_arg(args, unsigned int), 0);
+		return (ft_print_hex(va_arg(args, unsigned int), 0));
 	else if (f[i] == 'X')
-		counter += ft_print_hex(va_arg(args, unsigned int), 1);
+		return (ft_print_hex(va_arg(args, unsigned int), 1));
 	else if (f[i] == 'p')
-	{
-		counter += ft_print_str("0x");
-		counter += ft_print_ptr(va_arg(args, unsigned long));
-	}
-	return (counter);
+		return (ft_handle_p(args));
+	return (-1);
 }
 
 int	ft_printf(const char *f, ...)
@@ -44,18 +52,23 @@ int	ft_printf(const char *f, ...)
 	va_list	args;
 	int		i;
 	int		counter;
+	int		tempc;
 
 	i = 0;
 	counter = 0;
+	tempc = 0;
 	if (!f)
 		return (0);
 	va_start(args, f);
 	while (f[i])
 	{
 		if (f[i] == '%')
-			counter += ft_check_format(f, ++i, args);
+			tempc = ft_check_format(f, ++i, args);
 		else
-			counter += ft_print_char(f[i]);
+			tempc = ft_print_char(f[i]);
+		if (tempc == -1)
+			return (-1);
+		counter += tempc;
 		i++;
 	}
 	va_end(args);

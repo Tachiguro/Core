@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 # Tests
 TEST_LIBFT =		t_libft
@@ -10,16 +10,17 @@ TEST_FT_PRINTF =	t_ftprintf
 FTPRINTF_DIR =		./ft_printf
 FTPRINTF =			$(FTPRINTF_DIR)/libftprintf.a
 
-TESTS =				$(TEST_LIBFT)\
-#					 $(TEST_FT_PRINTF)
+TESTS =				$(TEST_FT_PRINTF)
+#					$(TEST_LIBFT)
 
-TESTS_DIR =			$(LIBFT_DIR)\
-#					$(FTPRINTF_DIR)
+TESTS_DIR =			$(FTPRINTF_DIR)
+#					$(LIBFT_DIR)
 
-all: $(TESTS)
+all: $(TESTS) run
 
 $(TEST_FT_PRINTF): $(FTPRINTF) test_ft_printf.c
 	$(CC) $(CFLAGS) -o $@ test_ft_printf.c $(FTPRINTF)
+
 $(FTPRINTF):
 	make -C $(FTPRINTF_DIR)
 
@@ -40,5 +41,8 @@ clean:
 	done
 
 re: fclean all
+
+run:
+	./t_ftprintf
 
 .PHONY: all re fclean clean
