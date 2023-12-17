@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 23:48:52 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/16 21:26:31 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/17 19:23:37 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@ int	ft_print_uint(unsigned int n)
 	temp = 0;
 	if (n > 9)
 	{
-		counter += ft_print_uint(n / 10);
-		counter += ft_print_uint(n % 10);
-	}
-	else
-	{
-		temp = ft_print_char('0' + n);
-		if (temp == -1)
+		counter = ft_print_uint(n / 10);
+		if (counter == -1)
 			return (-1);
-		counter += temp;
+		n %= 10;
 	}
-	return (counter);
+	temp = ft_print_char('0' + n);
+	if (temp == -1)
+		return (-1);
+	return (counter += temp);
 }
