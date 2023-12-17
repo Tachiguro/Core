@@ -1,25 +1,25 @@
 NAME = getnextline.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
-RF = -rf
+RM = rm -rf
 SRCS =	get_next_line.c\
-		get_next_line_utils.c\
-OBJ = .obj
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+		get_next_line_utils.c
+OBJ_DIR = ./obj
+OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 all: $(NAME)
 
-$(NAME): $(SRCS) get_next_line.h | $(OBJ)
-	ar scr $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+	ar -rcs $@ $(OBJS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $@
+$(OBJ_DIR)/%.o: %.c get_next_line.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ):
-	mkdir -p $(OBJ)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
