@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:59:55 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/16 00:04:49 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/17 18:44:18 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int	ft_check_format(const char *f, int i, va_list args)
 	else if (f[i] == 'u')
 		return (ft_print_uint(va_arg(args, unsigned int)));
 	else if (f[i] == 'x')
-		return (ft_print_hex(va_arg(args, unsigned int), 0));
+		return (ft_print_hex(va_arg(args, unsigned int), 'a'));
 	else if (f[i] == 'X')
-		return (ft_print_hex(va_arg(args, unsigned int), 1));
+		return (ft_print_hex(va_arg(args, unsigned int), 'A'));
 	else if (f[i] == 'p')
 		return (ft_handle_p(args));
 	return (-1);

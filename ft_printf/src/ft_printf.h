@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:58:46 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/15 23:53:45 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/17 18:45:58 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		ft_print_char(char c);
 int		ft_print_str(char *str);
 int		ft_print_int(int n);
 int		ft_print_uint(unsigned int n);
-int		ft_print_hex(unsigned int n, int toupper);
+int		ft_print_hex(unsigned int n, char begin);
 int		ft_print_ptr(unsigned long n);
 #endif
