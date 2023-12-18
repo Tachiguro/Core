@@ -54,7 +54,8 @@ SRCS_BONUS =	ft_lstadd_back.c	\
 				ft_lstlast.c		\
 				ft_lstnew.c			\
 				ft_lstsize.c		\
-				ft_lstdelone.c
+				ft_lstdelone.c		\
+				ft_lstclear.c
 
 OBJ_DIR = obj
 OBJS =			$(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
