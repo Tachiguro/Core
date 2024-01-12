@@ -6,13 +6,12 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:38:07 by jherzog           #+#    #+#             */
-/*   Updated: 2023/09/22 05:40:14 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/19 00:18:05 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
 # include <stdlib.h>
 # include <unistd.h>
 

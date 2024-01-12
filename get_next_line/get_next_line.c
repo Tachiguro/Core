@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:31:35 by jherzog           #+#    #+#             */
-/*   Updated: 2023/09/22 18:46:37 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/17 20:26:16 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,21 @@ static int	fill_buffer(char **buff, int fd)
 	counter = read(fd, buffer, BUFFER_SIZE);
 	if (counter < 1)
 	{
-		cleanup(&buffer, NULL);
+		if (buffer)
+			cleanup(&buffer, NULL);
+		if (counter == -1)
+			cleanup(buff, NULL);
 		return (counter);
 	}
 	buffer[counter] = '\0';
 	temp = *buff;
 	*buff = ft_strjoin(temp, buffer);
+	if (!*buff)
+	{
+		cleanup(&temp, NULL);
+		cleanup(&buffer, NULL);
+		return (-1);
+	}
 	if (ft_strlen(temp))
 		cleanup(&temp, NULL);
 	cleanup(&buffer, NULL);

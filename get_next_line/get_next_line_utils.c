@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:31:32 by jherzog           #+#    #+#             */
-/*   Updated: 2023/09/22 05:35:31 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/17 20:14:14 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"get_next_line.h"
+#include "get_next_line.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*new_str;
 
 	if (s1 == NULL || s2 == NULL)
-		return (0);
+		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	new_str = (char *)malloc(len * sizeof(char));
 	j = 0;
