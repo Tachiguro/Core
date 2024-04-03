@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:13:27 by jherzog           #+#    #+#             */
-/*   Updated: 2024/04/03 16:41:42 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:41:43 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,6 @@ char	*ft_strchr(char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
-
-// char	*ft_strchr(char *s, int c)
-// {
-// 	size_t	i;
-
-// 	if (!s)
-// 		return (NULL);
-// 	if (c == 0)
-// 	{
-// 		i = ft_strlen((char *)s);
-// 		return (&s[i]);
-// 	}
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if (s[i] == (char) c)
-// 			return (&s[i]);
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
 
 char	*ft_strjoin(char *start, char *buff)
 {
