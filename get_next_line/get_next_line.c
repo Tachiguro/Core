@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:31:35 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/17 20:26:16 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/04/03 15:54:11 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ static int	close_gnl(char **buff, char **line, int counter)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer = "";
+	static char	*buffer;
 	char		*line;
 	int			counter;
 
 	counter = BUFFER_SIZE;
-	if (buffer == NULL || fd < 0 || BUFFER_SIZE <= 0)
+	if (buffer == NULL || fd < 0 || counter <= 0)
 		return (NULL);
 	while (counter > 0 && !ft_strchr(buffer, '\n'))
 	{
