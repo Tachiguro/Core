@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:14:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/04/03 16:26:22 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/04/04 10:40:00 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 size_t	ft_strlen(char *str);
 char	*get_next_line(int fd);
-char	*ft_readed_line(char *src);
 char	*ft_strchr(char *s, int c);
 char	*ft_move_start(char *start);
 char	*ft_strjoin(char *start, char *buff);
