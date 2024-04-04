@@ -5,59 +5,64 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 18:13:27 by jherzog           #+#    #+#             */
-/*   Updated: 2024/04/04 11:04:06 by jherzog          ###   ########.fr       */
+/*   Created: 2024/02/03 19:55:16 by aortmann          #+#    #+#             */
+/*   Updated: 2024/04/03 21:52:12 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+int	ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
-	while (*s++)
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strjoin(char *s1, char *s2, int i, int j)
 {
-	while (*s)
+	char	*str;
+
+	if (s1 == NULL)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		s1 = malloc(1);
+		if (s1 == NULL)
+			return (NULL);
+		s1[0] = '\0';
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 3);
+	if (!str)
+	{
+		free(s1);
+		return (NULL);
+	}
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }
 
-char	*ft_strjoin(char *start, char *buff)
-{
-	char	*ptr;
-	int		i;
-	int		j;
 
-	i = -1;
-	j = -1;
-	if (!start)
+int	ft_strchr(const char *s, int c)
+{
+	if (s == NULL)
+		return (1);
+	while (*s || *s == (char)c)
 	{
-		start = (char *)malloc(1 * sizeof(char));
-		start[0] = '\0';
+		if (*s == (char)c)
+			return (0);
+		s++;
 	}
-	if (!start || !buff)
-		return (NULL);
-	ptr = (char *)malloc(1 + ft_strlen(start) + ft_strlen(buff) * sizeof(char));
-	if (!ptr)
-		return (NULL);
-	while (start[++i])
-		ptr[i] = start[i];
-	while (buff[++j])
-		ptr[i + j] = buff[j];
-	ptr[i + j] = '\0';
-	free(start);
-	return (ptr);
+	return (1);
 }

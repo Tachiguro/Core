@@ -5,105 +5,128 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 05:31:35 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/17 20:26:16 by jherzog          ###   ########.fr       */
+/*   Created: 2024/04/02 18:13:19 by jherzog           #+#    #+#             */
+/*   Updated: 2024/04/04 11:19:28 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	cleanup(char **str, void *content)
+static char	*extract_line(char *buff_start)
 {
-	if (*str)
+	int		i;
+	char	*line;
+
+	if (!buff_start || !buff_start[0])
+		return (NULL);
+	i = 0;
+	while (buff_start[i] && buff_start[i] != '\n')
+		i++;
+	line = (char *)malloc(1 + (++i) * sizeof(char));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buff_start[i] && buff_start[i] != '\n')
 	{
-		free(*str);
-		*str = (char *)content;
+		line[i] = buff_start[i];
+		i++;
 	}
+	if (buff_start[i] == '\n')
+	{
+		line[i] = '\n';
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
 }
 
-static int	fill_buffer(char **buff, int fd)
+static char	*move_buffer_start(char	*buff_start)
 {
-	char	*temp;
-	char	*buffer;
-	int		counter;
-
-	temp = NULL;
-	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
-	if (!buffer)
-		return (-1);
-	counter = read(fd, buffer, BUFFER_SIZE);
-	if (counter < 1)
-	{
-		if (buffer)
-			cleanup(&buffer, NULL);
-		if (counter == -1)
-			cleanup(buff, NULL);
-		return (counter);
-	}
-	buffer[counter] = '\0';
-	temp = *buff;
-	*buff = ft_strjoin(temp, buffer);
-	if (!*buff)
-	{
-		cleanup(&temp, NULL);
-		cleanup(&buffer, NULL);
-		return (-1);
-	}
-	if (ft_strlen(temp))
-		cleanup(&temp, NULL);
-	cleanup(&buffer, NULL);
-	return (counter);
-}
-
-static void	close_line_n(char **buff, char **line, int counter)
-{
-	char	*temp;
-	size_t	i;
+	char	*new_buffer;
+	int		i;
+	int		j;
 
 	i = 0;
-	while ((*buff)[i] != '\n' && (*buff)[i])
+	j = 0;
+	while (buff_start[i] && buff_start[i] != '\n')
 		i++;
-	*line = ft_substr(*buff, 0, i + 1);
-	temp = *buff;
-	if (counter > 0)
-		*buff = ft_substr(temp, i + 1, ft_strlen(temp));
-	cleanup(&temp, NULL);
+	if (buff_start[i] == '\0')
+	{
+		free(buff_start);
+		return (NULL);
+	}
+	i += (buff_start[i] == '\n');
+	new_buffer = (char *)malloc(1 + ft_strlen(buff_start) - i);
+	if (!new_buffer)
+		return (NULL);
+	while (buff_start[i + j])
+	{
+		new_buffer[j] = buff_start[i + j];
+		j++;
+	}
+	new_buffer[j] = '\0';
+	free(buff_start);
+	return (new_buffer);
 }
 
-static int	close_gnl(char **buff, char **line, int counter)
+static void	handle_read_error(char *temp_buff, char **buffer_start_ptr)
 {
-	if (ft_strchr(*buff, '\n'))
-	{
-		close_line_n(&*buff, &*line, counter);
-		if (ft_strlen(*buff) == 0)
-			cleanup(&*buff, "");
-	}
-	else
-	{
-		if (!ft_strlen(*buff) && counter == 0)
-			return (0);
-		*line = ft_strdup(*buff);
-		cleanup(&*buff, NULL);
-	}
-	return (1);
+	free(temp_buff);
+	free(*buffer_start_ptr);
+	*buffer_start_ptr = NULL;
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer = "";
-	char		*line;
-	int			counter;
+	char		*temp_buff;
+	int			bytes_read;
+	static char	*buff_start;
 
-	counter = BUFFER_SIZE;
-	if (buffer == NULL || fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (counter > 0 && !ft_strchr(buffer, '\n'))
+	bytes_read = 1;
+	temp_buff = (char *)malloc(1 + BUFFER_SIZE * sizeof(char));
+	if (!temp_buff)
+		return (NULL);
+	while ((!buff_start || !(ft_strchr(buff_start, '\n'))) && bytes_read != 0)
 	{
-		counter = fill_buffer(&buffer, fd);
-		if (counter < 0)
+		bytes_read = read(fd, temp_buff, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			handle_read_error(temp_buff, &buff_start);
 			return (NULL);
+		}
+		temp_buff[bytes_read] = '\0';
+		buff_start = ft_strjoin(buff_start, temp_buff);
 	}
-	if (!close_gnl(&buffer, &line, counter))
-		return (NULL);
-	return (line);
+	free(temp_buff);
+	temp_buff = extract_line(buff_start);
+	buff_start = move_buffer_start(buff_start);
+	return (temp_buff);
+}
+
+#include <stdio.h>
+#include <fcntl.h>
+
+int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	fd = 0;
+	line = NULL;
+	fd = open("test.txt", O_RDONLY);
+	if (fd < 0)
+	{
+		printf("Can't open file!\n");
+		return (1);
+	}
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (0);
 }
