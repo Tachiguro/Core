@@ -86,3 +86,30 @@ fclean: clean
 re: fclean all
 
 .PHONY: all re fclean clean bonus
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean

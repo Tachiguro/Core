@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:13:27 by jherzog           #+#    #+#             */
-/*   Updated: 2024/04/04 11:04:06 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/04/04 19:26:27 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*ft_strjoin(char *start, char *buff)
 	if (!start)
 	{
 		start = (char *)malloc(1 * sizeof(char));
-		start[0] = '\0';
 	}
 	if (!start || !buff)
 		return (NULL);

@@ -71,3 +71,9 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+	@rm a.out
+	@make fclean
+
+	@rm a.out
+	@make fclean

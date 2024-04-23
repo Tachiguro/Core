@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 18:29:37 by jherzog           #+#    #+#             */
-/*   Updated: 2024/04/05 19:36:51 by jherzog          ###   ########.fr       */
+/*   Created: 2024/04/04 15:02:28 by jherzog           #+#    #+#             */
+/*   Updated: 2024/04/04 15:02:35 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <fcntl.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	main(void)
 {
-	int		i;
-	char	*new_str;
+	int		fd;
+	char	*line;
 
-	i = 0;
-	if (!s || !f)
-		return (NULL);
-	new_str = ft_strdup(s);
-	if (!new_str)
-		return (NULL);
-	while (new_str[i] != '\0')
+	fd = 0;
+	line = NULL;
+	fd = open("test.txt", O_RDONLY);
+	if (fd < 0)
 	{
-		new_str[i] = f(i, new_str[i]);
-		i++;
+		printf("Can't open file!\n");
+		return (1);
 	}
-	new_str[i] = '\0';
-	return (new_str);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (0);
 }
