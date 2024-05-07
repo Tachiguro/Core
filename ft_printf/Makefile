@@ -24,7 +24,6 @@ $(NAME): $(OBJS) $(LIBFT)
 	ar -q $(NAME) $(LIBFT_DIR)/*.o
 	rm $(LIBFT_DIR)/*.o
 
-
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(SRC_DIR)/ft_printf.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I $(LIBFT_DIR) -I $(SRC_DIR) -c $< -o $@
 

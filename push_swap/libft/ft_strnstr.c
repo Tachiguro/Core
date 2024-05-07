@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 00:14:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/05/07 17:14:08 by jherzog          ###   ########.fr       */
+/*   Created: 2023/07/13 18:29:41 by jherzog           #+#    #+#             */
+/*   Updated: 2023/07/13 18:30:03 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	t_list	*new_lst;
-	t_list	*new_node;
-	void	*new_content;
+	size_t	counter;
+	size_t	i;
 
-	new_lst = NULL;
-	if (!lst || !f)
-		return (NULL);
-	while (lst)
+	counter = 0;
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	while (counter < len && haystack[counter] != '\0')
 	{
-		new_content = f(lst->content);
-		new_node = ft_lstnew(new_content);
-		if (!new_node)
+		i = 0;
+		while ((haystack[counter + i] == needle[i]) && ((counter + i) < len))
 		{
-			del(new_content);
-			ft_lstclear(&new_lst, del);
-			return (NULL);
+			if (haystack[counter + i] == needle[i] && needle[i + 1] == '\0')
+				return ((char *)haystack + counter);
+			i++;
 		}
-		ft_lstadd_back(&new_lst, new_node);
-		lst = lst->next;
+		counter++;
 	}
-	return (new_lst);
+	return (NULL);
 }
