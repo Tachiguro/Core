@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:20:43 by jherzog           #+#    #+#             */
-/*   Updated: 2024/05/07 17:21:18 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/05/07 17:21:58 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	long	result;
 	long	sign;
