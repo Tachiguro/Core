@@ -1,6 +1,7 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
+DEBUGFLAG = -g
 RM = rm -rf
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -34,6 +35,9 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+debug: CFLAGS += $(DEBUGFLAG)
+debug: re
 
 .PHONY: all clean fclean re
 
