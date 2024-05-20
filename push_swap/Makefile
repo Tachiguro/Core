@@ -6,7 +6,9 @@ RM = rm -rf
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = ./src
-SRCS = push_swap.c
+SRCS = 	push_swap.c \
+		stack_op_rotate.c \
+		stack_op_push_swap.c
 INClUDES = ./includes
 
 OBJ_DIR = ./obj
