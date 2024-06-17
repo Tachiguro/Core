@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_op_rotate.c                                  :+:      :+:    :+:   */
+/*   stack_op_comp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 17:15:16 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 23:16:22 by jherzog          ###   ########.fr       */
+/*   Created: 2024/06/17 23:10:09 by jherzog           #+#    #+#             */
+/*   Updated: 2024/06/17 23:16:59 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+void	ss(t_stack *stack_a, t_stack *stack_b)
+{
+	int	temp;
 
-void	ra(t_stack *stack_a)
+	temp = stack_a->array[0];
+	stack_a->array[0] = stack_a->array[1];
+	stack_a->array[1] = temp;
+	temp = stack_b->array[0];
+	stack_b->array[0] = stack_b->array[1];
+	stack_b->array[1] = temp;
+	printf("ss\n");
+}
+
+void	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	int	temp;
 	int	i;
@@ -28,14 +40,6 @@ void	ra(t_stack *stack_a)
 		i--;
 	}
 	stack_a->array[0] = temp;
-	write(1, "ra\n", 3);
-}
-
-void	rb(t_stack *stack_b)
-{
-	int	temp;
-	int	i;
-
 	if (stack_b->top < 1)
 		return ;
 	temp = stack_b->array[stack_b->top];
@@ -46,11 +50,12 @@ void	rb(t_stack *stack_b)
 		i--;
 	}
 	stack_b->array[0] = temp;
-	write(1, "rb\n", 3);
+	printf("rr\n");
 }
 
-// to fix
-void	rra(t_stack *stack_a)
+// rrr : rra and rrb at the same time.
+// to check
+void	rrr(t_stack *stack_a, t_stack *stack_b)
 {
 	int	temp;
 	int	i;
@@ -58,28 +63,22 @@ void	rra(t_stack *stack_a)
 	i = 0;
 	if (stack_a->top < 1)
 		return ;
-	temp = stack_a->array[stack_a->top];
+	temp = stack_a->array[0];
 	while (i < stack_a->top)
 	{
-		stack_a->array[i] = stack_a->array[i - 1];
-		i--;
+		stack_a->array[i] = stack_a->array[i + 1];
+		i++;
 	}
-	stack_a->array[0] = temp;
-	write(1, "rra\n", 4);
-}
-
-// to fix
-void	rrb(int *stack_b, int top_b, int len)
-{
-	int	temp;
-
-	temp = 0;
-	temp = stack_b[len - 1];
-	while (top_b < len - 1)
+	stack_a->array[stack_a->top] = temp;
+	i = 0;
+	if (stack_b->top < 1)
+		return ;
+	temp = stack_b->array[0];
+	while (i < stack_b->top)
 	{
-		stack_b[len] = stack_b[len - 1];
-		len--;
+		stack_b->array[i] = stack_b->array[i + 1];
+		i++;
 	}
-	stack_b[len] = temp;
-	printf("rb\n");
+	stack_b->array[stack_b->top] = temp;
+	printf("rrr\n");
 }

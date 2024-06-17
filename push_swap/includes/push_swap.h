@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 18:54:56 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 23:18:31 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ bool	error_syntax(char *num);
 bool	error_rep(t_stack *stack, int nbr);
 
 bool	stack_sorted(t_stack *stack);
-void	s_a(t_stack *stack);
-void	s_b(t_stack *stack);
+void	sa(t_stack *stack);
+void	sb(t_stack *stack);
 void	ss(t_stack *stack_a, t_stack *stack_b);
-void	p_a(t_stack *stack_a, t_stack *stack_b);
-void	p_b(t_stack *stack_a, t_stack *stack_b);
-void	r_a(t_stack *stack_a);
-void	r_b(t_stack *stack_b);
+void	pa(t_stack *stack_a, t_stack *stack_b);
+void	pb(t_stack *stack_a, t_stack *stack_b);
+void	ra(t_stack *stack_a);
+void	rb(t_stack *stack_b);
+void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b);
 

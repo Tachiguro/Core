@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 19:16:11 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 23:05:39 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_stacks(t_stack *stack_a, t_stack *stack_b)
 	stack_a->min = INT_MAX;
 	stack_a->max = INT_MIN;
 	stack_a->mid = 0;
-
 	stack_b->array = NULL;
 	stack_b->top = -1;
 	stack_b->len = 0;
@@ -29,14 +28,24 @@ void	init_stacks(t_stack *stack_a, t_stack *stack_b)
 	stack_b->mid = 0;
 }
 
+static int	is_valid(t_stack *stack_a, char **strs, int i)
+{
+	int		nbr;
+
+	nbr = 0;
+	if (error_syntax(strs[i]))
+		error_handling(stack_a);
+	nbr = ft_atol(strs[i]);
+	if (nbr > INT_MAX || nbr < INT_MIN || error_rep(stack_a, (int)nbr))
+		error_handling(stack_a);
+	return (nbr);
+}
+
 void	create_stack_a(char *argv, t_stack *stack_a)
 {
 	int		i;
 	char	**strs;
-	long	nbr;
 
-	i = 0;
-	nbr = 0;
 	strs = ft_split(argv, ' ');
 	if (!strs)
 		exit(-1);
@@ -48,15 +57,11 @@ void	create_stack_a(char *argv, t_stack *stack_a)
 		exit(-1);
 	while (i >= 0)
 	{
-		if (error_syntax(strs[i]))
-		{
-			write(1, "Error syntax\n", 13);
-			error_handling(stack_a);
-		}
-		nbr = ft_atol(strs[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN || error_rep(stack_a, (int)nbr))
-			error_handling(stack_a);
-		stack_a->array[++(stack_a->top)] = nbr;
+		stack_a->array[++(stack_a->top)] = is_valid(stack_a, strs, i);
+		if (stack_a->max < stack_a->array[stack_a->top])
+			stack_a->max = stack_a->array[stack_a->top];
+		if (stack_a->min > stack_a->array[stack_a->top])
+			stack_a->min = stack_a->array[stack_a->top];
 		i--;
 	}
 	free(strs);

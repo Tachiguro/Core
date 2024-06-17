@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 19:10:14 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 22:44:45 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	{
 		write(1, "\tKO\n", 4);
 		if (stack_a.len == 2)
-			s_a(&stack_a);
+			sa(&stack_a);
 		else
 		{
 			push_swap(&stack_a, &stack_b);
