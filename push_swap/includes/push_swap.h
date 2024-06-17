@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/14 17:25:27 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 18:54:56 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,40 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+# include <stdbool.h>
+# include <limits.h>
+# include <stdlib.h>
 # include <stdio.h>
-// char	*stack_sort(int *stack_a, int stack_a_len);
 
-void	swap_a(int *stack_a);
-void	swap_b(int *stack_b);
-void	swap_a_and_b(int *stack_a, int *stack_b);
-void	push_a(int *stack_a, int top_a, int *stack_b, int top_b);
-void	push_b(int *stack_a, int top_a, int *stack_b, int top_b);
-
-void	ra(int *stack_a, int top_a, int len);
-void	rb(int *stack_b, int top_b, int len);
-void	rra(int *stack_a, int top_a, int len);
-void	rrb(int *stack_b, int top_b, int len);
+typedef struct s_stack
+{
+	int	*array;
+	int	top;
+	int	len;
+	int	min;
+	int	max;
+	int	mid;
+}	t_stack;
 
 void	ft_print_stacks(int *s_a, int len);
-int		stack_sorted(int *stack, int stack_len);
+char	*join_args(char **argv);
+void	init_stacks(t_stack *stack_a, t_stack *stack_b);
+void	create_stack_a(char *param, t_stack *stack_a);
+void	print_stacks(t_stack *stack_a, t_stack *stack_b);
+
+void	error_handling(t_stack *stack_a);
+bool	error_syntax(char *num);
+bool	error_rep(t_stack *stack, int nbr);
+
+bool	stack_sorted(t_stack *stack);
+void	s_a(t_stack *stack);
+void	s_b(t_stack *stack);
+void	ss(t_stack *stack_a, t_stack *stack_b);
+void	p_a(t_stack *stack_a, t_stack *stack_b);
+void	p_b(t_stack *stack_a, t_stack *stack_b);
+void	r_a(t_stack *stack_a);
+void	r_b(t_stack *stack_b);
+
+void	push_swap(t_stack *stack_a, t_stack *stack_b);
 
 #endif

@@ -6,34 +6,24 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/14 18:27:46 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 19:16:30 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	stack_sorted(int *stack, int stack_len)
+void	push_swap(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
+	stack_b->len = stack_a->top;
+	stack_b->array = (int *)malloc(sizeof(int) * stack_a->top);
+	// while (!stack_sorted(stack_a) && i < 1)
+	// {
+	// 	p_b(stack_a, stack_b);
+	// 	i++;
+	// }
 
-	i = 0;
-	while (i < stack_len - 1)
-	{
-		if (stack[i] > stack[i + 1])
-			return (0);
-		i++;
-	}
-
-	return (1);
+	//printf("top: %d\n", stack_b->top);
+	p_b(stack_a, stack_b);
+	p_b(stack_a, stack_b);
+	//printf("top: %d\n", stack_b->top);
 }
-
-// char	*stack_sort(int *stack_a, int stack_a_len)
-// {
-// 	char	*result;
-// 	int		*stack_b;
-// 	int		stack_b_len;
-
-// 	stack_b_len = stack_a_len;
-
-// 	return (result);
-// }

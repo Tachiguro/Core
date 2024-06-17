@@ -6,85 +6,38 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/14 18:28:59 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 19:10:14 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	create_stack(char *param, int **stack_a)
-{
-	int		len;
-	int		i;
-	int		*stack;
-	char	**strs;
-
-	len = 0;
-	i = 0;
-	strs = ft_split(param, ' ');
-	while (strs[len])
-		len++;
-	stack = (int *)malloc(sizeof(int) * len);
-	if (!stack)
-		exit(-1);
-	while (i < len)
-	{
-		stack[i] = ft_atol(strs[i]);
-		i++;
-	}
-	*stack_a = stack;
-	free(strs);
-	return (len);
-}
-
-char	*join_args(char **argv)
-{
-	char	*all_parametres;
-	int		len;
-	int		y;
-	int		x;
-	int		i;
-
-	len = 0;
-	y = 1;
-	x = 0;
-	i = 0;
-	while (argv[y])
-		len += ft_strlen(argv[y++]) + 1;
-	all_parametres = (char *)malloc(sizeof(char) * len);
-	if (!all_parametres)
-		exit(-1);
-	y = 0;
-	while (argv[++y])
-	{
-		while (argv[y][x])
-			all_parametres[i++] = argv[y][x++];
-		all_parametres[i++] = ' ';
-		x = 0;
-	}
-	all_parametres[++i] = '\0';
-	return (all_parametres);
-}
-
 int	main(int argc, char **argv)
 {
-	char	*all_parameters;
-	int		*stack_a;
-	int		stack_a_len;
+	t_stack	stack_a;
+	t_stack	stack_b;
 
-	stack_a_len = 0;
-	stack_a = NULL;
-	all_parameters = NULL;
+	init_stacks(&stack_a, &stack_b);
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (0);
+		return (1);
 	else if (argc == 2)
-		stack_a_len = create_stack(argv[1], &stack_a);
+		create_stack_a(argv[1], &stack_a);
 	else
+		create_stack_a(join_args(argv), &stack_a);
+	print_stacks(&stack_a, &stack_b);
+	if (!stack_sorted(&stack_a))
 	{
-		all_parameters = join_args(argv);
-		stack_a_len = create_stack(all_parameters, &stack_a);
-		free(all_parameters);
+		write(1, "\tKO\n", 4);
+		if (stack_a.len == 2)
+			s_a(&stack_a);
+		else
+		{
+			push_swap(&stack_a, &stack_b);
+			print_stacks(&stack_a, &stack_b);
+		}
 	}
-	ft_print_stacks(stack_a, stack_a_len);
-	free(stack_a);
+	else
+		write(1, "\tOK\n", 4);
+	free(stack_a.array);
+	return (0);
 }

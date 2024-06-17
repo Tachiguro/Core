@@ -6,54 +6,57 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:15:16 by jherzog           #+#    #+#             */
-/*   Updated: 2024/05/20 21:21:35 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 13:54:17 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ra(int *stack_a, int top_a, int len)
+// rrr : rra and rrb at the same time.
+// rr : ra and rb at the same time.
+
+void	r_a(t_stack *stack_a)
 {
 	int	temp;
 
 	temp = 0;
-	temp = stack_a[top_a];
-	while (top_a < len - 1)
+	temp = stack_a->array[stack_a->top];
+	while (stack_a->top < stack_a->len - 1)
 	{
-		stack_a[top_a] = stack_a[top_a + 1];
-		top_a++;
+		stack_a->array[stack_a->top] = stack_a->array[stack_a->top + 1];
+		stack_a->top++;
 	}
-	stack_a[top_a] = temp;
+	stack_a->array[stack_a->top] = temp;
 	printf("ra\n");
 }
 
-void	rb(int *stack_b, int top_b, int len)
+void	r_b(t_stack *stack_b)
 {
 	int	temp;
 
 	temp = 0;
-	temp = stack_b[top_b];
-	while (top_b < len - 1)
+	temp = stack_b->array[stack_b->top];
+	while (stack_b->top < stack_b->len - 1)
 	{
-		stack_b[top_b] = stack_b[top_b];
-		top_b++;
+		stack_b->array[stack_b->top] = stack_b->array[stack_b->top + 1];
+		stack_b->top++;
 	}
-	stack_b[top_b] = temp;
+	stack_b->array[stack_b->top] = temp;
 	printf("rb\n");
 }
 
-void	rra(int *stack_a, int top_a, int len)
+void	rra(t_stack *stack_a)
 {
 	int	temp;
 
 	temp = 0;
-	temp = stack_a[len - 1];
-	while (top_a < len - 1)
+	temp = stack_a->array[stack_a->len - 1];
+	while (stack_a->top < stack_a->len - 1)
 	{
-		stack_a[len] = stack_a[len - 1];
-		len--;
+		stack_a->array[stack_a->len] = stack_a->array[stack_a->len - 1];
+		stack_a->len--;
 	}
-	stack_a[len] = temp;
+	stack_a->array[stack_a->len] = temp;
 	printf("rra\n");
 }
 
@@ -71,8 +74,3 @@ void	rrb(int *stack_b, int top_b, int len)
 	stack_b[len] = temp;
 	printf("rb\n");
 }
-
-
-// rrr : rra and rrb at the same time.
-
-// rr : ra and rb at the same time.

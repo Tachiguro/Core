@@ -6,51 +6,53 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:18:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/14 17:17:32 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/17 19:06:45 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap_a(int *stack_a)
+void	s_a(t_stack *stack)
 {
 	int	temp;
 
-	temp = stack_a[0];
-	stack_a[0] = stack_a[1];
-	stack_a[1] = temp;
+	temp = stack->array[0];
+	stack->array[0] = stack->array[1];
+	stack->array[1] = temp;
 	printf("sa\n");
 }
 
-void	swap_b(int *stack_b)
+void	s_b(t_stack *stack)
 {
 	int	temp;
 
-	temp = stack_b[0];
-	stack_b[0] = stack_b[1];
-	stack_b[1] = temp;
+	temp = stack->array[0];
+	stack->array[0] = stack->array[1];
+	stack->array[1] = temp;
 	printf("sb\n");
 }
 
-void	swap_a_and_b(int *stack_a, int *stack_b)
+void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	swap_a(stack_a);
-	swap_b(stack_b);
+	s_a(stack_a);
+	s_b(stack_b);
 	printf("ss\n");
 }
 
-void	push_a(int *stack_a, int top_a, int *stack_b, int top_b)
+void	p_a(t_stack *stack_a, t_stack *stack_b)
 {
-	top_a--;
-	stack_a[top_a] = stack_b[top_b];
-	top_b++;
+	if (stack_b->top == 0)
+		return ;
+	stack_a->top++;
+	stack_a->array[stack_a->top - 1] = stack_b->array[stack_b->top - 1];
+	stack_b->top--;
 	printf("pa\n");
 }
 
-void	push_b(int *stack_a, int top_a, int *stack_b, int top_b)
+void	p_b(t_stack *stack_a, t_stack *stack_b)
 {
-	top_b--;
-	stack_b[top_b] = stack_a[top_a];
-	top_a++;
-	printf("pb\n");
+	if (stack_a->top < 0)
+		return ;
+	stack_b->array[++(stack_b->top)] = stack_a->array[(stack_a->top)--];
+	write(1, "pb\n", 3);
 }
