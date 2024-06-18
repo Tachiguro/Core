@@ -6,13 +6,14 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:15:16 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 23:16:22 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/18 16:15:12 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-
+// ra (rotate a): Shift up all elements of stack a by 1.
+// The first element becomes the last one.
 void	ra(t_stack *stack_a)
 {
 	int	temp;
@@ -31,6 +32,8 @@ void	ra(t_stack *stack_a)
 	write(1, "ra\n", 3);
 }
 
+// rb (rotate b): Shift up all elements of stack b by 1.
+// The first element becomes the last one.
 void	rb(t_stack *stack_b)
 {
 	int	temp;
@@ -49,37 +52,42 @@ void	rb(t_stack *stack_b)
 	write(1, "rb\n", 3);
 }
 
-// to fix
+// rra (reverse rotate a): Shift down all elements of stack a by 1.
+// The last element becomes the first one.
 void	rra(t_stack *stack_a)
 {
 	int	temp;
 	int	i;
 
-	i = 0;
 	if (stack_a->top < 1)
 		return ;
-	temp = stack_a->array[stack_a->top];
+	temp = stack_a->array[0];
+	i = 0;
 	while (i < stack_a->top)
 	{
-		stack_a->array[i] = stack_a->array[i - 1];
-		i--;
+		stack_a->array[i] = stack_a->array[i + 1];
+		i++;
 	}
-	stack_a->array[0] = temp;
+	stack_a->array[stack_a->top] = temp;
 	write(1, "rra\n", 4);
 }
 
-// to fix
-void	rrb(int *stack_b, int top_b, int len)
+// rrb (reverse rotate b): Shift down all elements of stack b by 1.
+// The last element becomes the first one.
+void	rrb(t_stack *stack_b)
 {
 	int	temp;
+	int	i;
 
-	temp = 0;
-	temp = stack_b[len - 1];
-	while (top_b < len - 1)
+	if (stack_b->top < 1)
+		return ;
+	temp = stack_b->array[0];
+	i = 0;
+	while (i < stack_b->top)
 	{
-		stack_b[len] = stack_b[len - 1];
-		len--;
+		stack_b->array[i] = stack_b->array[i + 1];
+		i++;
 	}
-	stack_b[len] = temp;
-	printf("rb\n");
+	stack_b->array[stack_b->top] = temp;
+	write(1, "rrb\n", 4);
 }

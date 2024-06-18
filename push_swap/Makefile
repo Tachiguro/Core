@@ -12,7 +12,8 @@ SRCS = 	push_swap.c\
 		error_handling.c\
 		stack_op_push_swap.c\
 		stack_sort.c\
-		stack_op_rotate.c
+		stack_op_rotate.c\
+		stack_op_comp.c
 
 INClUDES = ./includes
 

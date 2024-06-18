@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 22:44:45 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/18 17:13:52 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	print_stacks(&stack_a, &stack_b);
 	if (!stack_sorted(&stack_a))
 	{
-		write(1, "\tKO\n", 4);
+		write(1, "Not sorted!\n", 12);
 		if (stack_a.len == 2)
 			sa(&stack_a);
 		else
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-		write(1, "\tOK\n", 4);
+		write(1, "Sorted!\n", 8);
 	free(stack_a.array);
 	return (0);
 }
