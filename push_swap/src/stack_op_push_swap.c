@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:18:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/18 17:34:59 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/20 01:02:40 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sb(t_stack *stack_b)
 	printf("sb\n");
 }
 
-// pa (push a): Take the first element at the top of b and put it at the top of a.
+// pa push a: Take the first element at the top of b and put it at the top of a.
 // Do nothing if b is empty.
 void	pa(t_stack *stack_a, t_stack *stack_b)
 {
@@ -50,7 +50,7 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 	printf("pa\n");
 }
 
-// pb (push b): Take the first element at the top of a and put it at the top of b.
+// pb push b: Take the first element at the top of a and put it at the top of b.
 // Do nothing if a is empty.
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {

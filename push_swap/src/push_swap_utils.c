@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:35:38 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/18 17:13:02 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/20 02:43:45 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,28 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 	write(1, "a\tb\n", 4);
 }
 
-bool	stack_sorted(t_stack *stack)
+bool	stack_a_sorted(t_stack *stack_a)
 {
 	int	i;
 
-	i = stack->top;
+	i = stack_a->top;
 	while (i > 0)
 	{
-		if (stack->array[i] > stack->array[i - 1])
+		if (stack_a->array[i] > stack_a->array[i - 1])
+			return (false);
+		i--;
+	}
+	return (true);
+}
+
+bool	stack_b_sorted(t_stack *stack_b)
+{
+	int	i;
+
+	i = stack_b->top - 1;
+	while (i > 0)
+	{
+		if (stack_b->array[i] < stack_b->array[i + 1])
 			return (false);
 		i--;
 	}

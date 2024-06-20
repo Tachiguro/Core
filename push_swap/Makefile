@@ -1,6 +1,6 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 DEBUGFLAG = -g
 RM = rm -rf
 LIBFT_DIR = ./libft
@@ -8,6 +8,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = ./src
 SRCS = 	push_swap.c\
 		create_stack.c\
+		find_mid.c\
 		push_swap_utils.c\
 		error_handling.c\
 		stack_op_push_swap.c\

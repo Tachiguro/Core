@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 23:05:39 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/20 02:43:00 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	create_stack_a(char *argv, t_stack *stack_a)
 			stack_a->min = stack_a->array[stack_a->top];
 		i--;
 	}
+	find_mid(stack_a);
 	free(strs);
 }
 

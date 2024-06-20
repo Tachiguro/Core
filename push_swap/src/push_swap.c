@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/18 17:13:52 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/20 03:29:20 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,15 @@ int	main(int argc, char **argv)
 		create_stack_a(argv[1], &stack_a);
 	else
 		create_stack_a(join_args(argv), &stack_a);
-	print_stacks(&stack_a, &stack_b);
-	if (!stack_sorted(&stack_a))
+	if (!stack_a_sorted(&stack_a))
 	{
-		write(1, "Not sorted!\n", 12);
-		if (stack_a.len == 2)
-			sa(&stack_a);
-		else
-		{
-			push_swap(&stack_a, &stack_b);
-			print_stacks(&stack_a, &stack_b);
-		}
+		stack_b.len = stack_b.top;
+		stack_b.array = (int *)malloc(sizeof(int) * stack_a.top);
+		if (!stack_b.array)
+			exit(1);
+		sort(&stack_a, &stack_b);
+		free(stack_b.array);
 	}
-	else
-		write(1, "Sorted!\n", 8);
 	free(stack_a.array);
 	return (0);
 }
