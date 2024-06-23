@@ -6,18 +6,18 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 19:09:24 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/17 18:58:00 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/23 23:28:45 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	error_handling(t_stack *stack_a)
+void	error_handling(t_stack *s_a)
 {
-	if (stack_a->array != NULL)
+	if (s_a->array != NULL)
 	{
 		printf("Error!!!!\n");
-		free(stack_a->array);
+		free(s_a->array);
 	}
 	exit(0);
 }

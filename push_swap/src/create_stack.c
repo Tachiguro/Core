@@ -6,42 +6,40 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/20 02:43:00 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/23 23:28:41 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	init_stacks(t_stack *stack_a, t_stack *stack_b)
+void	init_stacks(t_stack *s_a, t_stack *s_b)
 {
-	stack_a->array = NULL;
-	stack_a->top = -1;
-	stack_a->len = 0;
-	stack_a->min = INT_MAX;
-	stack_a->max = INT_MIN;
-	stack_a->mid = 0;
-	stack_b->array = NULL;
-	stack_b->top = -1;
-	stack_b->len = 0;
-	stack_b->min = INT_MAX;
-	stack_b->max = INT_MIN;
-	stack_b->mid = 0;
+	s_a->array = NULL;
+	s_a->top = -1;
+	s_a->len = 0;
+	s_a->max = INT_MIN;
+	s_a->mid = 0;
+	s_b->array = NULL;
+	s_b->top = -1;
+	s_b->len = 0;
+	s_b->max = INT_MIN;
+	s_b->mid = 0;
 }
 
-static int	is_valid(t_stack *stack_a, char **strs, int i)
+static int	is_valid(t_stack *s_a, char **strs, int i)
 {
 	int		nbr;
 
 	nbr = 0;
 	if (error_syntax(strs[i]))
-		error_handling(stack_a);
+		error_handling(s_a);
 	nbr = ft_atol(strs[i]);
-	if (nbr > INT_MAX || nbr < INT_MIN || error_rep(stack_a, (int)nbr))
-		error_handling(stack_a);
+	if (nbr > INT_MAX || nbr < INT_MIN || error_rep(s_a, (int)nbr))
+		error_handling(s_a);
 	return (nbr);
 }
 
-void	create_stack_a(char *argv, t_stack *stack_a)
+void	create_s_a(char *argv, t_stack *s_a)
 {
 	int		i;
 	char	**strs;
@@ -49,22 +47,20 @@ void	create_stack_a(char *argv, t_stack *stack_a)
 	strs = ft_split(argv, ' ');
 	if (!strs)
 		exit(-1);
-	while (strs[stack_a->len])
-		stack_a->len++;
-	i = stack_a->len - 1;
-	stack_a->array = (int *)malloc(sizeof(int) * stack_a->len);
-	if (!stack_a->array)
+	while (strs[s_a->len])
+		s_a->len++;
+	i = s_a->len - 1;
+	s_a->array = (int *)malloc(sizeof(int) * s_a->len);
+	if (!s_a->array)
 		exit(-1);
 	while (i >= 0)
 	{
-		stack_a->array[++(stack_a->top)] = is_valid(stack_a, strs, i);
-		if (stack_a->max < stack_a->array[stack_a->top])
-			stack_a->max = stack_a->array[stack_a->top];
-		if (stack_a->min > stack_a->array[stack_a->top])
-			stack_a->min = stack_a->array[stack_a->top];
+		s_a->array[++(s_a->top)] = is_valid(s_a, strs, i);
+		if (s_a->max < s_a->array[s_a->top])
+			s_a->max = s_a->array[s_a->top];
 		i--;
 	}
-	find_mid(stack_a);
+	s_a->mid = find_mid(s_a);
 	free(strs);
 }
 

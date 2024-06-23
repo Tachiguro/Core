@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:15:16 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/18 16:15:12 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/23 21:15:05 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,80 +14,80 @@
 
 // ra (rotate a): Shift up all elements of stack a by 1.
 // The first element becomes the last one.
-void	ra(t_stack *stack_a)
+void	ra(t_stack *s_a)
 {
 	int	temp;
 	int	i;
 
-	if (stack_a->top < 1)
+	if (s_a->top < 1)
 		return ;
-	temp = stack_a->array[stack_a->top];
-	i = stack_a->top;
+	temp = s_a->array[s_a->top];
+	i = s_a->top;
 	while (i > 0)
 	{
-		stack_a->array[i] = stack_a->array[i - 1];
+		s_a->array[i] = s_a->array[i - 1];
 		i--;
 	}
-	stack_a->array[0] = temp;
+	s_a->array[0] = temp;
 	write(1, "ra\n", 3);
 }
 
 // rb (rotate b): Shift up all elements of stack b by 1.
 // The first element becomes the last one.
-void	rb(t_stack *stack_b)
+void	rb(t_stack *s_b)
 {
 	int	temp;
 	int	i;
 
-	if (stack_b->top < 1)
+	if (s_b->top < 1)
 		return ;
-	temp = stack_b->array[stack_b->top];
-	i = stack_b->top;
+	temp = s_b->array[s_b->top];
+	i = s_b->top;
 	while (i > 0)
 	{
-		stack_b->array[i] = stack_b->array[i - 1];
+		s_b->array[i] = s_b->array[i - 1];
 		i--;
 	}
-	stack_b->array[0] = temp;
+	s_b->array[0] = temp;
 	write(1, "rb\n", 3);
 }
 
 // rra (reverse rotate a): Shift down all elements of stack a by 1.
 // The last element becomes the first one.
-void	rra(t_stack *stack_a)
+void	rra(t_stack *s_a)
 {
 	int	temp;
 	int	i;
 
-	if (stack_a->top < 1)
+	if (s_a->top < 1)
 		return ;
-	temp = stack_a->array[0];
+	temp = s_a->array[0];
 	i = 0;
-	while (i < stack_a->top)
+	while (i < s_a->top)
 	{
-		stack_a->array[i] = stack_a->array[i + 1];
+		s_a->array[i] = s_a->array[i + 1];
 		i++;
 	}
-	stack_a->array[stack_a->top] = temp;
+	s_a->array[s_a->top] = temp;
 	write(1, "rra\n", 4);
 }
 
 // rrb (reverse rotate b): Shift down all elements of stack b by 1.
 // The last element becomes the first one.
-void	rrb(t_stack *stack_b)
+void	rrb(t_stack *s_b)
 {
 	int	temp;
 	int	i;
 
-	if (stack_b->top < 1)
+	if (s_b->top < 1)
 		return ;
-	temp = stack_b->array[0];
+	temp = s_b->array[0];
 	i = 0;
-	while (i < stack_b->top)
+	while (i < s_b->top)
 	{
-		stack_b->array[i] = stack_b->array[i + 1];
+		s_b->array[i] = s_b->array[i + 1];
 		i++;
 	}
-	stack_b->array[stack_b->top] = temp;
+	s_b->array[s_b->top] = temp;
 	write(1, "rrb\n", 4);
 }
