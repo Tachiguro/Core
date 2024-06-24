@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/24 21:01:55 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/25 00:58:17 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ void	sort(t_stack *s_a, t_stack *s_b)
 				rra(s_a);
 			else if (s_b->array[s_b->top] < s_b->top - 1)
 				rr(s_a, s_b);
-			else if (s_a->array[0] > s_a->mid || s_a->array[0] < s_a->array[s_a->top])
+			else
 				ra(s_a);
-			if (s_a->chunks[chunk] <= i)
+			if (s_a->chunks[chunk] < i && s_a->top > 1)
 			{
 				chunk++;
 				find_mid(s_a);
 				i = 0;
 			}
 		}
+		if (s_a->array[1] > s_a->array[0])
+			ra(s_a);
 		if (s_b_sorted(s_b) && s_a_sorted(s_a))
 			while (s_b->top >= 0)
 				pa(s_a, s_b);
