@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:18:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/24 14:36:40 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/24 20:08:25 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	pa(t_stack *s_a, t_stack *s_b)
 		return ;
 	s_a->array[++(s_a->top)] = s_b->array[(s_b->top)--];
 	s_b->max = INT_MIN;
-	while (i < s_b->top)
+	while (i <= s_b->top)
 	{
 		if (s_b->max < s_b->array[i])
 			s_b->max = s_b->array[i];

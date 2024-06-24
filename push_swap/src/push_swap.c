@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/24 17:33:29 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/24 20:40:55 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int	set_chunks(t_stack *s_a)
 	s_a->chunks = (int *)malloc(sizeof(int) * chunk + 1);
 	chunk = -1;
 	top = s_a->top;
-	while (++chunk < s_a->chunks_len)
+	while (++chunk <= s_a->chunks_len)
 	{
 		top /= 2;
 		s_a->chunks[chunk] = top;
 	}
-	s_a->chunks[chunk] = -1;
+	s_a->chunks[chunk + 1] = -1;
 	return (chunk);
 }
 

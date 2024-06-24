@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:45:26 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/24 14:55:35 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/24 20:59:03 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	find_mid(t_stack *s_a)
 	}
 	bubble_sort(arr, count);
 	if (count % 2 == 0)
-		s_a->mid = arr[count / 2 - 1] + arr[count / 2] / 2;
+		s_a->mid = arr[(count / 2) - 1];
 	else
 		s_a->mid = arr[(count - 1) / 2];
 	free(arr);
