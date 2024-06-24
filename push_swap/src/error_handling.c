@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 19:09:24 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/23 23:28:45 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/24 13:56:47 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error_handling(t_stack *s_a)
 {
 	if (s_a->array != NULL)
 	{
-		printf("Error!!!!\n");
+		write(2, "Error\n", 6);
 		free(s_a->array);
 	}
 	exit(0);
@@ -26,19 +26,19 @@ bool	error_syntax(char *num)
 {
 	if (!(*num == '+' || *num == '-' || (*num >= '0' && *num <= '9')))
 	{
-		printf("Error:1\n");
+		write(2, "Error\n", 6);
 		return (true);
 	}
 	if ((*num == '+' || *num == '-') && !(num[1] >= '0' && num[1] <= '9'))
 	{
-		printf("Error:2\n");
+		write(2, "Error\n", 6);
 		return (true);
 	}
 	while (*++num)
 	{
 		if (!(*num >= '0' && *num <= '9'))
 		{
-			printf("Error:3\n");
+			write(2, "Error\n", 6);
 			return (true);
 		}
 	}
@@ -54,7 +54,7 @@ bool	error_rep(t_stack *stack, int nbr)
 	{
 		if (stack->array[i] == nbr)
 		{
-			write(1, "Error:rep\n", 10);
+			write(2, "Error\n", 6);
 			return (true);
 		}
 		i++;
