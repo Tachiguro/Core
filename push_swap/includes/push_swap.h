@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/24 15:54:11 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/25 03:53:40 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_stack
 	int	top;
 	int	len;
 	int	max;
-	int	min;
 	int	mid;
 }	t_stack;
 
