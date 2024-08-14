@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/25 03:54:35 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/14 22:48:16 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ void	init_stacks(t_stack *s_a, t_stack *s_b)
 	s_a->array = NULL;
 	s_a->chunks = NULL;
 	s_a->chunks_len = 0;
+	s_a->chunk_mid = 0;
+	s_a->chunk_remainer = 0;
 	s_a->top = -1;
 	s_a->len = 0;
 	s_a->mid = 0;
 	s_a->max = INT_MIN;
 
 	s_b->array = NULL;
-	s_a->chunks = NULL;
-	s_a->chunks_len = 0;
+	s_b->chunks = NULL;
+	s_b->chunks_len = 0;
+	s_b->chunk_mid = 0;
+	s_b->chunk_remainer = 0;
 	s_b->top = -1;
 	s_b->len = 0;
 	s_b->mid = 0;
@@ -60,10 +64,11 @@ void	create_s_a(char *argv, t_stack *s_a)
 		exit(-1);
 	while (i >= 0)
 	{
-		s_a->array[++(s_a->top)] = is_valid(s_a, strs, i);
+		s_a->top++;
+		s_a->array[s_a->top] = is_valid(s_a, strs, i);
 		i--;
 	}
-	find_mid(s_a);
+	s_a->mid = find_mid(s_a->array, 0, s_a->len);
 }
 
 char	*join_args(char **argv)

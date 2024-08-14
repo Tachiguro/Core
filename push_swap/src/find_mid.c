@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:45:26 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/24 20:59:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/13 23:20:14 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,29 @@ static void	bubble_sort(int *arr, int n)
 	}
 }
 
-void	find_mid(t_stack *s_a)
+int find_mid(int *array, int begin, int end)
 {
-	int	i;
 	int	*arr;
 	int	count;
+	int	i;
+	int	mid;
 
+	count = end - begin;
 	i = 0;
-	count = s_a->top + 1;
 	arr = (int *)malloc(count * sizeof(int));
 	if (!arr)
 	{
 		write(2, "Error\n", 6);
 		exit(1);
 	}
-	while (i < count)
+	while (begin <= end)
 	{
-		arr[i] = s_a->array[i];
+		arr[i] = array[begin];
 		i++;
+		begin++;
 	}
 	bubble_sort(arr, count);
-	if (count % 2 == 0)
-		s_a->mid = arr[(count / 2) - 1];
-	else
-		s_a->mid = arr[(count - 1) / 2];
+	mid = arr[count / 2];
 	free(arr);
+	return (mid);
 }

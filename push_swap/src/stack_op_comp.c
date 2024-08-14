@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 23:10:09 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/23 21:14:55 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/06/26 21:09:19 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void	ss(t_stack *s_a, t_stack *s_b)
 {
 	int	temp;
 
-	temp = s_a->array[0];
-	s_a->array[0] = s_a->array[1];
-	s_a->array[1] = temp;
-	temp = s_b->array[0];
-	s_b->array[0] = s_b->array[1];
-	s_b->array[1] = temp;
+	temp = s_a->array[s_a->top];
+	s_a->array[s_a->top] = s_a->array[s_a->top - 1];
+	s_a->array[s_a->top - 1] = temp;
+
+	temp = s_b->array[s_b->top];
+	s_b->array[s_b->top] = s_b->array[s_b->top - 1];
+	s_b->array[s_b->top - 1] = temp;
 	printf("ss\n");
 }
 
