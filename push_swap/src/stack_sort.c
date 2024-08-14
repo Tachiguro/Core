@@ -6,13 +6,32 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/14 22:58:25 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/15 00:54:38 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b) {
+void	push_remainer_to_b(t_stack *s_a, t_stack *s_b)
+{
+	s_a->mid = find_mid(s_a->array, 0, s_a->top);
+	while (s_a->chunk_remainer > 0)
+	{
+		if (s_a->array[s_a->top] <= s_a->mid)
+		{
+			pb(s_a, s_b);
+			s_a->chunk_remainer--;
+		}
+		else if (s_a->array[0] <= s_a->mid && (s_b->array[0] > s_b->top && s_b->top > 1))
+			rrr(s_a, s_b);
+		else if (s_a->array[0] <= s_a->mid)
+			rra(s_a);
+		else
+			ra(s_a);
+	}
+}
+void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
+{
 	int i = 0;
 
 	while (chunk >= 0)
@@ -22,15 +41,15 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b) {
 			pb(s_a, s_b);
 			i++;
 		}
-		else if (s_a->array[0] < s_a->mid && s_b->array[0] > s_b->top)
+		else if (s_a->array[0] <= s_a->mid && (s_b->array[0] > s_b->top && s_b->top > 1))
 			rrr(s_a, s_b);
-		else if (s_a->array[0] < s_a->mid)
+		else if (s_a->array[0] <= s_a->mid)
 			rra(s_a);
-		else if (s_b->array[s_b->top] < s_b->array[0])
+		else if (s_b->array[s_b->top] > s_b->array[0])
 			rr(s_a, s_b);
 		else
 			ra(s_a);
-		if (s_a->chunks[chunk] < i)
+		if (s_a->chunks[chunk] <= i)
 		{
 			chunk--;
 			if (chunk < 0 || (s_a->chunks[chunk] == 0))
@@ -39,6 +58,8 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b) {
 			i = 0;
 		}
 	}
+	if (s_a->chunk_remainer > 0)
+		push_remainer_to_b(s_a, s_b);
 }
 
 void	sort(t_stack *s_a, t_stack *s_b)
@@ -48,6 +69,10 @@ void	sort(t_stack *s_a, t_stack *s_b)
 
 	i = 0;
 	push_to_b(s_a->chunks_len - 1, s_a, s_b);
+	if (s_a->chunk_remainer > 0)
+		pa(s_a, s_b);
+
+	// Fix this!!!
 	if (!s_a_sorted(s_a))
 	{
 		if (s_a->array[s_a->top] > s_a->array[s_a->top - 1]
@@ -82,7 +107,7 @@ void	sort(t_stack *s_a, t_stack *s_b)
 		if (s_a->chunks[chunk] <=  i)
 		{
 			chunk++;
-			s_a->chunk_mid = find_mid(s_b->array, s_a->top - s_a->chunks_len, s_a->top);
+			s_a->chunk_mid = find_mid(s_b->array, s_b->top - s_a->chunks_len, s_a->top);
 			i = -1;
 		}
 	}
