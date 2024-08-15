@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:45:26 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/15 00:24:44 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/15 21:49:18 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,17 @@ int find_mid(int *array, int begin, int end)
 		write(2, "Error\n", 6);
 		exit(1);
 	}
-	while (begin <= end)
+	while (begin < end)
 	{
 		arr[i] = array[begin];
 		i++;
 		begin++;
 	}
 	bubble_sort(arr, count);
-	mid = arr[count / 2 - 1];
+	if (count % 2 == 0)
+		mid = arr[count / 2 - 1];
+	else
+		mid = arr[(count - 1) / 2];
 	free(arr);
 	return (mid);
 }
