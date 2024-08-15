@@ -6,46 +6,56 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/15 22:37:57 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/16 01:04:59 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push_remainer_to_b(t_stack *s_a, t_stack *s_b)
+int	rrotate(t_stack *s_a, int target)
 {
-	s_a->mid = find_mid(s_a->array, 0, s_a->top);
-	while (s_a->chunk_remainer > 0)
+	int	r;
+	int	rr;
+	int	top;
+
+	top = s_a->top;
+	rr = 0;
+	r = 0;
+	while (s_a->array[top] > target)
 	{
-		if (s_a->array[s_a->top] <= s_a->mid)
-		{
-			pb(s_a, s_b);
-			s_a->chunk_remainer--;
-		}
-		else if (s_a->array[0] <= s_a->mid && (s_b->array[0] > s_b->top && s_b->top > 1))
-			rrr(s_a, s_b);
-		else if (s_a->array[0] <= s_a->mid)
-			rra(s_a);
-		else
-			ra(s_a);
+		r++;
+		top--;
 	}
+	while (s_a->array[rr] > target)
+		rr++;
+	if (rr < r)
+		return (0);
+	else
+		return (1);
 }
+
 void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 {
 	int i = 0;
-
 	while (chunk >= 0)
 	{
+		if (s_a->array[s_a->top] > s_a->array[s_a->top - 1]
+			&& s_b->array[s_b->top] < s_b->array[s_b->top - 1] && s_b->top > 0)
+			ss(s_a, s_b);
+		else if (s_a->array[s_a->top] > s_a->array[s_a->top - 1])
+			sa(s_a);
 		if (s_a->array[s_a->top] <= s_a->mid)
 		{
 			pb(s_a, s_b);
 			i++;
 		}
-		else if (s_a->array[0] <= s_a->mid && (s_b->array[0] > s_b->top && s_b->top > 1))
+		else if (rrotate(s_a, s_a->mid) == 0 && (s_b->array[s_b->top] > s_b->array[0]
+				&& s_b->top > 1 && chunk == s_a->chunks_len - 1))
 			rrr(s_a, s_b);
-		else if (s_a->array[0] <= s_a->mid)
+		else if (rrotate(s_a, s_a->mid) == 0)
 			rra(s_a);
-		else if (s_b->array[s_b->top] > s_b->array[0])
+		else if (s_b->array[s_b->top] < s_b->array[0] && s_b->top > 1
+				 && chunk == s_a->chunks_len - 1)
 			rr(s_a, s_b);
 		else
 			ra(s_a);
@@ -60,17 +70,13 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 				s_a->chunks[0] += s_a->chunk_remainer;
 		}
 	}
-	// if (s_a->chunk_remainer > 0)
-	// 	push_remainer_to_b(s_a, s_b);
 }
 
 void	sort(t_stack *s_a, t_stack *s_b)
 {
 	int	chunk;
-	int	i;
 	int	rotations;
 
-	i = 0;
 	rotations = 0;
 	push_to_b(s_a->chunks_len - 1, s_a, s_b);
 	if (!s_a_sorted(s_a))
@@ -88,19 +94,16 @@ void	sort(t_stack *s_a, t_stack *s_b)
 		}
 	}
 	chunk = 0;
-	i = 0;
-	while (s_a->chunks[chunk] > i)
+	while (s_a->chunks[chunk] > 0)
 	{
-		if (s_b->array[s_b->top] == s_b->max && s_a->chunks[chunk] > i)
+		if (s_b->array[s_b->top] < s_b->array[s_b->top - 1])
+			sb(s_b);
+		if (s_b->array[s_b->top] == s_b->max && s_a->chunks[chunk] > 0)
 		{
 			pa(s_a, s_b);
-			if (rotations > 0)
-				rotations--;
-			i++;
+			s_a->chunks[chunk]--;
 		}
-		else if (s_b->array[s_b->top] < s_b->array[s_b->top - 1])
-			sb(s_b);
-		else if (s_b->array[0] == s_b->max)
+		else if (rrotate(s_b, s_b->max) == 0)
 		{
 			rrb(s_b);
 			rotations--;
@@ -110,14 +113,15 @@ void	sort(t_stack *s_a, t_stack *s_b)
 			rb(s_b);
 			rotations++;
 		}
-		if (rotations >= s_a->chunks[chunk])
-				rrb(s_b);
 		if (s_b->top == -1)
 			break ;
-		if (s_a->chunks[chunk] <=  i)
-		{
+		if (rotations == s_a->chunks[chunk])
+			while (rotations > 0)
+			{
+				rrb(s_b);
+				rotations--;
+			}
+		if (s_a->chunks[chunk] <=  0)
 			chunk++;
-			i = 0;
-		}
 	}
 }
