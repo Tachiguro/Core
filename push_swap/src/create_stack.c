@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/14 22:48:16 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/16 22:56:43 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	create_s_a(char *argv, t_stack *s_a)
 		s_a->array[s_a->top] = is_valid(s_a, strs, i);
 		i--;
 	}
-	s_a->mid = find_mid(s_a->array, 0, s_a->len);
+	s_a->mid = find_mid(s_a->array, 0, s_a->len, 1);
 }
 
 char	*join_args(char **argv)

@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/16 01:04:59 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/16 22:54:00 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 			chunk--;
 			if (chunk < 0 || (s_a->chunks[chunk] == 0))
 				break ;
-			s_a->mid = find_mid(s_a->array, 0, s_a->top);
 			i = 0;
 			if (chunk == 0)
 				s_a->chunks[0] += s_a->chunk_remainer;
+			s_a->mid = find_mid(s_a->array, 0, s_a->top, chunk);
 		}
 	}
 }
@@ -96,12 +96,19 @@ void	sort(t_stack *s_a, t_stack *s_b)
 	chunk = 0;
 	while (s_a->chunks[chunk] > 0)
 	{
-		if (s_b->array[s_b->top] < s_b->array[s_b->top - 1])
-			sb(s_b);
+		// if (s_b->array[s_b->top] < s_b->array[s_b->top - 1])
+		// 	sb(s_b);
 		if (s_b->array[s_b->top] == s_b->max && s_a->chunks[chunk] > 0)
 		{
 			pa(s_a, s_b);
 			s_a->chunks[chunk]--;
+			while (rotations > 0)
+			{
+				rrb(s_b);
+				if (s_b->array[s_b->top] == s_b->max && s_a->chunks[chunk] > 0)
+					pa(s_a, s_b);
+				rotations--;
+			}
 		}
 		else if (rrotate(s_b, s_b->max) == 0)
 		{
@@ -115,12 +122,6 @@ void	sort(t_stack *s_a, t_stack *s_b)
 		}
 		if (s_b->top == -1)
 			break ;
-		if (rotations == s_a->chunks[chunk])
-			while (rotations > 0)
-			{
-				rrb(s_b);
-				rotations--;
-			}
 		if (s_a->chunks[chunk] <=  0)
 			chunk++;
 	}

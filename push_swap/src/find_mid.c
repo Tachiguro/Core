@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:45:26 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/16 01:30:33 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/16 22:55:19 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	bubble_sort(int *arr, int n)
 	}
 }
 
-int find_mid(int *array, int begin, int end)
+int find_mid(int *array, int begin, int end, int chunk)
 {
 	int	*arr;
 	int	count;
@@ -69,7 +69,11 @@ int find_mid(int *array, int begin, int end)
 		begin++;
 	}
 	bubble_sort(arr, count);
-	if (count % 2 == 0)
+	if (chunk == 0)
+	{
+		mid = arr[count - 2];
+	}
+	else if (count % 2 == 0)
 		mid = arr[count / 2 - 1];
 	else
 		mid = arr[(count - 1) / 2];
