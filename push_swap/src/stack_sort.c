@@ -6,13 +6,13 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/16 22:54:00 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 01:37:37 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	rrotate(t_stack *s_a, int target)
+int	rrotate_to_mid(t_stack *s_a, int target)
 {
 	int	r;
 	int	rr;
@@ -29,30 +29,55 @@ int	rrotate(t_stack *s_a, int target)
 	while (s_a->array[rr] > target)
 		rr++;
 	if (rr < r)
-		return (0);
-	else
 		return (1);
+	else
+		return (0);
+}
+
+int	rrotate_to_max(t_stack *s_a, int target)
+{
+	int	r;
+	int	rr;
+	int	top;
+
+	top = s_a->top;
+	rr = 0;
+	r = 0;
+	while (s_a->array[top] < target)
+	{
+		r++;
+		top--;
+	}
+	while (s_a->array[rr] < target)
+		rr++;
+	if (rr < r)
+		return (1);
+	else
+		return (0);
 }
 
 void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
+	s_a->mid = find_mid(s_a->array, 0, s_a->top + 1);
 	while (chunk >= 0)
 	{
-		if (s_a->array[s_a->top] > s_a->array[s_a->top - 1]
-			&& s_b->array[s_b->top] < s_b->array[s_b->top - 1] && s_b->top > 0)
-			ss(s_a, s_b);
-		else if (s_a->array[s_a->top] > s_a->array[s_a->top - 1])
-			sa(s_a);
+		// if (s_a->array[s_a->top] > s_a->array[s_a->top - 1]
+		// 	&& s_b->array[s_b->top] < s_b->array[s_b->top - 1] && s_b->top > 0)
+		// 	ss(s_a, s_b);
+		// else if (s_a->array[s_a->top] > s_a->array[s_a->top - 1])
+		// 	sa(s_a);
 		if (s_a->array[s_a->top] <= s_a->mid)
 		{
 			pb(s_a, s_b);
 			i++;
 		}
-		else if (rrotate(s_a, s_a->mid) == 0 && (s_b->array[s_b->top] > s_b->array[0]
+		else if (rrotate_to_mid(s_a, s_a->mid) == 1 && (s_b->array[s_b->top] > s_b->array[0]
 				&& s_b->top > 1 && chunk == s_a->chunks_len - 1))
 			rrr(s_a, s_b);
-		else if (rrotate(s_a, s_a->mid) == 0)
+		else if (rrotate_to_mid(s_a, s_a->mid) == 1)
 			rra(s_a);
 		else if (s_b->array[s_b->top] < s_b->array[0] && s_b->top > 1
 				 && chunk == s_a->chunks_len - 1)
@@ -65,9 +90,7 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 			if (chunk < 0 || (s_a->chunks[chunk] == 0))
 				break ;
 			i = 0;
-			if (chunk == 0)
-				s_a->chunks[0] += s_a->chunk_remainer;
-			s_a->mid = find_mid(s_a->array, 0, s_a->top, chunk);
+			s_a->mid = find_mid(s_a->array, 0, s_a->top + 1);
 		}
 	}
 }
@@ -102,15 +125,22 @@ void	sort(t_stack *s_a, t_stack *s_b)
 		{
 			pa(s_a, s_b);
 			s_a->chunks[chunk]--;
-			while (rotations > 0)
+			while (rotations > 0 && s_b->top > 0)
 			{
-				rrb(s_b);
 				if (s_b->array[s_b->top] == s_b->max && s_a->chunks[chunk] > 0)
 					pa(s_a, s_b);
+				rrb(s_b);
 				rotations--;
 			}
+			while (rotations < 0 && s_b->top > 0)
+			{
+				if (s_b->array[s_b->top] == s_b->max && s_a->chunks[chunk] > 0)
+					pa(s_a, s_b);
+				rb(s_b);
+				rotations++;
+			}
 		}
-		else if (rrotate(s_b, s_b->max) == 0)
+		else if (rrotate_to_max(s_b, s_b->max) == 1)
 		{
 			rrb(s_b);
 			rotations--;

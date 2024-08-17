@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:45:26 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/16 22:55:19 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 01:36:34 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,36 @@ static void	bubble_sort(int *arr, int n)
 	}
 }
 
-int find_mid(int *array, int begin, int end, int chunk)
+int find_mid(int *array, int begin, int end)
 {
-	int	*arr;
-	int	count;
-	int	i;
-	int	mid;
+    int *arr;
+    int count;
+    int i;
+    int mid;
 
-	count = end - begin;
-	i = 0;
-	arr = (int *)malloc(count * sizeof(int));
-	if (!arr)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-	while (begin < end)
-	{
-		arr[i] = array[begin];
-		i++;
-		begin++;
-	}
-	bubble_sort(arr, count);
-	if (chunk == 0)
-	{
-		mid = arr[count - 2];
-	}
-	else if (count % 2 == 0)
-		mid = arr[count / 2 - 1];
+    count = end - begin;
+    i = 0;
+    arr = (int *)malloc(count * sizeof(int));
+    if (!arr) {
+        write(2, "Error\n", 6);
+        exit(1);
+    }
+    while (begin < end) {
+        arr[i] = array[begin];
+        i++;
+        begin++;
+    }
+    bubble_sort(arr, count);
+	// 3 elemente!
+	// 3 elemente!
+	// 3 elemente!
+	// 3 elemente!
+	// 3 elemente!
+    if (count % 2 == 0)
+        mid = arr[(count / 2) - 1];
 	else
-		mid = arr[(count - 1) / 2];
-	free(arr);
-	return (mid);
+        mid = arr[count / 2];
+    free(arr);
+
+    return mid;
 }

@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/15 00:24:38 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 01:36:59 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,24 @@ static int	create_chunks(t_stack *s_a)
 
 static void	set_chunks(t_stack *s_a)
 {
-	int	chunk;
-	int	elements;
-	int	elements_count;
+	int chunk;
+	int elements;
+	int remainder;
 
-	elements_count = 0;
 	elements = s_a->len;
 	chunk = create_chunks(s_a);
-	while (chunk >= 0 && (elements / 2 != 0))
+	//chunk 0
+	while (chunk >= 0 && elements > 2)
 	{
+
+		remainder = elements % 2;
 		elements /= 2;
-		elements_count += elements;
-		s_a->chunks[chunk] = elements;
+		s_a->chunks[chunk] = elements + remainder;
+		remainder = 0;
 		chunk--;
 	}
-	if ((s_a->len - 2) > elements_count)
-		s_a->chunk_remainer += s_a->len - elements_count - 2;
+	if (chunk >= 0 && elements > 0)
+		s_a->chunks[chunk] = elements;
 }
 
 int	main(int argc, char **argv)
