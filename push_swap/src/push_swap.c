@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/18 01:36:59 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 18:59:09 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	set_chunks(t_stack *s_a)
 	//chunk 0
 	while (chunk >= 0 && elements > 2)
 	{
-
-		remainder = elements % 2;
+		if (elements > 3)
+			remainder = elements % 2;
 		elements /= 2;
 		s_a->chunks[chunk] = elements + remainder;
 		remainder = 0;
