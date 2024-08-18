@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:45:26 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/18 19:46:53 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 23:16:32 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,26 @@ static void	bubble_sort(int *arr, int n)
 	}
 }
 
-int find_mid(int *array, int begin, int end)
+int find_mid(t_stack *s_a, int chunk)
 {
 	int *arr;
-	int count;
 	int mid;
+	int	i;
 
-	count = end - begin;
-	arr = (int *)malloc(count * sizeof(int));
-	if (!arr) {
+	i = 0;
+	arr = (int *)malloc((s_a->top + 1) * sizeof(int));
+	if (!arr)
+	{
 		write(2, "Error\n", 6);
 		exit(1);
 	}
-	while (begin < end) {
-		arr[begin] = array[begin];
-		begin++;
+	while (i < s_a->top + 1)
+	{
+		arr[i] = s_a->array[i];
+		i++;
 	}
-	bubble_sort(arr, count);
-	if (count % 2 == 0)
-		mid = arr[(count / 2) - 1];
-	else
-		if (count == 3)
-			return(arr[count / 2 - 1]);
-		else
-			return(arr[count / 2]);
+	bubble_sort(arr, s_a->top + 1);
+	mid = arr[s_a->chunks[chunk] - 1];
 	free(arr);
 	return (mid);
 }

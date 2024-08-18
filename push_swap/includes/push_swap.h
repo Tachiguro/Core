@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/17 00:57:47 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 21:29:08 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_stack
 char	*join_args(char **argv);
 void	init_stacks(t_stack *s_a, t_stack *s_b);
 void	create_s_a(char *param, t_stack *s_a);
-int		find_mid(int *array, int begin, int end);
+int		find_mid(t_stack *s_a, int chunk);
 void	print_stacks(t_stack *s_a, t_stack *s_b);
 
 void	error_handling(t_stack *s_a);

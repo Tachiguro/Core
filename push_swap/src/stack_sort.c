@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/18 20:52:23 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 21:47:58 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 	int	i;
 
 	i = 0;
-	s_a->mid = find_mid(s_a->array, 0, s_a->top + 1);
+	s_a->mid = find_mid(s_a, chunk);
 	while (chunk >= 0)
 	{
 		// if (s_a->array[s_a->top] > s_a->array[s_a->top - 1]
@@ -89,10 +89,8 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 		if (s_a->chunks[chunk] <= i)
 		{
 			chunk--;
-			if (chunk < 0 || (s_a->chunks[chunk] == 0))
-				break ;
+			s_a->mid = find_mid(s_a, chunk);
 			i = 0;
-			s_a->mid = find_mid(s_a->array, 0, s_a->top + 1);
 		}
 	}
 }
