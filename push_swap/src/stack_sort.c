@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/18 20:19:49 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/18 20:52:23 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	sort(t_stack *s_a, t_stack *s_b)
 		{
 			pa(s_a, s_b);
 			s_a->chunks[chunk]--;
-			while (rotations > 0 && s_b->top > 0 && rrotate_to_max(s_b, s_b->max) == 1)
+			while (rotations > 0 && s_b->top > 0 && rrotate_to_max(s_b, s_b->max) == 1 && s_a->chunks_len -1 != chunk)
 			{
 				if (s_b->array[s_b->top] == s_b->max)// && s_a->chunks[chunk] > 0)
 				{
@@ -137,7 +137,7 @@ void	sort(t_stack *s_a, t_stack *s_b)
 				rrb(s_b);
 				rotations--;
 			}
-			while (rotations < 0 && s_b->top > 0)
+			while (rotations < 0 && s_b->top > 0 && s_a->chunks_len -1 != chunk)
 			{
 				if (s_b->array[s_b->top] == s_b->max)// && s_a->chunks[chunk] > 0)
 				{
