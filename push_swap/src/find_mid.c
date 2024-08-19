@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_mid.c                                         :+:      :+:    :+:   */
+/*   find_max_chunk.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -47,7 +47,7 @@ static void	bubble_sort(int *arr, int n)
 	}
 }
 
-int find_mid(t_stack *s_a, int chunk)
+int find_max_chunk(t_stack *s_a, int chunk)
 {
 	int *arr;
 	int mid;
