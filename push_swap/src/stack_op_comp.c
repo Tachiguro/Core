@@ -6,13 +6,12 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 23:10:09 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/26 21:09:19 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/22 00:01:29 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// ss : sa and sb at the same time.
 void	ss(t_stack *s_a, t_stack *s_b)
 {
 	int	temp;
@@ -27,7 +26,6 @@ void	ss(t_stack *s_a, t_stack *s_b)
 	printf("ss\n");
 }
 
-// rr : ra and rb at the same time.
 void	rr(t_stack *s_a, t_stack *s_b)
 {
 	int	temp;
@@ -56,8 +54,6 @@ void	rr(t_stack *s_a, t_stack *s_b)
 	printf("rr\n");
 }
 
-// rrr : rra and rrb at the same time.
-// to check
 void	rrr(t_stack *s_a, t_stack *s_b)
 {
 	int	temp;
