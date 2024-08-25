@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:18:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/22 00:09:32 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/25 19:52:18 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,26 @@ void	pa(t_stack *s_a, t_stack *s_b)
 
 void	pb(t_stack *s_a, t_stack *s_b)
 {
+	int	i;
+
+	i = 0;
 	if (s_a->top < 0)
 		return ;
 	s_b->array[++(s_b->top)] = s_a->array[(s_a->top)--];
-	if (s_a->min > s_a->array[s_a->top])
-		s_a->min = s_a->array[s_a->top];
-	if (s_a->max < s_a->array[s_a->top])
-		s_a->max = s_a->array[s_a->top];
 	if (s_b->min > s_b->array[s_b->top])
 		s_b->min = s_b->array[s_b->top];
 	if (s_b->max < s_b->array[s_b->top])
 		s_b->max = s_b->array[s_b->top];
+	s_a->min = INT_MAX;
+	s_a->max = INT_MIN;
+	while (i <= s_a->top)
+	{
+		if (s_a->min > s_a->array[i])
+			s_a->min = s_a->array[i];
+		if (s_a->max < s_a->array[i])
+			s_a->max = s_a->array[i];
+		i++;
+	}
+
 	write(1, "pb\n", 3);
 }
