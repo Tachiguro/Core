@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/19 00:25:57 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/29 00:05:54 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ static int	create_chunks(t_stack *s_a)
 	int	chunk;
 	int	elements;
 
-	elements = s_a->len;
+	elements = s_a->len - 3;
 	chunk = -1;
-	if (elements > MAX_CHUNK_SIZE && elements != MAX_CHUNK_SIZE)
-		while (elements > MAX_CHUNK_SIZE)
-		{
-			elements -= MAX_CHUNK_SIZE;
-			chunk++;
-		}
-	while (elements > 2)
+	while (elements > MAX_CHUNK_SIZE)
+	{
+		elements -= MAX_CHUNK_SIZE;
+		chunk++;
+	}
+	while (elements > 3)
 	{
 		elements /= 2;
 		chunk++;
@@ -46,28 +45,26 @@ static void	set_chunks(t_stack *s_a)
 {
 	int chunk;
 	int elements;
-	int remainder;
+	int	remainer;
 
-	elements = s_a->len;
+	elements = s_a->len - 3;
 	chunk = create_chunks(s_a);
-	if (elements > MAX_CHUNK_SIZE)
-		while (elements > MAX_CHUNK_SIZE)
-		{
-			elements -= MAX_CHUNK_SIZE;
-			s_a->chunks[chunk] = MAX_CHUNK_SIZE;
-			chunk--;
-		}
-	while (chunk >= 0 && elements > 2)
+	while (elements > MAX_CHUNK_SIZE)
 	{
-		if (elements > 3)
-			remainder = elements % 2;
-		elements /= 2;
-		s_a->chunks[chunk] = elements + remainder;
-		remainder = 0;
+		elements -= MAX_CHUNK_SIZE;
+		s_a->chunks[chunk] = MAX_CHUNK_SIZE;
 		chunk--;
 	}
-	// if (chunk >= 0 && elements > 0)
-	// 	s_a->chunks[chunk] = elements;
+	while (elements > 3)
+	{
+		remainer = 0;
+		remainer = elements % 2;
+		elements /= 2;
+		s_a->chunks[chunk] = elements + remainer;
+		chunk--;
+	}
+	if (elements > 0)
+		s_a->chunks[chunk + 1] += elements;
 }
 
 int	main(int argc, char **argv)
@@ -99,12 +96,6 @@ int	main(int argc, char **argv)
 	if(s_a_sorted(&s_a))
 		write(1,"OK!\n", 4);
 	else
-	{
 		write(1, "KO!\n", 4);
-	for (int i = s_a.top; i >= 0; i--)  // Starte bei s_a.top und zähle bis 0 herunter
-	{
-		printf("%d\n", s_a.array[i]);  // Gebe jedes Element auf der Konsole aus
-	}
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/19 00:30:12 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/29 00:39:19 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_stack
 	int	top;
 	int	len;
 	int	max;
-	int	mid;
+	int	max_chunk;
 }	t_stack;
 
 char	*join_args(char **argv);
@@ -60,5 +60,8 @@ void	rrb(t_stack *s_b);
 void	rrr(t_stack *s_a, t_stack *s_b);
 
 void	sort(t_stack *s_a, t_stack *s_b);
+void	sort_three(t_stack *s_a);
+int		rrotate_to_max(t_stack *s_a, int target);
+int		rrotate_to_mid(t_stack *s_a, int target);
 
 #endif
