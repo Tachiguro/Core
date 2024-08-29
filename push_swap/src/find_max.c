@@ -47,7 +47,7 @@ static void	bubble_sort(int *arr, int n)
 	}
 }
 
-int find_max_chunk(t_stack *s_a, int chunk)
+int	find_max_chunk(t_stack *s_a, int chunk)
 {
 	int *arr;
 	int mid;

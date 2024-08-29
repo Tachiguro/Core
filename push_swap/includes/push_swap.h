@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/29 00:39:19 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/30 00:45:35 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ typedef struct s_stack
 	int	*array;
 	int	*chunks;
 	int	chunks_len;
-	int	chunk_mid;
-	int	chunk_remainer;
 	int	top;
 	int	len;
 	int	max;
@@ -44,17 +42,15 @@ bool	error_rep(t_stack *stack, int nbr);
 
 bool	s_a_sorted(t_stack *s_a);
 bool	s_b_sorted(t_stack *s_b);
+
 void	sa(t_stack *stack);
 void	sb(t_stack *stack);
 void	ss(t_stack *s_a, t_stack *s_b);
-
 void	pa(t_stack *s_a, t_stack *s_b);
 void	pb(t_stack *s_a, t_stack *s_b);
-
 void	ra(t_stack *s_a);
 void	rb(t_stack *s_b);
 void	rr(t_stack *s_a, t_stack *s_b);
-
 void	rra(t_stack *s_a);
 void	rrb(t_stack *s_b);
 void	rrr(t_stack *s_a, t_stack *s_b);
@@ -62,6 +58,13 @@ void	rrr(t_stack *s_a, t_stack *s_b);
 void	sort(t_stack *s_a, t_stack *s_b);
 void	sort_three(t_stack *s_a);
 int		rrotate_to_max(t_stack *s_a, int target);
-int		rrotate_to_mid(t_stack *s_a, int target);
+int		rrotate_to_target(t_stack *s_a, int target);
+
+int		find_max_chunk(t_stack *s_a, int chunk);
+void	fake_ss(t_stack *s_a, t_stack *s_b);
+void	fake_ra(t_stack *s_a);
+void	fake_rr(t_stack *s_a, t_stack *s_b);
+void	fake_rra(t_stack *s_a);
+void	fake_rrr(t_stack *s_a, t_stack *s_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/18 00:28:33 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/29 21:30:16 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,17 @@ void	init_stacks(t_stack *s_a, t_stack *s_b)
 	s_a->array = NULL;
 	s_a->chunks = NULL;
 	s_a->chunks_len = 0;
-	s_a->chunk_mid = 0;
-	s_a->chunk_remainer = 0;
 	s_a->top = -1;
 	s_a->len = 0;
-	s_a->mid = 0;
+	s_a->max_chunk = 0;
 	s_a->max = INT_MIN;
 
 	s_b->array = NULL;
 	s_b->chunks = NULL;
 	s_b->chunks_len = 0;
-	s_b->chunk_mid = 0;
-	s_b->chunk_remainer = 0;
 	s_b->top = -1;
 	s_b->len = 0;
-	s_b->mid = 0;
+	s_b->max_chunk = 0;
 	s_b->max = INT_MIN;
 }
 
