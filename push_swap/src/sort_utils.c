@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 00:30:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/30 00:45:55 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:19:25 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,29 @@ int	rrotate_to_target(t_stack *s_a, int target)
 		top--;
 	}
 	while (s_a->array[rr] > target)
+		rr++;
+	if (rr < r )
+		return (1);
+	else if (rr == r && s_a->array[rr] < s_a->array[top])
+			return (1);
+	else
+		return (0);
+}
+int	rrotate_to_temp(t_stack *s_a, int target)
+{
+	int	r;
+	int	rr;
+	int	top;
+
+	top = s_a->top;
+	rr = 0;
+	r = 0;
+	while (s_a->array[top] != target)
+	{
+		r++;
+		top--;
+	}
+	while (s_a->array[rr] != target)
 		rr++;
 	if (rr < r )
 		return (1);

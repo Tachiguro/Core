@@ -6,50 +6,54 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/30 00:49:02 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/06 00:23:18 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack *create_fake_stack(t_stack *original)
+t_stack *create_fake_stack(t_stack *s)
 {
 	t_stack	*fake;
-	int		i;
 
-	i = -1;
 	fake = (t_stack *)malloc(sizeof(t_stack));
 	if (!fake)
-		exit(1);
-	fake->len = original->len;
-	fake->top = original->top;
-	fake->chunks_len = original->chunks_len;
-	fake->max_chunk = original->max_chunk;
-	fake->max = original->max;
-	fake->array = (int *)malloc(sizeof(int) * fake->len);
-	if (!fake->array)
-		exit(1);
-	while (++i <= fake->top)
-		fake->array[i] = original->array[i];
-	fake->chunks = (int *)malloc(sizeof(int) * fake->chunks_len);
-	if (!fake->chunks)
-		exit(1);
-	i = -1;
-	while (++i < fake->chunks_len)
-		fake->chunks[i] = original->chunks[i];
+		exit(-1);
+	fake->array = (int *)malloc(sizeof(int) * s->len);
+	fake->chunks = (int *)malloc(sizeof(int) * s->chunks_len);
+	fake->chunks_len = 0;
+	fake->top = -1;
+	fake->len = 0;
+	fake->max_chunk = 0;
+	fake->max = INT_MIN;
 	return (fake);
 }
 
-void free_fake_stack(t_stack *fake)
+void	fill_stacks(t_stack *s, t_stack *fake_s)
 {
-	if (fake)
-	{
-		if (fake->array)
-			free(fake->array);
-		if (fake->chunks)
-			free(fake->chunks);
-		free(fake);
-	}
+	int	i;
+
+	i = 0;
+	if (s->top > 0)
+		while (i <= s->top)
+		{
+			fake_s->array[i] = s->array[i];
+			i++;
+		}
+	i = 0;
+	if (s->chunks_len > 0)
+		while (i < s->chunks_len)
+		{
+			fake_s->chunks[i] = s->chunks[i];
+			i++;
+		}
+
+
+	fake_s->chunks_len = s->chunks_len;
+	fake_s->top = s->top;
+	fake_s->len = s->len;
+	fake_s->max_chunk = s->max_chunk;
+	fake_s->max = s->max;
 }
 
 int find_cheapest_index(t_stack *s_a, t_stack *s_b)
@@ -58,26 +62,26 @@ int find_cheapest_index(t_stack *s_a, t_stack *s_b)
 	int	index;
 	int best_index;
 	int op;
+	int temp;
 	t_stack *fake_s_a;
 	t_stack *fake_s_b;
 
-	fake_s_a = NULL;
-	fake_s_b = NULL;
+	fake_s_a = create_fake_stack(s_a);
+	fake_s_b = create_fake_stack(s_a);
 	min_op = INT_MAX;
 	op = INT_MAX;
 	best_index = -1;
 	index = s_a->top;
+	temp = 0;
 	while (index >= 0)
 	{
-
-		fake_s_a = create_fake_stack(s_a);
-		if (s_b->len > 0)
-			fake_s_b = create_fake_stack(s_b);
+		fill_stacks(s_a, fake_s_a);
+		fill_stacks(s_b, fake_s_b);
+		temp = fake_s_a->array[index];
 		op = 0;
-		if (rrotate_to_target(fake_s_a, fake_s_a->array[index]) == 1)
+		if (rrotate_to_temp(fake_s_a, temp) == 1)
 		{
-			TODO:FUUUUCK!!!
-			while (fake_s_a->array[fake_s_a->top] != fake_s_a->array[index])
+			while (fake_s_a->array[fake_s_a->top] != temp)
 			{
 				fake_rra(fake_s_a);
 				op++;
@@ -85,7 +89,7 @@ int find_cheapest_index(t_stack *s_a, t_stack *s_b)
 		}
 		else
 		{
-			while (fake_s_a->array[fake_s_a->top] != fake_s_a->array[index])
+			while (fake_s_a->array[fake_s_a->top] != temp)
 			{
 				fake_ra(fake_s_a);
 				op++;
@@ -95,24 +99,24 @@ int find_cheapest_index(t_stack *s_a, t_stack *s_b)
 		{
 			if (fake_s_a->array[fake_s_a->top] <= fake_s_a->max_chunk)
 				break;
-			// else if ((fake_s_b->array[fake_s_b->top] < fake_s_b->array[0]
-			// 		&& fake_s_b->top > 0) && rrotate_to_target(s_a, s_a->max_chunk) == 1 && fake_s_b)
-			// {
-			// 	fake_rrr(fake_s_a, s_b);
-			// 	op++;
-			// }
+			else if (fake_s_b->top > 0 && fake_s_b->array[fake_s_b->top] < fake_s_b->array[0]
+					 && rrotate_to_target(s_a, s_a->max_chunk) == 1 && fake_s_b)
+			{
+				fake_rrr(fake_s_a, fake_s_b);
+				op++;
+			}
 			else if (rrotate_to_target(fake_s_a, s_a->max_chunk) == 1)
 			{
 				fake_rra(fake_s_a);
 				op++;
 			}
-			// else if (fake_s_b->array[fake_s_b->top] < fake_s_b->array[0] && fake_s_b->top > 0)
-			// {
-			// 	fake_rr(fake_s_a, fake_s_b);
-			// 	op++;
-			// }
-			else if (fake_s_a->array[s_a->top - 1] <= fake_s_a->max_chunk
-					&& fake_s_b->array[fake_s_b->top] < fake_s_b->array[fake_s_b->top - 1]  && fake_s_b->top > 0)
+			else if (fake_s_b->top > 0 && fake_s_b->array[fake_s_b->top] < fake_s_b->array[0])
+			{
+				fake_rr(fake_s_a, fake_s_b);
+				op++;
+			}
+			else if (fake_s_b->top > 0 && fake_s_a->array[s_a->top - 1] <= fake_s_a->max_chunk
+					&& fake_s_b->array[fake_s_b->top] < fake_s_b->array[fake_s_b->top - 1])
 			{
 				fake_ss(fake_s_a, fake_s_b);
 				op++;
@@ -123,9 +127,6 @@ int find_cheapest_index(t_stack *s_a, t_stack *s_b)
 				op++;
 			}
 		}
-		free_fake_stack(fake_s_a);
-		if (fake_s_b)
-			free_fake_stack(fake_s_b);
 		if (op < min_op)
 		{
 			min_op = op;
@@ -133,16 +134,34 @@ int find_cheapest_index(t_stack *s_a, t_stack *s_b)
 		}
 		index--;
 	}
+	if (fake_s_a)
+	{
+		if (fake_s_a->array)
+			free(fake_s_a->array);
+		if (fake_s_a->chunks)
+			free (fake_s_a->chunks);
+		free(fake_s_a);
+		fake_s_a = NULL;
+	}
+	if (fake_s_b)
+	{
+		if (fake_s_b->array)
+			free(fake_s_b->array);
+		if (fake_s_b->chunks)
+			free (fake_s_b->chunks);
+		free(fake_s_b);
+		fake_s_b = NULL;
+	}
 	return (best_index);
 }
 
 int	push_index_to_b(int index, t_stack *s_a, t_stack *s_b)
 {
-	if (rrotate_to_target(s_a, s_a->array[index]) == 1)
-		while (s_a->array[s_a->top] == s_a->array[index])
+	if (rrotate_to_target(s_a, index) == 1)
+		while (s_a->array[s_a->top] != index)
 			rra(s_a);
-	else if (s_a->array[s_a->top] != s_a->array[index])
-		while (s_a->array[s_a->top] == s_a->array[index])
+	else if (s_a->array[s_a->top] != index)
+		while (s_a->array[s_a->top] != index)
 			ra(s_a);
 	if (s_a->array[s_a->top] <= s_a->max_chunk)
 	{
@@ -172,7 +191,7 @@ void	push_to_b(int chunk, t_stack *s_a, t_stack *s_b)
 	s_a->max_chunk = find_max_chunk(s_a, chunk);
 	while (chunk >= 0)
 	{
-		i += push_index_to_b(find_cheapest_index(s_a, s_b), s_a, s_b);
+		i += push_index_to_b(s_a->array[find_cheapest_index(s_a, s_b)], s_a, s_b);
 		if (s_a->chunks[chunk] <= i)
 		{
 			i = 0;

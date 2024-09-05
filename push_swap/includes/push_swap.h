@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/30 00:45:35 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:19:39 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	sort(t_stack *s_a, t_stack *s_b);
 void	sort_three(t_stack *s_a);
 int		rrotate_to_max(t_stack *s_a, int target);
 int		rrotate_to_target(t_stack *s_a, int target);
+int		rrotate_to_temp(t_stack *s_a, int target);
 
 int		find_max_chunk(t_stack *s_a, int chunk);
 void	fake_ss(t_stack *s_a, t_stack *s_b);
