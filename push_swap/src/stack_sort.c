@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/06 00:23:18 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/06 00:29:30 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ int find_cheapest_index(t_stack *s_a, t_stack *s_b)
 			free (fake_s_b->chunks);
 		free(fake_s_b);
 		fake_s_b = NULL;
+		// test
 	}
 	return (best_index);
 }
