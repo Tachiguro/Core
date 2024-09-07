@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/06 23:24:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/05 23:05:58 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	main(int argc, char **argv)
 			s_b.array = (int *)malloc(sizeof(int) * s_a.top);
 			if (!s_b.array)
 				exit(1);
+			set_chunks(&s_a);
 			sort(&s_a, &s_b);
 		}
 	}

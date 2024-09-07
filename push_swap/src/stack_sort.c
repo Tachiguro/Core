@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:16:40 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/06 23:24:33 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/06 00:29:30 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,44 +216,42 @@ void	sort(t_stack *s_a, t_stack *s_b)
 	{
 		if (s_b->array[s_b->top] == s_b->max && s_a->chunks[chunk] > 0)
 		{
-			if (rotate_to_top(s_b, s_b->max) == 1)
+			pa(s_a, s_b);
+			s_a->chunks[chunk]--;
+			while (rotations > 0 && s_b->top > 0 && rrotate_to_max(s_b, s_b->max) == 1 && s_a->chunks_len -1 != chunk)
 			{
-				while (s_b->array[s_b->top] != s_b->max)
-					rb(s_b);
-				pb(s_a, s_b);
+				if (s_b->array[s_b->top] == s_b->max)
+				{
+					pa(s_a, s_b);
+					s_a->chunks[chunk]--;
+				}
+				rrb(s_b);
+				rotations--;
 			}
-			else
+			while (rotations < 0 && s_b->top > 0 && s_a->chunks_len -1 != chunk)
 			{
-				while (s_b->array[0] != s_b->min)
-					rrb(s_b);
-				pb(s_a, s_b);
+				if (s_b->array[s_b->top] == s_b->max)
+				{
+					pa(s_a, s_b);
+					s_a->chunks[chunk]--;
+				}
+				rb(s_b);
+				rotations++;
 			}
-
+		}
+		else if (rrotate_to_max(s_b, s_b->max) == 1)
+		{
+			rrb(s_b);
+			rotations--;
 		}
 		else
 		{
-			if (rotate_between(s_b, s_a->array[s_a->top]) == 1)
-			{
-				while (!(s_a->array[s_a->top] > s_b->array[s_b->top] &&
-						s_a->array[s_a->top] < s_b->array[0]))
-					rb(s_b);
-				pb(s_a, s_b);
-			}
-			else
-			{
-				while (!(s_a->array[s_a->top] > s_b->array[s_b->top] &&
-						s_a->array[s_a->top] < s_b->array[0]))
-					rrb(s_b);
-				pb(s_a, s_b);
-			}
-		}
-	}
-	if (rotate_to_top(s_b, s_b->max) == 1)
-		while (s_b->array[s_b->top] != s_b->max)
 			rb(s_b);
-	else
-		while (s_b->array[s_b->top] != s_b->max)
-			rrb(s_b);
-	while (s_b->top >= 0)
-		pa(s_a, s_b);
+			rotations++;
+		}
+		if (s_b->top == -1)
+			break ;
+		if (s_a->chunks[chunk] <=  0)
+			chunk++;
+	}
 }

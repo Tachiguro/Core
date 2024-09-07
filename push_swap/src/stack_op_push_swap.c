@@ -6,12 +6,14 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:18:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/25 19:52:18 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/15 00:48:33 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+// sa (swap a): Swap the first 2 elements at the top of stack a.
+// Do nothing if there is only one or no elements.
 void	sa(t_stack *s_a)
 {
 	int	temp;
@@ -24,6 +26,8 @@ void	sa(t_stack *s_a)
 	printf("sa\n");
 }
 
+// sb (swap b): Swap the first 2 elements at the top of stack b.
+// Do nothing if there is only one or no elements.
 void	sb(t_stack *s_b)
 {
 	int	temp;
@@ -36,6 +40,8 @@ void	sb(t_stack *s_b)
 	printf("sb\n");
 }
 
+// pa push a: Take the first element at the top of b and put it at the top of a.
+// Do nothing if b is empty.
 void	pa(t_stack *s_a, t_stack *s_b)
 {
 	int	i;
@@ -56,26 +62,10 @@ void	pa(t_stack *s_a, t_stack *s_b)
 
 void	pb(t_stack *s_a, t_stack *s_b)
 {
-	int	i;
-
-	i = 0;
 	if (s_a->top < 0)
 		return ;
 	s_b->array[++(s_b->top)] = s_a->array[(s_a->top)--];
-	if (s_b->min > s_b->array[s_b->top])
-		s_b->min = s_b->array[s_b->top];
 	if (s_b->max < s_b->array[s_b->top])
 		s_b->max = s_b->array[s_b->top];
-	s_a->min = INT_MAX;
-	s_a->max = INT_MIN;
-	while (i <= s_a->top)
-	{
-		if (s_a->min > s_a->array[i])
-			s_a->min = s_a->array[i];
-		if (s_a->max < s_a->array[i])
-			s_a->max = s_a->array[i];
-		i++;
-	}
-
 	write(1, "pb\n", 3);
 }

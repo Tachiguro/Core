@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/06 23:24:16 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/08/29 21:30:16 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ void	create_s_a(char *argv, t_stack *s_a)
 	{
 		s_a->top++;
 		s_a->array[s_a->top] = is_valid(s_a, strs, i);
-		if (s_a->array[s_a->top] > s_a->max)
-			s_a->max = s_a->array[s_a->top];
-		if (s_a->array[s_a->top] < s_a->min)
-			s_a->min = s_a->array[s_a->top];
 		i--;
 	}
 }

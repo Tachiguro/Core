@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:14:11 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/06 23:23:38 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:19:39 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_stack
 	int	chunks_len;
 	int	top;
 	int	len;
-	int	min;
 	int	max;
 	int	max_chunk;
 }	t_stack;
@@ -34,6 +33,8 @@ typedef struct s_stack
 char	*join_args(char **argv);
 void	init_stacks(t_stack *s_a, t_stack *s_b);
 void	create_s_a(char *param, t_stack *s_a);
+int		find_max_chunk(t_stack *s_a, int chunk);
+void	print_stacks(t_stack *s_a, t_stack *s_b);
 
 void	error_handling(t_stack *s_a);
 bool	error_syntax(char *num);
