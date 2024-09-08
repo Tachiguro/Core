@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:50:54 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/29 21:30:16 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/08 21:45:04 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,24 @@ void	init_stacks(t_stack *s_a, t_stack *s_b)
 	s_a->array = NULL;
 	s_a->chunks = NULL;
 	s_a->chunks_len = 0;
+	s_a->chunk_mid = 0;
 	s_a->top = -1;
 	s_a->len = 0;
-	s_a->max_chunk = 0;
+	s_a->chunk_max = INT_MIN;
 	s_a->max = INT_MIN;
-
 	s_b->array = NULL;
 	s_b->chunks = NULL;
 	s_b->chunks_len = 0;
+	s_b->chunk_mid = 0;
 	s_b->top = -1;
 	s_b->len = 0;
-	s_b->max_chunk = 0;
+	s_b->chunk_max = INT_MIN;
 	s_b->max = INT_MIN;
 }
 
 static int	is_valid(t_stack *s_a, char **strs, int i)
 {
-	int		nbr;
+	long	nbr;
 
 	nbr = 0;
 	if (error_syntax(strs[i]))
@@ -41,7 +42,17 @@ static int	is_valid(t_stack *s_a, char **strs, int i)
 	nbr = ft_atol(strs[i]);
 	if (nbr > INT_MAX || nbr < INT_MIN || error_rep(s_a, (int)nbr))
 		error_handling(s_a);
-	return (nbr);
+	return ((int)nbr);
+}
+
+static void	free_strs(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
 }
 
 void	create_s_a(char *argv, t_stack *s_a)
@@ -49,6 +60,11 @@ void	create_s_a(char *argv, t_stack *s_a)
 	int		i;
 	char	**strs;
 
+	if (!argv || !argv[0])
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	strs = ft_split(argv, ' ');
 	if (!strs)
 		exit(-1);
@@ -64,6 +80,7 @@ void	create_s_a(char *argv, t_stack *s_a)
 		s_a->array[s_a->top] = is_valid(s_a, strs, i);
 		i--;
 	}
+	free_strs(strs);
 }
 
 char	*join_args(char **argv)

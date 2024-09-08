@@ -6,40 +6,13 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:35:38 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/12 20:58:21 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/08 19:17:15 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	print_stacks(t_stack *s_a, t_stack *s_b)
-{
-	int	a;
-	int	b;
-	int	max;
-
-	a = s_a->top;
-	b = s_b->top;
-	if (a > b)
-		max = a;
-	else
-		max = b;
-	write(1, "---------\n", 10);
-	while (max >= 0)
-	{
-		if (a >= 0 && a == max)
-			ft_putnbr_fd(s_a->array[a--], 1);
-		write(1, "\t", 1);
-		if (b >= 0 && b == max)
-			ft_putnbr_fd(s_b->array[b--], 1);
-		max--;
-		write(1, "\n", 1);
-	}
-	write(1, "---------\n", 10);
-	write(1, "a\tb\n", 4);
-}
-
-bool	s_a_sorted(t_stack *s_a)
+int	s_a_sorted(t_stack *s_a)
 {
 	int	i;
 
@@ -47,13 +20,13 @@ bool	s_a_sorted(t_stack *s_a)
 	while (i > 0)
 	{
 		if (s_a->array[i] > s_a->array[i - 1])
-			return (false);
+			return (0);
 		i--;
 	}
-	return (true);
+	return (1);
 }
 
-bool	s_b_sorted(t_stack *s_b)
+int	s_b_sorted(t_stack *s_b)
 {
 	int	i;
 
@@ -63,8 +36,81 @@ bool	s_b_sorted(t_stack *s_b)
 	while (i < s_b->top)
 	{
 		if (s_b->array[i + 1] < s_b->array[i])
-			return (false);
+			return (0);
 		i++;
 	}
-	return (true);
+	return (1);
+}
+
+void	sort_three(t_stack *s_a)
+{
+	int	one;
+	int	two;
+	int	three;
+
+	one = s_a->array[s_a->top];
+	two = s_a->array[s_a->top - 1];
+	three = s_a->array[s_a->top - 2];
+	if (two < one && one < three)
+		sa(s_a);
+	else if (three < two && two < one)
+	{
+		sa(s_a);
+		rra(s_a);
+	}
+	else if (two < three && three < one)
+		ra(s_a);
+	else if (one < three && three < two)
+	{
+		sa(s_a);
+		ra(s_a);
+	}
+	else
+		rra(s_a);
+}
+
+int	rr_to_chunk_max(t_stack *s_a, int target)
+{
+	int	r;
+	int	rr;
+	int	top;
+
+	top = s_a->top;
+	rr = 0;
+	r = 0;
+	while (s_a->array[top] > target)
+	{
+		r++;
+		top--;
+	}
+	while (s_a->array[rr] > target)
+		rr++;
+	if (rr < r)
+		return (1);
+	else if (rr == r && s_a->array[rr] < s_a->array[top])
+		return (1);
+	else
+		return (0);
+}
+
+int	rr_to_max(t_stack *s_a, int target)
+{
+	int	r;
+	int	rr;
+	int	top;
+
+	top = s_a->top;
+	rr = 0;
+	r = 0;
+	while (s_a->array[top] < target)
+	{
+		r++;
+		top--;
+	}
+	while (s_a->array[rr] < target)
+		rr++;
+	if (rr < r)
+		return (1);
+	else
+		return (0);
 }

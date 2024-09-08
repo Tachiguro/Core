@@ -6,14 +6,12 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:15:16 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/23 21:15:05 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/07 23:57:49 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// ra (rotate a): Shift up all elements of stack a by 1.
-// The first element becomes the last one.
 void	ra(t_stack *s_a)
 {
 	int	temp;
@@ -32,8 +30,6 @@ void	ra(t_stack *s_a)
 	write(1, "ra\n", 3);
 }
 
-// rb (rotate b): Shift up all elements of stack b by 1.
-// The first element becomes the last one.
 void	rb(t_stack *s_b)
 {
 	int	temp;
@@ -52,8 +48,6 @@ void	rb(t_stack *s_b)
 	write(1, "rb\n", 3);
 }
 
-// rra (reverse rotate a): Shift down all elements of stack a by 1.
-// The last element becomes the first one.
 void	rra(t_stack *s_a)
 {
 	int	temp;
@@ -72,8 +66,6 @@ void	rra(t_stack *s_a)
 	write(1, "rra\n", 4);
 }
 
-// rrb (reverse rotate b): Shift down all elements of stack b by 1.
-// The last element becomes the first one.
 void	rrb(t_stack *s_b)
 {
 	int	temp;

@@ -6,13 +6,12 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 23:10:09 by jherzog           #+#    #+#             */
-/*   Updated: 2024/06/26 21:09:19 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/08 00:01:22 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// ss : sa and sb at the same time.
 void	ss(t_stack *s_a, t_stack *s_b)
 {
 	int	temp;
@@ -20,14 +19,12 @@ void	ss(t_stack *s_a, t_stack *s_b)
 	temp = s_a->array[s_a->top];
 	s_a->array[s_a->top] = s_a->array[s_a->top - 1];
 	s_a->array[s_a->top - 1] = temp;
-
 	temp = s_b->array[s_b->top];
 	s_b->array[s_b->top] = s_b->array[s_b->top - 1];
 	s_b->array[s_b->top - 1] = temp;
-	printf("ss\n");
+	write(1, "ss\n", 3);
 }
 
-// rr : ra and rb at the same time.
 void	rr(t_stack *s_a, t_stack *s_b)
 {
 	int	temp;
@@ -53,11 +50,9 @@ void	rr(t_stack *s_a, t_stack *s_b)
 		i--;
 	}
 	s_b->array[0] = temp;
-	printf("rr\n");
+	write(1, "rr\n", 3);
 }
 
-// rrr : rra and rrb at the same time.
-// to check
 void	rrr(t_stack *s_a, t_stack *s_b)
 {
 	int	temp;
@@ -83,5 +78,5 @@ void	rrr(t_stack *s_a, t_stack *s_b)
 		i++;
 	}
 	s_b->array[s_b->top] = temp;
-	printf("rrr\n");
+	write(1, "rrr\n", 4);
 }

@@ -1,22 +1,19 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -g #-Wall -Werror -Wextra
-DEBUGFLAG = -g
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = ./src
-SRCS = 	push_swap.c\
+SRCS =	push_swap.c\
 		create_stack.c\
-		find_max.c\
+		find_max_chunk.c\
 		push_swap_utils.c\
 		error_handling.c\
 		stack_op_push_swap.c\
 		stack_sort.c\
 		stack_op_rotate.c\
-		stack_op_comp.c\
-		sort_utils.c\
-		fake_op.c
+		stack_op_comp.c
 
 INClUDES = ./includes
 
@@ -47,8 +44,4 @@ fclean: clean
 
 re: fclean all
 
-debug: CFLAGS += $(DEBUGFLAG)
-debug: re
-
 .PHONY: all clean fclean re
-

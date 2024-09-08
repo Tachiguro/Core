@@ -6,24 +6,28 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/05 23:05:58 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/08 22:35:22 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-#define MAX_CHUNK_SIZE 20
-
-static int	create_chunks(t_stack *s_a)
+static int	calculate_chunk_size(int elements)
 {
-	int	chunk;
+	if (elements <= 100)
+		return (17);
+	else
+		return (50);
+}
+
+static int	create_chunks(t_stack *s_a, int chunk, int chnuk_size)
+{
 	int	elements;
 
 	elements = s_a->len - 3;
-	chunk = -1;
-	while (elements >= MAX_CHUNK_SIZE)
+	while (elements > chnuk_size)
 	{
-		elements -= MAX_CHUNK_SIZE;
+		elements -= chnuk_size;
 		chunk++;
 	}
 	while (elements > 3)
@@ -43,26 +47,27 @@ static int	create_chunks(t_stack *s_a)
 	return (chunk);
 }
 
-static void	set_chunks(t_stack *s_a)
+static void	set_chunks(t_stack *s_a, int chnuk_size)
 {
-	int chunk;
-	int elements;
-	int	remainer;
+	int	chunk;
+	int	elements;
+	int	remainder;
 
 	elements = s_a->len - 3;
-	chunk = create_chunks(s_a);
-	while (elements > MAX_CHUNK_SIZE)
+	chunk = -1;
+	chunk = create_chunks(s_a, chunk, chnuk_size);
+	while (elements > chnuk_size)
 	{
-		elements -= MAX_CHUNK_SIZE;
-		s_a->chunks[chunk] = MAX_CHUNK_SIZE;
+		elements -= chnuk_size;
+		s_a->chunks[chunk] = chnuk_size;
 		chunk--;
 	}
 	while (elements > 3)
 	{
-		remainer = 0;
-		remainer = elements % 2;
+		remainder = elements % 2;
 		elements /= 2;
-		s_a->chunks[chunk] = elements + remainer;
+		s_a->chunks[chunk] = elements + remainder;
+		remainder = 0;
 		chunk--;
 	}
 	if (elements > 0 && chunk != 0)
@@ -71,17 +76,19 @@ static void	set_chunks(t_stack *s_a)
 		s_a->chunks[chunk] = elements;
 }
 
-void free_stack(t_stack *stack)
+static	void	choose_sort(t_stack *s_a, t_stack *s_b)
 {
-	if (stack->array != NULL)
+	if (s_a->top == 1)
+		ra(s_a);
+	else if (s_a->top == 2)
+		sort_three(s_a);
+	else
 	{
-		free(stack->array);
-		stack->array = NULL;
-	}
-	if (stack->chunks != NULL)
-	{
-		free(stack->chunks);
-		stack->chunks = NULL;
+		s_b->array = (int *)malloc(sizeof(int) * s_a->len);
+		if (!s_b->array)
+			exit(1);
+		set_chunks(s_a, calculate_chunk_size(s_a->len));
+		sort(s_a, s_b);
 	}
 }
 
@@ -89,32 +96,25 @@ int	main(int argc, char **argv)
 {
 	t_stack	s_a;
 	t_stack	s_b;
+	char	*joined_argv;
 
+	joined_argv = NULL;
 	init_stacks(&s_a, &s_b);
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
+	{
+		write(2, "Error\n", 6);
+		exit(0);
+	}
 	else if (argc == 2)
 		create_s_a(argv[1], &s_a);
 	else
-		create_s_a(join_args(argv), &s_a);
-	if (!s_a_sorted(&s_a))
 	{
-		if (s_a.top == 1)
-			ra(&s_a);
-		else
-		{
-			s_b.len = s_b.top;
-			s_b.array = (int *)malloc(sizeof(int) * s_a.top);
-			if (!s_b.array)
-				exit(1);
-			set_chunks(&s_a);
-			sort(&s_a, &s_b);
-		}
+		joined_argv = join_args(argv);
+		create_s_a(joined_argv, &s_a);
+		free(joined_argv);
 	}
-	if(s_a_sorted(&s_a))
-		write(1,"OK!\n", 4);
-	else
-		write(1, "KO!\n", 4);
+	if (!s_a_sorted(&s_a))
+		choose_sort(&s_a, &s_b);
 	free_stack(&s_a);
 	free_stack(&s_b);
 	return (0);

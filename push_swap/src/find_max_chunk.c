@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_max_chunk.c                                         :+:      :+:    :+:   */
+/*   find_max_chunk.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:45:26 by jherzog           #+#    #+#             */
-/*   Updated: 2024/08/18 23:16:32 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/08 17:57:31 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	bubble_sort(int *arr, int n)
 
 int	find_max_chunk(t_stack *s_a, int chunk)
 {
-	int *arr;
-	int mid;
+	int	*arr;
+	int	mid;
 	int	i;
 
 	i = 0;
