@@ -29,9 +29,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c ft_printf.h | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $@
 
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-
 clean:
 	$(RM) $(OBJ_DIR)
 

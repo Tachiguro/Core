@@ -26,7 +26,7 @@ all: $(NAME_SERVER) $(NAME_CLIENT)
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-$(FT_PRINTF):
+$(FT_PRINTF): $(LIBFT)
 	make -C $(FT_PRINTF_DIR)
 
 
