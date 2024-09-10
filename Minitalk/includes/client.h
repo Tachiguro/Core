@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:50:03 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/09 20:40:30 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/10 18:08:48 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
-# include <unistd.h>
 # include <signal.h>
-# include <stdlib.h>
 
 #endif
