@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:47:53 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/10 18:31:18 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/10 23:21:31 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 static void	handle_signal(int signal)
 {
 	static int	bit;
-	static int	i;
+	static int	c;
 
 	if (signal == SIGUSR1)
-		i |= (0x01 << bit);
+		c |= (0b00000001 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		ft_printf("%c", i);
+		ft_printf("%c", c);
 		bit = 0;
-		i = 0;
+		c = 0;
 	}
 }
 

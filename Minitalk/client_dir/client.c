@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:47:19 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/10 18:28:34 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/10 23:26:11 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	handle_error(char *msg)
 	exit(1);
 }
 
-static void	send_char(pid_t server_pid, char i)
+static void	send_char(pid_t server_pid, char c)
 {
 	int	bit;
 
 	bit = 0;
 	while (bit < 8)
 	{
-		if ((i & (0x01 << bit)) != 0)
+		if ((c & (0b00000001 << bit)) != 0)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
