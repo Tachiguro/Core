@@ -20,8 +20,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
 	ar -rcs $@ $(OBJS)
-	cd $(LIBFT_DIR) && ar -x libft.a
-	ar -q $(NAME) $(LIBFT_DIR)/*.o
+	ar -s $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c ft_printf.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I $(LIBFT_DIR) -I ft_printf.h -c $< -o $@

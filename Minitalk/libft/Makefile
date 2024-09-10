@@ -2,6 +2,7 @@ NAME	=	libft.a
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror -g
 RM = rm -rf
+SRC_DIR = ./src
 SRCS	=		ft_atoi.c			\
 				ft_bzero.c			\
 				ft_calloc.c			\
@@ -52,15 +53,14 @@ OBJS =			$(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJS_BONUS)
-	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+$(NAME): $(OBJS)
+	ar -rcs $@ $(OBJS)
 
-$(OBJ_DIR)/%.o: %.c libft.h | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c libft.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@
-
 
 clean:
 	$(RM) $(OBJ_DIR)
