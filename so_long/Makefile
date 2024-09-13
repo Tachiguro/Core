@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g #remove -g for optimization!!!!!!!!!!!!!!!!!!!!!
 RM = rm -rf
 
 LIBFT_DIR = ./libft
@@ -8,7 +8,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 NAME = so_long
 SRC_DIR = ./src
 SRCS =	so_long.c		\
-		map.c
+		map_check.c		\
+		path_check.c
 
 OBJ_DIR = ./obj
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
