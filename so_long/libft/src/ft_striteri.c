@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:29:27 by jherzog           #+#    #+#             */
-/*   Updated: 2023/11/14 16:46:44 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/13 19:34:56 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {

@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:13:19 by jherzog           #+#    #+#             */
-/*   Updated: 2024/04/04 19:27:10 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/13 21:21:57 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/libft.h"
 
 static char	*extract_line(char *buff_start)
 {
@@ -76,6 +76,30 @@ static void	handle_read_error(char *temp_buff, char **buffer_start_ptr)
 	*buffer_start_ptr = NULL;
 }
 
+static char	*join_helper(char *start, char *buff)
+{
+	char	*ptr;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = -1;
+	if (!start)
+		start = (char *)malloc(1 * sizeof(char));
+	if (!start || !buff)
+		return (NULL);
+	ptr = (char *)malloc(1 + ft_strlen(start) + ft_strlen(buff) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	while (start[++i])
+		ptr[i] = start[i];
+	while (buff[++j])
+		ptr[i + j] = buff[j];
+	ptr[i + j] = '\0';
+	free(start);
+	return (ptr);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*temp_buff;
@@ -97,7 +121,7 @@ char	*get_next_line(int fd)
 			return (NULL);
 		}
 		temp_buff[bytes_read] = '\0';
-		buff_start = ft_strjoin(buff_start, temp_buff);
+		buff_start = join_helper(buff_start, temp_buff);
 	}
 	free(temp_buff);
 	temp_buff = extract_line(buff_start);

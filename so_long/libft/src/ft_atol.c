@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:20:43 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/08 22:19:21 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/13 19:33:07 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static long	parse_digits(const char *str, long sign)
 {

@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:37:08 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/09 19:59:22 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/13 19:34:18 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../includes/libft.h"
 
 int	ft_print_hex(unsigned int n, char begin)
 {

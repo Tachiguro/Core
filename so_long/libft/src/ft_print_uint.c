@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 23:48:52 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/09 19:59:39 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/13 19:34:31 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../includes/libft.h"
 
 int	ft_print_uint(unsigned int n)
 {

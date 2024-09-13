@@ -1,15 +1,16 @@
 CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 RM = rm -rf
-INClUDES = ./includes
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 NAME = so_long
-SRC = ./src
-SRCS =	so_long.c
-OBJ_DIR = $(SERVER_DIR)/obj
+SRC_DIR = ./src
+SRCS =	so_long.c		\
+		map.c
+
+OBJ_DIR = ./obj
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 all: $(NAME)
@@ -20,8 +21,8 @@ $(LIBFT):
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(OBJ_DIR)/*.o $(LIBFT) -o $@
 
-$(OBJ_DIR)/%.o: $(DIRSOURCE_DIR)/%.c $(LIBFT_DIR)/libft.h | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I $(LIBFT_DIR)/libft.h -I $(INClUDES) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIBFT_DIR)/includes/libft.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I $(LIBFT_DIR)/includes/libft.h -I ./includes -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@
