@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:44 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/13 23:42:51 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/15 00:36:52 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,22 @@ typedef struct s_game
 {
 	t_map	map;
 	t_pos	player_pos;
-	t_pos	*exit_pos;
+	t_pos	*exits_pos;
 	t_pos	*coins_pos;
 	int		moves;
 	int		num_exits;
 	int		num_coins;
 }	t_game;
 
+void	handle_error_exit(t_game *game, char *msg);
+void	free_game_resources(t_game *game);
 int		check_rectangular(char **map);
 int		check_valid_chars(char **map);
 int		check_walls(char **map);
 int		check_required_elements(char **map);
+
+int		check_player_count(char **map);
+int		check_valid_path(t_game *game);
+void	parse_map(t_game *game, char *map_path);
 
 #endif

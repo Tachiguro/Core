@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:02:35 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/13 23:19:50 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/14 23:41:37 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,20 @@ int	check_rectangular(char **map)
 
 int	check_valid_chars(char **map)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	while (map[i])
+	y = 0;
+	while (map[y])
 	{
-		j = 0;
-		while (map[i][j])
+		x = 0;
+		while (map[y][x])
 		{
-			if (!ft_strchr(VALID_CHARS, map[i][j]))
+			if (!ft_strchr(VALID_CHARS, map[y][x]))
 				return (1);
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 	return (0);
 }

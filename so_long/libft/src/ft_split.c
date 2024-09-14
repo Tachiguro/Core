@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:29:20 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/13 19:34:45 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/14 23:02:26 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,20 @@ char	**ft_split(char const *s, char c)
 	char	**strs_array;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	i = 0;
 	pos = 0;
 	cnt_substrs = count_substrs(s, c);
 	strs_array = malloc((cnt_substrs + 1) * sizeof(char *));
 	if (!strs_array)
-		return (0);
+		return (NULL);
 	while (i < cnt_substrs)
 	{
 		strs_array[i] = create_substr(s, c, &pos);
 		if (!strs_array[i])
 		{
 			free_arr(strs_array, i);
-			return (0);
+			return (NULL);
 		}
 		i++;
 	}

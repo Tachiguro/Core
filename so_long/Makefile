@@ -7,9 +7,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 NAME = so_long
 SRC_DIR = ./src
-SRCS =	so_long.c		\
-		map_check.c		\
-		path_check.c
+SRCS =	error_handling.c	\
+		map_check.c			\
+		map_creation.c		\
+		player.c			\
+		so_long.c			\
+		valid_path_in_map.c
+
 
 OBJ_DIR = ./obj
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))

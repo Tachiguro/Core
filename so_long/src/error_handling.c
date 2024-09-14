@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_path_in_map.c                                :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/14 20:33:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 00:36:32 by jherzog          ###   ########.fr       */
+/*   Created: 2024/09/14 22:33:56 by jherzog           #+#    #+#             */
+/*   Updated: 2024/09/15 00:32:34 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	check_valid_path(t_game *game)
+void	free_game_resources(t_game *game)
 {
-	if (!game)
-		handle_error_exit(game, "NOT IMPLEMENTED, YET!");
-	return (0);
+	int	i;
+
+	if (game->map.grid)
+	{
+		i = 0;
+		while (game->map.grid[i])
+			free(game->map.grid[i++]);
+		free(game->map.grid);
+	}
+	if (game->exits_pos)
+		free(game->exits_pos);
+	if (game->coins_pos)
+		free(game->coins_pos);
+}
+
+void	handle_error_exit(t_game *game, char *msg)
+{
+	ft_printf("ERROR: %s\n", msg);
+	free_game_resources(game);
+	exit(1);
 }
