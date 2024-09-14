@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/14 00:30:20 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/14 19:38:17 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h" //remove -g for optimization!!!!!!!!!!!!!!!!!!
+#include "../includes/so_long.h" //remove -g for optimization!!!!!!!!!!!!!!!!!!!!!!!
 
 static void	handle_error_exit(char *msg)
 {
@@ -49,10 +49,7 @@ static char	**parse_map(char *map_path)
 static int	check_map(char **map)
 {
 	if (check_rectangular(map) != 0)
-	{
-		ft_printf("ERROR: maps is not rectingular!\n");
-		return (1);
-	}
+		return (1, ft_printf("ERROR: maps is not rectingular!\n"));
 	if (check_valid_chars(map) != 0)
 	{
 		ft_printf("ERROR: wrong chars in map!\n");
@@ -68,7 +65,7 @@ static int	check_map(char **map)
 		ft_printf("ERROR: Not enough or too much objects on map!\n");
 		return (1);
 	}
-	if (check_valid_path(map) != 0)
+	if (check_valid_path(map) != 0)// TODO: to implement!!!!!!!!!!!!!!!!!!!!!!!!!!
 	{
 		ft_printf("ERROR: No path to C and/or E\n");
 		return (1);
@@ -78,7 +75,7 @@ static int	check_map(char **map)
 
 int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 	char	**map;
 	int		i;
 
