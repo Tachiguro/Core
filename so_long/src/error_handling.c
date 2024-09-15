@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 22:33:56 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 00:32:34 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/15 23:07:13 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,10 @@ void	handle_error_exit(t_game *game, char *msg)
 	ft_printf("ERROR: %s\n", msg);
 	free_game_resources(game);
 	exit(1);
+}
+
+void	exit_game(t_game *game)
+{
+	free_game_resources(game);
+	exit(0);
 }

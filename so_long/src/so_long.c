@@ -6,11 +6,11 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 19:54:46 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/15 23:55:59 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h" //remove -g for optimization!!!!!!!!!!!!!!!!!!!!!!!
+#include "../includes/so_long.h"
 
 static void	check_map(t_game *game)
 {
@@ -48,6 +48,12 @@ static void	check_args(t_game *game, int argc, char *argv)
 		handle_error_exit(game, "Map doesn't end with \".ber\"");
 }
 
+int	handle_window_close(t_game *game)
+{
+	exit_game(game);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -56,11 +62,22 @@ int	main(int argc, char **argv)
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		handle_error_exit(game, "Memory allocation failed for game structure!");
+	game->mlx_ptr = mlx_init();
+	if (!game->mlx_ptr)
+		handle_error_exit(game, "Failed to initialize MLX!");
 	check_args(game, argc, argv[1]);
 	parse_map(game, argv[1]);
 	if (game->map.grid == NULL)
 		handle_error_exit(game, "Can't open map file.");
 	check_map(game);
-	free_game_resources(game);
+	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns * 32,
+			game->map.rows * 32, "so_long");
+	if (!game->win_ptr)
+		handle_error_exit(game, "Failed to create window!");
+	load_assets(game);
+	draw_map(game);
+	mlx_key_hook(game->win_ptr, handle_key_press, game);
+	mlx_hook(game->win_ptr, 17, 0, handle_window_close, game);
+	mlx_loop(game->mlx_ptr);
 	return (0);
 }
