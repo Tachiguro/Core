@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:44 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 00:36:52 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/15 19:57:35 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
+
+# define ERROR_EXIT_COUNT 1
+# define ERROR_PLAYER_COUNT 2
+# define ERROR_COIN_COUNT 3
 
 typedef struct s_pos
 {
@@ -40,15 +44,27 @@ typedef struct s_game
 	int		num_coins;
 }	t_game;
 
+typedef struct	s_dfs_data
+{
+	char	**map;
+	int		rows;
+	int		cols;
+	int		coins_found;
+	int		exit_found;
+}	t_dfs_data;
+
 void	handle_error_exit(t_game *game, char *msg);
 void	free_game_resources(t_game *game);
+
+void	parse_map(t_game *game, char *map_path);
+
 int		check_rectangular(char **map);
 int		check_valid_chars(char **map);
 int		check_walls(char **map);
 int		check_required_elements(char **map);
-
-int		check_player_count(char **map);
+int		check_empty_lines(char **map);
 int		check_valid_path(t_game *game);
-void	parse_map(t_game *game, char *map_path);
+
+void	ft_print_map(char **map, int rows, int columns);
 
 #endif

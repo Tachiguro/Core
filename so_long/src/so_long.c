@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 00:35:32 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/15 19:54:46 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,27 @@
 
 static void	check_map(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	if (game->map.grid == NULL || game->map.grid[0] == NULL)
 		handle_error_exit(game, "Map is empty!");
 	if (game->map.rows < 3 || game->map.columns < 3)
 		handle_error_exit(game, "Map is too small to be valid!");
 	if (check_rectangular(game->map.grid) != 0)
-		handle_error_exit(game, "Maps is not rectingular!");
+		handle_error_exit(game, "Map is not rectingular!");
 	if (check_valid_chars(game->map.grid) != 0)
 		handle_error_exit(game, "Wrong chars in map!");
-	if (check_player_count(game->map.grid) != 0)
-		handle_error_exit(game, "There can be only one player on the map!");
 	if (check_walls(game->map.grid) != 0)
 		handle_error_exit(game, "Map is not enclosed with walls!");
-	if (check_required_elements(game->map.grid) != 0)
-		handle_error_exit(game, "Not enough or too much objects on map!");
-	if (check_valid_path(game->map.grid) != 0) // TODO: to implement!!!!!!!!!!!!!!!!!!!!!!!!!!
+	i = check_required_elements(game->map.grid);
+	if (i == ERROR_EXIT_COUNT)
+		handle_error_exit(game, "Map need one exit!");
+	if (i == ERROR_PLAYER_COUNT)
+		handle_error_exit(game, "Map need one player!");
+	if (i == ERROR_COIN_COUNT)
+		handle_error_exit(game, "Map need at least one coin!");
+	if (check_valid_path(game) != 0)
 		handle_error_exit(game, "No path to C and/or E");
 }
 

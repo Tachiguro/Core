@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:02:35 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/14 23:41:37 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/15 17:37:51 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,21 +96,25 @@ int	check_required_elements(char **map)
 {
 	int	exit_count;
 	int	player_count;
-	int	collectible_count;
+	int	coin_count;
 	int	i;
 
 	exit_count = 0;
 	player_count = 0;
-	collectible_count = 0;
+	coin_count = 0;
 	i = 0;
 	while (map[i])
 	{
 		exit_count += count_char(map[i], 'E');
 		player_count += count_char(map[i], 'P');
-		collectible_count += count_char(map[i], 'C');
+		coin_count += count_char(map[i], 'C');
 		i++;
 	}
-	if (exit_count != 1 || player_count != 1 || collectible_count < 1)
-		return (1);
+	if (exit_count != 1)
+		return (ERROR_EXIT_COUNT);
+	if (player_count != 1)
+		return (ERROR_PLAYER_COUNT);
+	if (coin_count < 1)
+		return (ERROR_COIN_COUNT);
 	return (0);
 }

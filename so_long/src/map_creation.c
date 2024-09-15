@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 22:36:37 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 00:34:34 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/15 18:26:01 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static char	*read_map_file(t_game *game, int fd)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		if (ft_strlen(ft_strtrim(line, " \n\t")) == 0)
+		{
+			free(line);
+			handle_error_exit(game, "Map can't have empty lines!");
+		}
 		temp = ft_strjoin(map_str, line);
 		free(map_str);
 		free(line);
@@ -43,7 +48,11 @@ static void	split_map_into_grid(t_game *game, char *map_str)
 		handle_error_exit(game, "Malloc failed during map split!");
 	game->map.rows = 0;
 	while (game->map.grid[game->map.rows])
+	{
+		if (ft_strlen(ft_strtrim(game->map.grid[game->map.rows], " \n\t")) == 0)
+			handle_error_exit(game, "Map contains empty lines!");
 		game->map.rows++;
+	}
 	game->map.columns = ft_strlen(game->map.grid[0]);
 	if (game->map.columns == 0)
 		handle_error_exit(game, "Map has no columns!");
