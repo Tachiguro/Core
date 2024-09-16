@@ -39,16 +39,16 @@ void	load_assets(t_game *game)
 static void	draw_helper(t_game *game, int y, int x)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-		game->floor.xpm_ptr, x * 32, y * 32);
+		game->floor.xpm_ptr, x * PIXEL, y * PIXEL);
 	if (game->map.grid[y][x] == '1')
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-			game->wall.xpm_ptr, x * 32, y * 32);
+			game->wall.xpm_ptr, x * PIXEL, y * PIXEL);
 	else if (game->map.grid[y][x] == 'C')
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-			game->coin.xpm_ptr, x * 32, y * 32);
+			game->coin.xpm_ptr, x * PIXEL, y * PIXEL);
 	else if (game->map.grid[y][x] == 'E')
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-			game->exit.xpm_ptr, x * 32, y * 32);
+			game->exit.xpm_ptr, x * PIXEL, y * PIXEL);
 }
 
 void	draw_map(t_game *game)
@@ -69,5 +69,5 @@ void	draw_map(t_game *game)
 		y++;
 	}
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->player.xpm_ptr,
-		game->player_pos.x * 32, game->player_pos.y * 32);
+		game->player_pos.x * PIXEL, game->player_pos.y * PIXEL);
 }

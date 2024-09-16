@@ -51,8 +51,9 @@ int	handle_key_press(int keycode, t_game *game)
 		new_pos.x += 1;
 	else if (keycode == KEY_ESC)
 		exit_game(game);
-	if (new_pos.y >= 0 && new_pos.y < game->map.rows
-		&& new_pos.x >= 0 && new_pos.x < game->map.columns)
+	if ((new_pos.y >= 0 && new_pos.y < game->map.rows)
+		&& (new_pos.x >= 0 && new_pos.x < game->map.columns)
+		&& (new_pos.y != game->player_pos.y || new_pos.x != game->player_pos.x))
 	{
 		if (game->map.grid[new_pos.y][new_pos.x] != '1')
 		{

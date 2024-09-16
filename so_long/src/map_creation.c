@@ -12,27 +12,32 @@
 
 #include "../includes/so_long.h"
 
-static char	*read_map_file(t_game *game, int fd)
+static void	free_resources(char *line, char *trimmed_line, char *map_str)
+{
+	free(line);
+	free(trimmed_line);
+	free(map_str);
+}
+
+char	*read_map_file(t_game *game, int fd)
 {
 	char	*line;
 	char	*map_str;
 	char	*temp;
+	char	*trimmed_line;
 
 	map_str = ft_strdup("");
-	if (map_str == NULL)
-		handle_error_exit(game, "Malloc failed during map parsing!");
 	line = get_next_line(fd);
-	while (line != NULL)
+	if (!map_str || line == NULL)
+		handle_error_exit(game, "Failed to read map!");
+	while (line)
 	{
-		if (ft_strlen(ft_strtrim(line, " \n\t")) == 0)
-		{
-			free(line);
+		trimmed_line = ft_strtrim(line, " \n\t");
+		if (!trimmed_line || ft_strlen(trimmed_line) == 0)
 			handle_error_exit(game, "Map can't have empty lines!");
-		}
 		temp = ft_strjoin(map_str, line);
-		free(map_str);
-		free(line);
-		if (temp == NULL)
+		free_resources(line, trimmed_line, map_str);
+		if (!temp)
 			handle_error_exit(game, "Malloc failed during map concatenation!");
 		map_str = temp;
 		line = get_next_line(fd);
@@ -40,8 +45,11 @@ static char	*read_map_file(t_game *game, int fd)
 	return (map_str);
 }
 
-static void	split_map_into_grid(t_game *game, char *map_str)
+void	split_map_into_grid(t_game *game, char *map_str)
 {
+	char	*trimmed_row;
+
+	trimmed_row = NULL;
 	game->map.grid = ft_split(map_str, '\n');
 	free(map_str);
 	if (game->map.grid == NULL)
@@ -49,16 +57,23 @@ static void	split_map_into_grid(t_game *game, char *map_str)
 	game->map.rows = 0;
 	while (game->map.grid[game->map.rows])
 	{
-		if (ft_strlen(ft_strtrim(game->map.grid[game->map.rows], " \n\t")) == 0)
+		trimmed_row = ft_strtrim(game->map.grid[game->map.rows], " \n\t");
+		if (ft_strlen(trimmed_row) == 0)
+		{
+			free(trimmed_row);
 			handle_error_exit(game, "Map contains empty lines!");
+		}
+		free(trimmed_row);
 		game->map.rows++;
 	}
 	game->map.columns = ft_strlen(game->map.grid[0]);
 	if (game->map.columns == 0)
+	{
 		handle_error_exit(game, "Map has no columns!");
+	}
 }
 
-static void	count_elements(t_game *game)
+void	count_elements(t_game *game)
 {
 	int	y;
 	int	x;
@@ -83,7 +98,7 @@ static void	count_elements(t_game *game)
 	}
 }
 
-static void	store_positions(t_game *game)
+void	store_positions(t_game *game)
 {
 	int	y;
 	int	x;
@@ -110,20 +125,4 @@ static void	store_positions(t_game *game)
 		}
 		y++;
 	}
-}
-
-void	parse_map(t_game *game, char *map_path)
-{
-	int		fd;
-	char	*map_str;
-
-	fd = open(map_path, O_RDONLY);
-	if (fd == -1)
-		handle_error_exit(game, "Failed to open map file!");
-	map_str = read_map_file(game, fd);
-	split_map_into_grid(game, map_str);
-	count_elements(game);
-	store_positions(game);
-	if (close(fd) == -1)
-		handle_error_exit(game, "Failed to close the map file!");
 }

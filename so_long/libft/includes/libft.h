@@ -82,7 +82,8 @@ int		ft_print_hex(unsigned int n, char begin);
 int		ft_print_ptr(unsigned long n);
 
 char	*get_next_line(int fd);
-char	*ft_move_start(char *start);
-char	*ft_join(char *dest, char *s1, char *s2);
+void	handle_read_error(char *temp_buff, char **buffer_start_ptr);
+char	*join_and_free(char *start, char *buff);
+char	*copy_and_join(char *ptr, char *start, char *buff);
 
 #endif

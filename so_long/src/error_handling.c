@@ -36,8 +36,10 @@ void	handle_error_exit(t_game *game, char *msg)
 	exit(1);
 }
 
-void	exit_game(t_game *game)
+int	exit_game(t_game *game)
 {
+	ft_printf("Quit game.\n");
 	free_game_resources(game);
 	exit(0);
+	return (0);
 }

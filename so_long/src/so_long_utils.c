@@ -26,7 +26,7 @@ void	ft_print_map(char **map, int rows, int columns)
 			ft_printf("%c", map[y][x]);
 			x++;
 		}
-		ft_printf("\n********************\n");
+		ft_printf("\n");
 		y++;
 	}
 }

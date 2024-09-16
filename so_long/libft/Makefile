@@ -55,7 +55,8 @@ SRCS	=		ft_atoi.c			\
 				ft_substr.c			\
 				ft_tolower.c		\
 				ft_toupper.c		\
-				get_next_line.c
+				get_next_line.c		\
+				get_next_line_utils.c
 
 OBJ_DIR = ./obj
 OBJS =			$(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))

@@ -1,9 +1,13 @@
 CC = cc
-MLX_FLAGS = -L./minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 CFLAGS = -Wall -Werror -Wextra -g #remove -g for optimization!!!!!!!!!!!!!!!!!!!!!
 RM = rm -rf
 
-INCLUDES = -I/opt/X11/include -Iminilibx_opengl -Iminilibx_opengl_20191021
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Linux)
+	MLX_FLAGS = -L./minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+else
+	MLX_FLAGS = -L./minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
+endif
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -16,8 +20,8 @@ SRCS =	error_handling.c	\
 		so_long.c			\
 		valid_path_in_map.c	\
 		draw.c				\
-		input.c
-
+		input.c				\
+		so_long_utils.c
 
 OBJ_DIR = ./obj
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
