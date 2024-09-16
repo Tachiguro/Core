@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 23:55:59 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 20:28:39 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,13 @@ static void	check_args(t_game *game, int argc, char **argv)
 {
 	int	len;
 
-	len = 0;
 	if (argc < 2)
-		handle_error_exit(game, "Not enouth arguments!");
+		handle_error_exit(game, "Not enough arguments!");
 	else if (argc > 2)
-		handle_error_exit(game, "Too much arguments!");
+		handle_error_exit(game, "Too many arguments!");
 	len = ft_strlen(argv[1]);
-	if (len < 5)
-		handle_error_exit(game, "Map name too short!");
+	if (argv[1][len - 5] == '/')
+		handle_error_exit(game, "Invalid map name: no name before \".ber\"");
 	if (ft_strncmp(&argv[1][len - 4], ".ber", 4) != 0)
 		handle_error_exit(game, "Map doesn't end with \".ber\"!");
 }
@@ -78,10 +77,10 @@ int	main(int argc, char **argv)
 	game = (t_game *)ft_calloc(sizeof(t_game), 1);
 	if (!game)
 		handle_error_exit(game, "Memory allocation failed for game structure!");
+	check_args(game, argc, argv);
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		handle_error_exit(game, "Failed to initialize MLX!");
-	check_args(game, argc, argv);
 	parse_map(game, argv[1]);
 	if (game->map.grid == NULL)
 		handle_error_exit(game, "Can't open map file.");

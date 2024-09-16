@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:44 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 23:15:47 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 20:43:51 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct	s_dfs_data
 	int		cols;
 	int		coins_found;
 	int		exit_found;
+	int		total_coins;
 }	t_dfs_data;
 
 void	handle_error_exit(t_game *game, char *msg);
@@ -112,12 +113,10 @@ int		check_valid_path(t_game *game);
 
 void	store_positions(t_game *game);
 void	count_elements(t_game *game);
-void	split_map_into_grid(t_game *game, char *map_str);
 char	*read_map_file(t_game *game, int fd);
-
+void	split_map_into_grid(t_game *game, char *map_str);
 void	load_assets(t_game *game);
 void	draw_map(t_game *game);
-
 int		handle_key_press(int keycode, t_game *game);
 int		exit_game(t_game *game);
 void	free_game_resources(t_game *game);

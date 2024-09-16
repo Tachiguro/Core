@@ -6,16 +6,17 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 22:36:37 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 18:26:01 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 20:28:32 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	free_resources(char *line, char *trimmed_line, char *map_str)
+#include "../includes/so_long.h"
+
+static void	free_resources(char *line, char *map_str)
 {
 	free(line);
-	free(trimmed_line);
 	free(map_str);
 }
 
@@ -24,7 +25,6 @@ char	*read_map_file(t_game *game, int fd)
 	char	*line;
 	char	*map_str;
 	char	*temp;
-	char	*trimmed_line;
 
 	map_str = ft_strdup("");
 	line = get_next_line(fd);
@@ -32,11 +32,14 @@ char	*read_map_file(t_game *game, int fd)
 		handle_error_exit(game, "Failed to read map!");
 	while (line)
 	{
-		trimmed_line = ft_strtrim(line, " \n\t");
-		if (!trimmed_line || ft_strlen(trimmed_line) == 0)
+		if (ft_strlen(line) == 0)
+		{
+			free(line);
+			free(map_str);
 			handle_error_exit(game, "Map can't have empty lines!");
+		}
 		temp = ft_strjoin(map_str, line);
-		free_resources(line, trimmed_line, map_str);
+		free_resources(line, map_str);
 		if (!temp)
 			handle_error_exit(game, "Malloc failed during map concatenation!");
 		map_str = temp;
@@ -47,30 +50,16 @@ char	*read_map_file(t_game *game, int fd)
 
 void	split_map_into_grid(t_game *game, char *map_str)
 {
-	char	*trimmed_row;
-
-	trimmed_row = NULL;
 	game->map.grid = ft_split(map_str, '\n');
 	free(map_str);
 	if (game->map.grid == NULL)
 		handle_error_exit(game, "Malloc failed during map split!");
 	game->map.rows = 0;
 	while (game->map.grid[game->map.rows])
-	{
-		trimmed_row = ft_strtrim(game->map.grid[game->map.rows], " \n\t");
-		if (ft_strlen(trimmed_row) == 0)
-		{
-			free(trimmed_row);
-			handle_error_exit(game, "Map contains empty lines!");
-		}
-		free(trimmed_row);
 		game->map.rows++;
-	}
 	game->map.columns = ft_strlen(game->map.grid[0]);
 	if (game->map.columns == 0)
-	{
 		handle_error_exit(game, "Map has no columns!");
-	}
 }
 
 void	count_elements(t_game *game)

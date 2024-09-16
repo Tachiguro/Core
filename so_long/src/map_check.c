@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 22:02:35 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 17:37:51 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 19:51:35 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,21 @@ int	check_rectangular(char **map)
 {
 	int		i;
 	size_t	row_length;
+	char	*trimmed_row;
 
 	i = 0;
-	row_length = ft_strlen(map[0]);
+	trimmed_row = ft_strtrim(map[0], " \n\t");
+	row_length = ft_strlen(trimmed_row);
+	free(trimmed_row);
 	while (map[i])
 	{
-		if (ft_strlen(map[i]) != row_length)
+		trimmed_row = ft_strtrim(map[i], " \n\t");
+		if (ft_strlen(trimmed_row) != row_length)
+		{
+			free(trimmed_row);
 			return (1);
+		}
+		free(trimmed_row);
 		i++;
 	}
 	return (0);

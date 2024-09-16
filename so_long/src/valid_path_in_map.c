@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:33:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 19:59:48 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 20:48:06 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	dfs(t_dfs_data *data, int x, int y)
 		return ;
 	if (data->map[y][x] == 'C')
 		data->coins_found++;
-	if (data->map[y][x] == 'E')
+	if (data->map[y][x] == 'E' && data->coins_found == data->total_coins)
 		data->exit_found = 1;
 	data->map[y][x] = 'V';
 	dfs(data, x + 1, y);
@@ -61,6 +61,7 @@ int	check_valid_path(t_game *game)
 
 	data.coins_found = 0;
 	data.exit_found = 0;
+	data.total_coins = game->num_coins;
 	data.rows = game->map.rows;
 	data.cols = game->map.columns;
 	map_copy = copy_map(game->map.grid, game->map.rows);

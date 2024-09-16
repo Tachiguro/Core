@@ -6,13 +6,13 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:13:19 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/15 18:09:22 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 20:29:32 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static char	*extract_line(char *buff_start)
+char	*extract_line(char *buff_start)
 {
 	int		i;
 	char	*line;
