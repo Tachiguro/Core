@@ -6,11 +6,9 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 22:36:37 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/16 20:28:32 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 20:57:23 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../includes/so_long.h"
 
 #include "../includes/so_long.h"
 

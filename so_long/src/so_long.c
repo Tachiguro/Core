@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:13:59 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/16 20:28:39 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/09/16 21:05:39 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	check_args(t_game *game, int argc, char **argv)
 	else if (argc > 2)
 		handle_error_exit(game, "Too many arguments!");
 	len = ft_strlen(argv[1]);
-	if (argv[1][len - 5] == '/')
+	if (len < 5)
 		handle_error_exit(game, "Invalid map name: no name before \".ber\"");
 	if (ft_strncmp(&argv[1][len - 4], ".ber", 4) != 0)
 		handle_error_exit(game, "Map doesn't end with \".ber\"!");
