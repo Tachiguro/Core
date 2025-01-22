@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:47:12 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/08 22:35:22 by jherzog          ###   ########.fr       */
+/*   Updated: 2024/12/08 00:16:19 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <stdio.h>
 
 static int	calculate_chunk_size(int elements)
 {
@@ -113,8 +114,20 @@ int	main(int argc, char **argv)
 		create_s_a(joined_argv, &s_a);
 		free(joined_argv);
 	}
+	printf("Before sort: \n");
+	for (int i = s_a.len-1; i > 0; i--) // Durchlaufe das Array bis zur Länge len
+        {
+            printf("%d ", s_a.array[i]); // Ausgabe jedes Elements gefolgt von einem Leerzeichen
+        }
+	printf("\n");
 	if (!s_a_sorted(&s_a))
 		choose_sort(&s_a, &s_b);
+			printf("After sort: \n");
+	for (int i = s_a.len -1; i > 0; i--) // Durchlaufe das Array bis zur Länge len
+        {
+            printf("%d ", s_a.array[i]); // Ausgabe jedes Elements gefolgt von einem Leerzeichen
+        }
+        printf("\n");
 	free_stack(&s_a);
 	free_stack(&s_b);
 	return (0);

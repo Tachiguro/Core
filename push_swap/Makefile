@@ -26,7 +26,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(OBJ_DIR)/*.o $(LIBFT) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIBFT_DIR)/libft.h | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I $(LIBFT_DIR)/libft.h -I $(INClUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(LIBFT_DIR) -I $(INClUDES) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@

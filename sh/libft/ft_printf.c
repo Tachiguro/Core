@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:59:55 by jherzog           #+#    #+#             */
-/*   Updated: 2024/09/21 22:40:24 by jherzog          ###   ########.fr       */
+/*   Updated: 2023/12/17 18:44:18 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "ft_printf.h"
 
 static int	ft_handle_p( va_list args)
 {
