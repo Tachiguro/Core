@@ -1,7 +1,7 @@
 #ifndef SH_H
 # define SH_H
 
-#include "../libft/libft.h"
+#include "libft/libft.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <readline/readline.h>

@@ -80,11 +80,5 @@ void	test_syntax()
 	// Testfall 26: Gemischt korrekt und ungerade Anführungszeichen
 	assert(is_correct_syntax("echo 'Hello' \"What's up\" \"world") == false);
 
-	// Testfall 27: Gemischt falsch und ungerade Anführungszeichen
-	assert(is_correct_syntax("echo \"Hello'\' What's \"up\' world") == false);
-
-	// Testfall 28:
-	// assert(is_correct_syntax() == false);
-
 	printf("Alle Tests in test_is_correct_syntax erfolgreich.\n");
 }

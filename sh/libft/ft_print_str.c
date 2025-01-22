@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 23:38:48 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/15 23:12:38 by jherzog          ###   ########.fr       */
+/*   Updated: 2025/01/22 22:53:27 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_print_str(char *str)
 {

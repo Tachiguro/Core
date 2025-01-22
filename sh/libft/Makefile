@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jherzog <jherzog@student.42.frf>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/13 18:29:58 by jherzog           #+#    #+#              #
-#    Updated: 2023/07/13 19:57:15 by jherzog          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME	=	libft.a
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
@@ -50,14 +38,12 @@ SRCS	=		ft_atoi.c			\
 				ft_toupper.c		\
 				ft_print_char.c		\
 				ft_printf.c			\
-				ft_printf.h			\
 				ft_print_hex.c		\
 				ft_print_int.c		\
 				ft_print_ptr.c		\
 				ft_print_str.c		\
-				ft_print_uint.c
-
-SRCS_BONUS =	ft_lstadd_back.c	\
+				ft_print_uint.c		\
+				ft_lstadd_back.c	\
 				ft_lstadd_front.c	\
 				ft_lstlast.c		\
 				ft_lstnew.c			\
@@ -69,15 +55,11 @@ SRCS_BONUS =	ft_lstadd_back.c	\
 
 OBJ_DIR = obj
 OBJS =			$(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
-OBJS_BONUS =	$(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS_BONUS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJS_BONUS)
-	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
-
-bonus: $(OBJS_BONUS)
-	ar -rcs $(NAME) $(OBJS_BONUS)
+$(NAME): $(OBJS)
+	ar -rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: %.c libft.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I. -c $< -o $@
@@ -93,31 +75,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all re fclean clean bonus
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
-
-	@rm a.out
-	@make fclean
+.PHONY: all re fclean clean

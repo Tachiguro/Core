@@ -1,7 +1,7 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-#include "../libft.h"
+#include "../libft/libft.h"
 #include "../sh.h"
 #include <assert.h>
 

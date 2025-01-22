@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_uint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jherzog <jherzog@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 23:48:52 by jherzog           #+#    #+#             */
-/*   Updated: 2023/12/17 19:23:37 by jherzog          ###   ########.fr       */
+/*   Updated: 2025/01/22 22:53:35 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_print_uint(unsigned int n)
 {
