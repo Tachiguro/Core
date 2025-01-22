@@ -4,9 +4,9 @@
 
 int	main()
 {
-	printf("Running all tests...\n");
+	ft_printf("Running all tests...\n");
 	test_syntax();
-	printf("All tests passed!\n");
+	ft_printf("All tests passed!\n");
 
 	return (0);
 }

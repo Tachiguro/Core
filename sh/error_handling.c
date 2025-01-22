@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:20:11 by jherzog           #+#    #+#             */
-/*   Updated: 2025/01/22 16:53:35 by jherzog          ###   ########.fr       */
+/*   Updated: 2025/01/22 23:20:43 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	print_error(const char *text)
 {
-	printf("Error:%s\n",text);
+	ft_printf("Error:%s\n",text);
 	exit(1);
 }
