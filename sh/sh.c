@@ -6,7 +6,7 @@
 /*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:21:34 by jherzog           #+#    #+#             */
-/*   Updated: 2025/01/22 20:57:47 by jherzog          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:42:07 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,30 @@
 
 int	main(void)
 {
-	// const char	*line = "cd /var && (echo -n \"Listing directory contents: \" && ls -la | grep \"^d\" > dir_contents.txt && cat dir_contents.txt) || echo \"Failed to change directory or list contents\"";
 	char	*line;
+	t_token	*head;
 
 	line = NULL;
+	head = NULL;
 	using_history();
 	while (1)
 	{
 		line = readline("$>");
-		if (!is_correct_syntax(line))
-			print_error("Not valid command!");
-		if (ft_strnstr(line, "exit", 4))
+		if (!line || !*line)
 		{
 			free(line);
-			exit(0);
+			break ;
 		}
+		add_history(line);
+		if (!is_correct_syntax(line))
+			print_error("Syntax is not correct!");
+		if (ft_strnstr(line, "exit", ft_strlen(line)))
+			ft_exit(line);
+		head = create_tokens(line);
+		if (!head)
+			print_error("Something is wrong... -> (!head)");
+		print_tokens(head);
+		free_tokens(head);
 		free(line);
 	}
 	return (0);

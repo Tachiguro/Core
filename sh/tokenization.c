@@ -6,61 +6,106 @@
 /*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:32:28 by jherzog           #+#    #+#             */
-/*   Updated: 2025/01/25 23:02:03 by jherzog          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:36:51 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static bool	is_special_char(char c)
+static t_token	*create_token(t_type type, char *value)
 {
-	if (c == '\'' || c == '\"' || c == '<' || c == '>' || c == '|' || c == '$')
-		return (true);
-	return (false);
+	t_token	*token;
+
+	token = malloc(sizeof(t_token));
+	if (!token)
+		return (NULL);
+	token->type = type;
+	token->value = ft_strdup(value);
+	if (!token->value)
+	{
+		free (token);
+		return (NULL);
+	}
+	token->next = NULL;
+	return (token);
 }
 
-static t_symbol	char_to_symbor(char c)
+static void	add_token(t_token **head, t_token *token)
 {
-	if (c == '|')
-		return (T_PIPE);
-	if (c == '<')
-		return (T_LESS_THAN);
-	if (c == '>')
-		return (T_GREATER_THAN);
-	if (c == '$')
-		return (T_DOLLAR);
-	if (c == '\'')
-		return (T_SINGLE_QUOTE);
-	if (c == '\"')
-		return (T_DOUBLE_QUOTE);
-	if (c == '?')
-		return (T_QUESTION_MARK);
-	if (c == '~')
-		return (T_TILDE);
-	return (T_WORD);
+	t_token	*last;
+
+	if (!*head)
+		*head = token;
+	else
+	{
+		last = *head;
+		while (last->next)
+			last = last->next;
+		last->next = token;
+	}
 }
 
-static t_token	add_token(char *line)
+static void	special_token(char **line, t_token **head)
 {
-
+	if (**line == '>')
+	{
+		if (*(*line + 1) == '>')
+		{
+			add_token(head, create_token(T_APPEND, ">>"));
+			(*line)++;
+		}
+		else
+			add_token(head, create_token(T_OUT, ">"));
+	}
+	else if (**line == '<')
+		add_token(head, create_token(T_IN, "<"));
+	else if (**line == '|')
+		add_token(head, create_token(T_PIPE, "|"));
+	(*line)++;
 }
 
-t_token	*get_token(char *line)
+static void	other_token(char **line, t_token **head)
+{
+	char	*start;
+	bool	in_quote;
+	char	quote_char;
+
+	start = *line;
+	in_quote = false;
+	quote_char = '\0';
+	while(**line)
+	{
+		if (!in_quote && (**line == '\'' || **line == '\"'))
+		{
+			in_quote = true;
+			quote_char = **line;
+		}
+		else if (in_quote && (**line == quote_char))
+			in_quote = false;
+		else if (!in_quote && ft_strchr(" \t\n><|", **line))
+			break;
+		(*line)++;
+	}
+	add_token(head, create_token(T_WORD, ft_substr(start, 0, *line - start)));
+	if (**line)
+		(*line)++;
+}
+
+t_token	*create_tokens(char *line)
 {
 	t_token	*head;
-	int		i;
-	bool	in_quotes;
 
 	head = NULL;
-	i = 0;
-	in_quotes = false;
-	while (line[i] != '\0')
+	while (*line)
 	{
-		if (is_special_char(line[i]))
-		{
-
-		}
-		i++;
+		while (*line && ft_strchr(" \t\n", *line))
+			line++;
+		if (*line == '\0')
+			break;
+		if (ft_strchr("><|", *line))
+			special_token(&line, &head);
+		else
+			other_token(&line, &head);
 	}
 	return (head);
 }

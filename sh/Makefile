@@ -13,7 +13,10 @@ TEST_OBJDIR = tests/obj
 LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 
 SRC =	error_handling.c	\
-		syntax.c
+		syntax.c			\
+		buildins.c			\
+		tokenization.c		\
+		utils.c
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
 MAIN_SRC = sh.c

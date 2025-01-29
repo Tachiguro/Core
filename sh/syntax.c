@@ -6,14 +6,17 @@
 /*   By: jherzog <jherzog@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:12:53 by jherzog           #+#    #+#             */
-/*   Updated: 2025/01/23 00:16:13 by jherzog          ###   ########.fr       */
+/*   Updated: 2025/01/26 18:40:00 by jherzog          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static bool	is_valid_char_in_pos(const char *l, int len)
+static bool	is_valid_char_in_pos(const char *l)
 {
+	int	len;
+
+	len = ft_strlen(l);
 	if (len == 0)
 		return (true);
 	if (l[0] == '<' || l[0] == '>' || l[0] == ')' || l[0] == '|' ||
@@ -23,12 +26,38 @@ static bool	is_valid_char_in_pos(const char *l, int len)
 	return (true);
 }
 
+static bool	are_quotes_right(const char *l)
+{
+	int		i;
+	bool	in_double_quote;
+	bool	in_single_quote;
+
+	in_double_quote = false;
+	in_single_quote = false;
+	i = 0;
+	while (l[i] != '\0')
+	{
+		if (l[i] == '\\' && l[i + 1] != '\0' && (l[i + 1] == '\"' || l[i + 1] == '\''))
+		{
+			i += 2;
+			continue;
+		}
+		if (l[i] == '\"' && !in_single_quote)
+			in_double_quote = !in_double_quote;
+		else if (l[i] == '\'' && !in_double_quote)
+			in_single_quote = !in_single_quote;
+		i++;
+	}
+	if (in_double_quote || in_single_quote)
+		return (false);
+	return (true);
+}
+
 bool	is_correct_syntax(const char *l)
 {
-	int	len;
-
-	len = ft_strlen(l);
-	if (!is_valid_char_in_pos(l, len))
+	if (!is_valid_char_in_pos(l))
 			return (false);
+	if (!are_quotes_right(l))
+		return (false);
 	return (true);
 }
